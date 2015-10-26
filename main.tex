@@ -596,12 +596,264 @@ So this too is isomorphic to $C_2 \times C_2$, via $e \rightarrow id, a \rightar
 \begin{proposition}
 \begin{itemize}
 \item $$|G_1 \times \ldots \times G_n| =|G_1||G_2|\ldots|G_n|.$$
-\item If \emph{all} of the gorups $G_i$ are abelian, then so is $G_1 \times \ldots \times G_n$. But if \emph{any} of $G_1, \ldots G_n$ is not abelian then netiher is $G_1 \times \ldots \times G_n$.
+\item If \emph{all} of the groups $G_i$ are abelian, then so is $G_1 \times \ldots \times G_n$. But if \emph{any} of $G_1, \ldots G_n$ is not abelian then netiher is $G_1 \times \ldots \times G_n$.
 \item Let $(g_1, \ldots g_n) \in G_1 \times \ldots \times G_n$. Then $ord (g_1, \ldots , g_n) = lcm (ord g, \ldots , ord g_n)$.
 Proof not known.
 \end{itemize}
 \end{proposition}
 
+\section{Small groups}
+\begin{enumerate}
+  \item 
+  Every group of order 1 is isomorphic to $\{1\}$.
+\item Every group of prime order is cyclic, so isomorphic to $C_8$. So only one group of order $2,3,5,7,\ldots$
 
+\item Groups of order 4: Certainly we have $C_4$. Any other group must have 3 elements of order 2, say $a,b,c$. Start our multiplication table:
+
+%      e a b c
+%  e | e a b c
+%  a | a e
+%  b | b    e
+%  c | c     e
+
+The six vacant places are all determined by the fact that every element must appear onee in every rw and evry column.
+
+Complete table:
+%      e a b c
+%  e | e a b c
+%  a | a e c b
+%  b | b c e a
+%  c | c b a e
+
+So $G \equiv C_2 \times C_2$ (So every gorup of order 4 is abelian).
+
+\item Groups of order 6.
+
+  Certainly we have $C_6$. Any other group has 5 elements with orders 2 or 3, with at least one of order 2 (by prop. ?)
+
+  \underline{Result:} if a group $G$ has only elements of order $\leq 2$, then $G$ is abelian. ( if $g^2 = e\,\forall g$, look at $(ab)^2 = e$ So $ab$\underline{ab}$=e$ and also $ab$\underline{ba}$=aa=e$. y left cancellation, $ab=ba$, for all $a,b$
+
+  The abelian gorups of order 5 are $C_6, C_2 \times C_3$, which are isomorphic. If follows that every group of order 6 hs an element of order 3.
+
+  Let $a$ be an element of order 3.
+
+  Let $b$ be an element of order 2.
+
+  \begin{equation}
+    G = \langle a \rangle \cup b \langle a \rangle \text{ so } G = \left\{ e,a,a^2,b,ba,ba^2 \right\}
+    \label{}
+  \end{equation}
+
+  Start multiplication table:
+
+%  .   |e   a   a^2   b   ba   ba^2
+%  e   |e   a   a^2
+%  a   |a a^2   e
+%  a   |2 a^2   e    a^2
+%  b   |b ba    ba^2 e
+%  ba  |ba ba^2 b
+%  ba^2| ba^2 b ba
+
+Note that if $ab=ba$ then we can check that $ab$ must have order 6, 
+since $(ab)^2=a^2b^2=a^2$, $(ab)^3=a^3b^3=b.$ But $G$ is not cyclic, by assumption, so $ab\neq ba$.
+Hence we must have $ab = ba^2$.
+
+This allows us to complete the multiplication table:
+\begin{equation}
+  \begin{matrix}
+     & e & a & a^2 & b & ba & ba^2 \\
+   e & e & a & a^2 & b & ba & ba^2 \\
+   a & a & a^2 & e & ba^2 & b & ba \\
+   a^2 & a^2 & e & a & ba & ba^2 & b \\
+   b & b & ba & ba^2 & e & a & a^2               \\
+   ba & ba & ba^2 & b & a^2 & e & a            \\
+   ba^2 & ba^2 & b & ba & a & a^2 & e
+ \end{matrix}
+\end{equation}
+
+We can check that  $G$ is isomotphic to $S_3$. So the gorupsof order 6 are $C_6 and S_3$.
+
+\item Groups of order 8.
+
+  Abelian groups: $C_8,C_4\times C_2, C_2 \times C_2 \times C_2.$ 
+
+  Non abelian group $D_8$.
+
+  There is one other non abelian group.
+  \begin{equation}
+    Q_8 = \left\{ \pm1, \pm i, \pm j, \pm k \right\} \text{ where } i^2=j^2=k^2=-1.
+    \label{}
+  \end{equation}
+  \begin{equation}
+    \begin{matrix}
+      ij=k & jk=i & ki=j \\
+      ji=-k & kj=-i & ik=-j
+    \end{matrix}
+    \label{}
+  \end{equation}
+  This is the \emph{quaternion group}. 
+  $Q_8$ has six elements of order 4. 
+  $D_8$ only has two elements of order 4, so they are not isomorphic.
+
+  Alternatively, lets define matrices
+
+  \begin{equation}
+    A = \left( 
+\begin{matrix}
+  0 & 1 \\
+  -1 & 0
+\end{matrix} 
+    \right),
+   B = \left( 
+   \begin{matrix}
+     i & 0 \\
+     0 & -i
+   \end{matrix}
+   \right),
+   C = 
+   \left( 
+\begin{matrix}
+  0 & -i \\
+  -i & 0
+\end{matrix}
+   \right)
+    \label{}
+  \end{equation}
+
+  So $A,B,C \in GL_2(\mathbb(C))$. I cleain that if $G = \left\{ \pm I, \pm A, \pm B, \pm C \right\}$
+
+  Then $G \leq GL_2(\mathbb(C))$ and there is an isomorphism $G \equiv Q_8$ given by 
+
+  \begin{equation}
+    \begin{matrix}
+      f(\pm I ) = \pm 1 & f(\pm A) = \pm i \\
+      f(\pm B ) = \pm j & f(\pm C ) = \pm k
+    \end{matrix}
+    \label{}
+  \end{equation}
+  It follows that since matrix multiplication is associative, the multiplication on $Q_8$ is associative too!
+
+\item All grooups of order 9 are abelian, so either $C_9$ or $C_3 \times C_3$.
+  The groups of order 10 are $C_{10},D_{10}$ Groups of order 12 are $C_{12}, C_{6} \times C_2$ (the abelian ones), $D_{12},A_{4}$, and one other. 
+
+  Groups of order 14 are $C_{14}$ and $D_{14}$. 
+
+  Only gorups of order 15 is $C_{15}$.
+
+  Therre are 14 groups of order 16.
+\end{enumerate}
+
+Helpful result:
+\begin{proposition}
+  Let $G$ be a group of even order. Then $G$ has an element of order 2.
+\end{proposition}
+
+\begin{proof}
+  Let $S$ to be the subset of $G$ such that 
+  \begin{equation}
+    S = \left\{ g \in G : ord g > 2 \right\}
+    \label{}
+  \end{equation}
+  $g \in S \iff g^{-1} \in S$ (Since ord $g^{-1} = ord g$). And $g \neq g^{-1}$, since $g^2 \neq e$. So $S$ contains pairs $(g,g^{-1})$ of elements, so $|g|$ is even. 
+
+  But $|G|=|S| + |\left\{ g : ord g=2 \right\}| + 1$ (identitity). 
+
+  So $|\left\{ g : ord g = 2 \right\}|=|G|-|S|-1$ which is odd. 
+
+  So $\left\{ g : ord g = 2 \right\} \neq \emptyset.$
+
+\end{proof}
+
+
+\section{Homomorphisms}
+
+For an isomorphism we had two conditions that a map $G \rightarrow H$ has to satisfy:
+
+\begin{enumerate}
+  \item bijection
+  \item respects multiplication
+\end{enumerate}
+
+If we drop (2), we get the definition of a homomorphism.
+
+\begin{definition}
+  A map $f:G \rightarrow H$ is a \emph{homomorphism} if $f(g_1 g_2)=f(g_1)f(g_2)$ for all $g_1,g_2 \in G.$
+\end{definition}
+
+\underline{Examples}
+\begin{enumerate}
+  \item Any isomorphism is a homomorphism. In fact an isomorphism is a bijection homomorphism.
+  \item Let $G,H$ be any groups. Then
+    $f : G \rightarrow H$ defined by $f(g) = e_H$ is a homomorphism. (Check $f(g_1 g_2)=e_h, f(g_1)f(g_2)=e_He_h = e_h$). This is the ``trivial homomorphism'' $G \rightarrow H.$
+  \item Let $G \leq H$. Then $f:G\rightarrow H$ defined by $f(g)=g$ is a homomorphism. (The inclusion map of $G$ into $H$.)
+  \item Define $\text{sign}:S_n \rightarrow C_2$ by $\text{sign}(g)=\text{sign}(g)=+1 \text{ if } g $ is even, $-1$ if $g$ is odd. (We showed before that $\sgn(gh)=\sgn(g)\sgn(h)$.)
+  \item Define $f:D_{2n} \rightarrow C_2$ by 
+
+    $f(g)=1$ if $g$ a rotation, $-1$ if $g$ a reflection.
+
+    This is a homomorphism. (We know rot $\times$ rot $=$ rot, ref $\times$ rot $=$ ref, rot $\times$ ref $=$ ref, ref $\times$ ref $=$ rot).
+
+    So its easy to see that $f$ respects multiplication.
+
+  \item Define $f:GL_2(F) \rightarrow F^\times$ by
+
+    $F(g) = \text{det}g$. Then $f$ is a homomorphism. 
+    (We know that $\text{det}(gh)=(\text{det}g)(\text{det}h)$ for $g,h \in GL_2(F)$.) This can be done for $n>2$ as well.
+  \item Let $V,W$ be vector spaces, and let $T:V \rightarrow W$ be a linear transformation. Then $V$ and $W$ are groups under $+$ and $T$ is a homomorphism (We know that $T(v_1 + v_2)=T(v_1)+T(v_2)$ since $T$ preserves addition.) 
+  \item Define $f: (\mathbb{R},+)\rightarrow (\mathbb{C}^\times,\times)$ by $f(x)=e^{2 \pi i x}.$ Then $f$ is a homomorphism. (Check: $f(x+y)=e^{2\pi i (x+y)}=e^{2\pi i x}e^{2 \pi i y}=f(x)f(y)$).
+\end{enumerate}
+
+\begin{proposition}
+  Let $f: G \rightarrow H$ be a homomorphism. 
+  \begin{enumerate}
+    \item $f(e_G)=e_H$
+    \item $f(g^{-1})=f(g)^{-1}$ for all $g \in G$.
+    \item $\text{ord}f(g)$ divides $\text{ord}g$ for all $g \in G$.
+    \item
+  \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+  (1) and (2) are the same as for the corresponding parts of Proposition (3?).
+
+  (3) \emph{Claim:} $f(g^k)=f(g)^k$ for all $k\in \mathbb{Z}.$
+  \begin{proof}
+    If $k \geq 0$, use induction. If $k<0$, show instead that $f\left( \left( g^{-1} \right)^{-k} \right)=f(g^{-1})^{-k}$. (i.e. replace $g$ with $g^{-1}$ and $k$ with $-k$). now suppose that $k=\text{ord}g$. Then
+
+    $g^k = e_G$. $f(g^k)=f(e_G)=e_H$. Now by the claim, $f(g)^k=e_H$ and so we have $\text{ord}f(g)$ divides $k$.
+  \end{proof}
+\end{proof}
+
+\begin{definition}
+  Let $f:G \rightarrow H$ be a homomorphism. We define: 
+  
+  The \emph{image} of $f$: $\text{Im } f = \left\{ f(g) : g \in G \right\}$.
+
+  The \emph{kernel} of $f$: $\text{Ker } f=\left\{ g \in G : f(g) = e_H \right\}$ 
+\end{definition}
+
+\begin{theorem}
+  \begin{enumerate}
+    \item 
+  $\text{Im } f$ is a subgroup of $H$.
+    \item
+  $\text{Ker } f$ is a subgroup of $G$.
+  \end{enumerate}
+  \label{}
+\end{theorem}
+
+\begin{proof}
+  \begin{enumerate}
+    \item Check the axioms.
+
+      $f(e_g)=e_H$ so $e_H \in \text{Im }f$.
+      Suppose $h_1, h_2 \in \text{Im } f$. Then there exist $g_1, g_2 \in G$ such that $f(g_1)=h1, f(g_2)=h_2$. Now, $f(g_1 g_2)=f(g_1)f(g_2)=h_1 h_2$. So $\text{Im }f$ is closed under the group operation.
+
+      Suppose $h \in \text{Im }f. $ Then $h=f(g)$ for some $g \in G$. Now $f(g^{-1})=f(g)^{-1}=h^{-1}$. So $\text{Im }f$ is closed under inverses. So $\text{Im } f \in H $.
+
+    \item Again, check the subgroup conditions.
+      $f(e_G)=e_H$, so $e_G \in \text{Ker }f$. Suppose $g_1, g_2 \in \text{Ker }f$. Then $f(g_1)=f(g_2)=e_H$. ow $f(g_1 g_2)=f(g_1)f(g_2)=e_He_H=e_h$. So $g_1 g_2 \in \text{ker }f$. Finally, let $g \in \text{Ker }f$. Then $f(g)=e_H$. now $f(g^{-1})=f(g)^{-1}=e_H^{-1}=e_H$, so $g^{-1} \in \text{ker }f$. So $\text{ker }f \leq G$.
+  \end{enumerate}<++>
+\end{proof}<++>
 
 \end{document}
