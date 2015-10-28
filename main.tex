@@ -12,12 +12,16 @@
 \newtheorem{definition}{Definition}[section]
 
 \newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{proposition}{Proposition}
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{remark}{Remark}
+\newtheorem{exmp}{Example}[section]
+
 
 \newcommand{\dtn}{\Delta_n}
+\newcommand{\func}[3]{#1 : #2 \rightarrow #3}
 \DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\Ima}{Im}
 
 
 \title{Algebra II}
@@ -853,7 +857,72 @@ If we drop (2), we get the definition of a homomorphism.
 
     \item Again, check the subgroup conditions.
       $f(e_G)=e_H$, so $e_G \in \text{Ker }f$. Suppose $g_1, g_2 \in \text{Ker }f$. Then $f(g_1)=f(g_2)=e_H$. ow $f(g_1 g_2)=f(g_1)f(g_2)=e_He_H=e_h$. So $g_1 g_2 \in \text{ker }f$. Finally, let $g \in \text{Ker }f$. Then $f(g)=e_H$. now $f(g^{-1})=f(g)^{-1}=e_H^{-1}=e_H$, so $g^{-1} \in \text{ker }f$. So $\text{ker }f \leq G$.
-  \end{enumerate}<++>
-\end{proof}<++>
+  \end{enumerate}
+\end{proof}
+
+\begin{exmp}
+  Suppose $G=S_3$. Let $f$ be a homomorphism from $G$ to some group $H$. What are the possibilties or $\text{Im }f$ and $\text{Ker }f$?
+
+  Recell that for $g \in G$ we have $f(g)$ divided $\text{ord }g$.
+
+  In $S_3$ we have elements $(123)$, $(12)$ or orders 3 and 2 respectively. So
+  \begin{enumerate}
+    \item 
+  $f\left( (123) \right)$ has order 3 or else $f\left( (123) \right)=e_H$ 
+    \item 
+  $f\left( (12) \right)$ has order 2 or else $f\left( (12) \right)=e_H$ 
+  \end{enumerate}
+
+  \textbf{Case 1:} $f\left( (123) \right)$ has order 3 and $f\left(  (12)\right)$ has order 2. In this case $|\text{Im }f|$ is divisible by both 2 and 3. But $|\text{Im }f| \leq 6$, so we must have $\text{Im } f=6$. So (ocnsidered as a map $G \rightarrow \Ima f$) $f$ is bijective. Hence $\Ima f \cong S_3$.
+
+  \textbf{Case 2:} $f\left( (12) \right)=e_H$. In this case observe that $(123)=(13)(12)$.
+
+  So $f\left( (123) \right)=f\left( (13) \right)e_H=f\left( (13) \right)$.
+
+  But $f\left( (123) \right)$ divides 3 and $f\left( (13) \right)$ divides 2. Hence these must both be $e_H$. Now we see that $\ker f$ is a subgroup of $S_3$ containing $id, (123), (12), (13)$, so $\ker f=S_3$. And so $\Ima f = \left\{ e_H \right\}$. $f$ is the trivial homomorphism.
+
+  \textbf{Case 3:} $f\left( (12) \right)$ has order 2, $f\left( (123) \right)=e_H$. Notice that $(13)(12)=(123)$, so $f\left( (13) \right)f\left( (12) \right)=e_H$. So $f\left( (13) \right)=f\left( (12) \right)^{-1}=f\left( (12) \right)$ (Since $f\left( (12) \right)$ has order 2).
+
+  Similarly $(12)(23)=(123)$, so $f\left( (12) \right)=f\left( (23) \right)$. Hence the image is $\left\{ e_H,f\left( (12) \right) \right\}$, a group of order 2, and $\ker f=\left\{ e,(123),(132) \right\}$.
+
+  If we take $\Ima f$ to be $C_2$, then $f$ is the sign homomorphism.
+
+  \textbf{Observation:} Not every subgroup of $S_3$ occurred as the kernel of a homomorphism.
+\end{exmp}
+
+The next section explores which subgroups can occur.
+
+Suppose $\func{f}{G}{H}$ is a homomorphism, and suppse $g \in \ker f$. Let $g_1$ be every element of $G$. Then I claim $g_1,g_0,g_1^{-1}\in \ker f$.
+
+Check: 
+\begin{align*}
+  f(g_1\,g_0\,g_1^{-1}) &= f(g_1)f(g_0)f(g_1)^{-1}\\
+  &= f(g_1)e_Hf(g_1)^{-1} \\
+  &= e_H.
+\end{align*}
+
+So if $K=\ker f$, then $K=gKg^{-1}=\left\{ gKg^{-1} : k \in K \right\}$ for all $g \in G$
+
+\begin{proposition}
+  Let $G$ be a group and let $H$ be a subgroup of $G$. The following are equivalent:
+  \begin{enumerate}
+    \item $H=gHg^{-1}$ for all $g \in G$.
+    \item $Hg=gH$ for all $g \in G$.
+    \item Every left coset is a right coset
+    \item Every right coset is a left coset
+    \item $gHg^{-1} \subseteq H$ for all $g \in G$
+  \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+  $(2) \implies (3)$: Suppose that $Hg=gH$ for all $g$. Then if we take a left coset $gH$ then this is equal to the right coset $Hg$.
+
+  $(3)\implies(2):$ Suppose that every left coset of $H$ is a right coset. So for $g \in G$, $gH=Hx$ for some $x \in G$. But $g \in gH$, and so $g \in Hx$. Hence $Hx=Hg$, so $gH=Hg$.
+
+  $(2)\implies(4):$ The same as above.
+
+  $(1)\implies(2):$ 
+  Consider $x \in gHg^{-1}$. So $x=ghg^{-1}$ for some $h \in H$. Now $xg=gh$. So $(gHg^{-1})g=\left\{ (ghg^{-1}) g \right\}=\left\{ gh : h \in H \right\}. $ $gHg^{-1}=H$, so $(gHg^{-1})g=Hg$ Hence $Hg = gH$
+\end{proof}
 
 \end{document}
