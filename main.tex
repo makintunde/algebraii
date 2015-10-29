@@ -19,14 +19,17 @@
 
 
 \newcommand{\dtn}{\Delta_n}
+\newcommand{\gene}[1]{\langle #1 \rangle}
+\newcommand{\nsg}[2]{#1 \trianglelefteq #2}
 \newcommand{\func}[3]{#1 : #2 \rightarrow #3}
 \DeclareMathOperator{\sgn}{sgn}
 \DeclareMathOperator{\Ima}{Im}
+\DeclareMathOperator{\ord}{\text{ord}}
 
 
 \title{Algebra II}
 \author{John R. Britnell - 655\\
-        Problems class: 12:00pm\\
+        Problems class: Wednesday 2:00pm\\
         Office hour: Mon 2:00pm}
 \date{October 2015}
 
@@ -601,7 +604,7 @@ So this too is isomorphic to $C_2 \times C_2$, via $e \rightarrow id, a \rightar
 \begin{itemize}
 \item $$|G_1 \times \ldots \times G_n| =|G_1||G_2|\ldots|G_n|.$$
 \item If \emph{all} of the groups $G_i$ are abelian, then so is $G_1 \times \ldots \times G_n$. But if \emph{any} of $G_1, \ldots G_n$ is not abelian then netiher is $G_1 \times \ldots \times G_n$.
-\item Let $(g_1, \ldots g_n) \in G_1 \times \ldots \times G_n$. Then $ord (g_1, \ldots , g_n) = lcm (ord g, \ldots , ord g_n)$.
+\item Let $(g_1, \ldots g_n) \in G_1 \times \ldots \times G_n$. Then $\ord (g_1, \ldots , g_n) = lcm (\ord g, \ldots , \ord g_n)$.
 Proof not known.
 \end{itemize}
 \end{proposition}
@@ -701,7 +704,7 @@ We can check that  $G$ is isomotphic to $S_3$. So the gorupsof order 6 are $C_6 
 
   Alternatively, lets define matrices
 
-  \begin{equation}
+  \begin{equation*}
     A = \left( 
 \begin{matrix}
   0 & 1 \\
@@ -722,19 +725,19 @@ We can check that  $G$ is isomotphic to $S_3$. So the gorupsof order 6 are $C_6 
 \end{matrix}
    \right)
     \label{}
-  \end{equation}
+\end{equation*}
 
   So $A,B,C \in GL_2(\mathbb(C))$. I cleain that if $G = \left\{ \pm I, \pm A, \pm B, \pm C \right\}$
 
   Then $G \leq GL_2(\mathbb(C))$ and there is an isomorphism $G \equiv Q_8$ given by 
 
-  \begin{equation}
+  \begin{equation*}
     \begin{matrix}
       f(\pm I ) = \pm 1 & f(\pm A) = \pm i \\
       f(\pm B ) = \pm j & f(\pm C ) = \pm k
     \end{matrix}
     \label{}
-  \end{equation}
+  \end{equation*}
   It follows that since matrix multiplication is associative, the multiplication on $Q_8$ is associative too!
 
 \item All grooups of order 9 are abelian, so either $C_9$ or $C_3 \times C_3$.
@@ -754,17 +757,17 @@ Helpful result:
 
 \begin{proof}
   Let $S$ to be the subset of $G$ such that 
-  \begin{equation}
-    S = \left\{ g \in G : ord g > 2 \right\}
+  \begin{equation*}
+    S = \left\{ g \in G : \ord g > 2 \right\}
     \label{}
-  \end{equation}
-  $g \in S \iff g^{-1} \in S$ (Since ord $g^{-1} = ord g$). And $g \neq g^{-1}$, since $g^2 \neq e$. So $S$ contains pairs $(g,g^{-1})$ of elements, so $|g|$ is even. 
+  \end{equation*}
+  $g \in S \iff g^{-1} \in S$ (Since $\ord g^{-1} = \ord g$). And $g \neq g^{-1}$, since $g^2 \neq e$. So $S$ contains pairs $(g,g^{-1})$ of elements, so $|g|$ is even. 
 
-  But $|G|=|S| + |\left\{ g : ord g=2 \right\}| + 1$ (identitity). 
+  But $|G|=|S| + |\left\{ g : \ord g=2 \right\}| + 1$ (identitity). 
 
-  So $|\left\{ g : ord g = 2 \right\}|=|G|-|S|-1$ which is odd. 
+  So $|\left\{ g : \ord g = 2 \right\}|=|G|-|S|-1$ which is odd. 
 
-  So $\left\{ g : ord g = 2 \right\} \neq \emptyset.$
+  So $\left\{ g : \ord g = 2 \right\} \neq \emptyset.$
 
 \end{proof}
 
@@ -863,7 +866,7 @@ If we drop (2), we get the definition of a homomorphism.
 \begin{exmp}
   Suppose $G=S_3$. Let $f$ be a homomorphism from $G$ to some group $H$. What are the possibilties or $\text{Im }f$ and $\text{Ker }f$?
 
-  Recell that for $g \in G$ we have $f(g)$ divided $\text{ord }g$.
+  Recell that for $g \in G$ we have $f(g)$ divided $\ord g$.
 
   In $S_3$ we have elements $(123)$, $(12)$ or orders 3 and 2 respectively. So
   \begin{enumerate}
@@ -922,7 +925,77 @@ So if $K=\ker f$, then $K=gKg^{-1}=\left\{ gKg^{-1} : k \in K \right\}$ for all 
   $(2)\implies(4):$ The same as above.
 
   $(1)\implies(2):$ 
-  Consider $x \in gHg^{-1}$. So $x=ghg^{-1}$ for some $h \in H$. Now $xg=gh$. So $(gHg^{-1})g=\left\{ (ghg^{-1}) g \right\}=\left\{ gh : h \in H \right\}. $ $gHg^{-1}=H$, so $(gHg^{-1})g=Hg$ Hence $Hg = gH$
+  Consider $x \in gHg^{-1}$. So $x=ghg^{-1}$ for some $h \in H$. Now $xg=gh$. So $(gHg^{-1})g=\left\{ (ghg^{-1}) g \right\}=\left\{ gh : h \in H \right\}. $ $gHg^{-1}=H$, so $(gHg^{-1})g=Hg$ Hence $Hg = gH$.
+
+  $(2)\implies(1):$ Suppose that $Hg=gH$. Then $Hgg^{-1}=gHg^{-1} \implies H=gHg^{-1}$.
+
+  $(1) \implies (5):$ Since $gHg^{-1}=H \implies gHg^{-1} \subseteq H$.
+
+  $(5) \implies (1):$ Supppse that $gHg^{-1}\subseteq H$ for all $g \in G$. Fix an element $g$. Then $g^{-1} \in G$ and so $g^{-1}H\left( g^{-1} \right)^{-1} \subseteq H$, so $g^{-1}Hg \subseteq H$. So $g\left( g^{-1}Hg \right)g^{-1} \subseteq gHg^{-1}$, and it follows that $H \subseteq gHg^{-1}$. But we know that $gHg^{-1} \subseteq H$, and so $H=gHg^{-2}$.
 \end{proof}
 
+\begin{definition}
+  A subgroup $H$ of a group $G$ with the property that $gHg^{-1}=H$ for all $g \in G$ (or any of the other equivalent properties from Prop. 16) is said to be a \emph{normal} subgroup of $G$. We write $H \trianglelefteq G$ to mean that it is a normal subgroup.
+\end{definition}
+
+\begin{exmp}
+  \begin{enumerate}
+    \item Every group $G$ has normal subgroups $\left\{ e \right\}$ and $G$. (Easy to see that $g\left\{ e \right\}g^{-1}=\left\{ geg^{-1} \right\}=\left\{ gg^{-1} \right\}=\left\{ e \right\}).$
+
+      And for $g \in G$, $gG = G=Gg$, so $gGg^{-1}=G$ by condition $(2)$ from Prop. 16.
+
+    \item If $G$ is abelian then every subgroup of $G$ is normal. 
+
+      (Let $H \leq G$, and let $g \in G$. Then $gH=\left\{ gh:h \in H \right\}=\left\{ hg:h \in H \right\}=Hg$).
+
+    \item Let $\nsg{A_n}{S_n}$. Let $g \in S_n$, and let $h \in A_n$. Then $\sgn \left( ghg^{-1} \right)=\sgn(g)\sgn(h)\sgn(g)^{-1}=\sgn(h)=+1$.
+
+      So $gHg^{-1} \in A_n$ for all $h \in A_n$. Hence $gA_ng^{-1} \subseteq A_n$ for all $g$ and this condition $(5)$ from Prop. 16.
+
+      \begin{enumerate}
+        \item More generally, if $|G:H|=2$ (index 2 -  so $G = H \cup Hg$ for some $g \in G$) then $\nsg{H}{G}$. We see that the left cosets are $H$ and $gH$, so every left coset is a right coset.
+      \end{enumerate}
+
+    \item Let $G = D_{2n}$, and let $R$ be the rotation subgroup. Then $|G:R|=2$, so $\nsg{R}{G}$. In fact every subgroup of $R$ is normal in $G$.
+
+      $R$ is cyclic, say $R = \langle r \rangle$.
+      A subgroup of $R$ is $\gene{r^k}$ for some $k$. Let $g \in D_{2n}$. If $g$ is a rotation then $g\gene{r^k}=g\left\{ r^{kl}:l \in \mathbb{Z} \right\}=\left\{ gr^{kl}:l \in \mathbb{Z} \right\}= \left\{ r^{kl}:l \in \mathbb{Z} \right\}=\gene{r^k}g$, since any two rotations in $D_{2n}$ commute.
+
+      If $g$ is a reflection then $$g\gene{r^k}=\left\{ gr^{kl}:l \in \mathbb{Z} \right\}=\left\{ r^{-kl}g:l \in \mathbb{Z} \right\}=\gene{r^k}g,$$ since $ba=a^{-1}b$ for any rotation $a$ and reflection $b$ in $D_{2n}$. So in either case the left and right cosets are the same.
+
+    \item $G \times H$ has a subgroup  $G \times \left\{ e_H \right\}$ isomorphic to $G$. Call this $\hat{G}$. Then $\nsg{\hat{G}}{G \times H}$. 
+\begin{align*}
+  (g,h)\hat{G}(g^{-1},h^{-1}) &= g^{-1}Gg^{-1} \times h\left\{ e_H \right\}h^{-1} \\
+  &= G \times \left\{ e_H \right\} = \hat{G}
+\end{align*}
+Since $\nsg{G}{G}$, and $\nsg{\left\{ e_H \right\}}{H}$.
+
+\item $V_4 = \left\{ id,(12)(34), (13)(24),(14)(23) \right\} \trianglelefteq S_4$. (Check that the right and left cosets are equal.)
+  \end{enumerate}
+\end{exmp}
+
+\subsection*{Non examples}
+\begin{enumerate}
+  \item $\gene{(12)}=\left\{ id,(12) \right\}$ in $S_3$ is not normal.
+
+    $(13)\left\{ id, (12) \right\}=\left\{ (13),(123) \right\} \neq \left\{ id,(12) \right\}(13) = \left\{ (13)(132) \right\}$.
+
+  \item if $t$ is a reflection in $D_{2n}$, then $\gene{t}=\left\{ id,t \right\}$ is not normal in $D_{2n}$. (Assume $n \geq 3$)
+
+    Take $g$ a rotation of maximal order. Then 
+    $$g\gene{t}=\left\{ g,gt \right\}=\left\{g,tg^{-1}\right\}\neq \left\{ g,tg \right\}=\gene{t}g$$
+\end{enumerate}
+
+\begin{proposition}
+  Let $\func{f}{G}{H}$ be a group homomorphism. Then $\ker f \trianglelefteq G$. 
+\end{proposition}
+
+\begin{proof}
+  Let $K = \ker f$, and let $k \in K$. For $g \in G$, we have 
+  \begin{align*}
+  f(ghg^{-1})=f(g)f(h)f(g)^{-1} &= f(g)e_Hf(g)^{-1} \,, k \in \ker f\\ &= f(g)f(g)^{-1} = e_H
+  \end{align*}
+
+  So $gkg^{-1} \in K$ for all $g \in K$, $k \in K$, so $gKg^{-1} \subseteq K$ for all $g \in G$. This is condition (5) from Prop. 16, so $K \trianglelefteq G$.
+\end{proof}
 \end{document}
