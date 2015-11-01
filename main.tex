@@ -546,7 +546,6 @@ The element $(g_1, \ldots , g_n)$ has the inverse $(g_1^{-1}, \ldots g_n^{-1})$.
 \emph{Example}: Consider the group $C_1 \times C_2$ which has elements $(1,1), (1,-1),(-1,1),(-1,-1)$
 
 \begin{table}[h]
-
 \centering
 \label{my-label}
 $\begin{tabu}{l|llll}
@@ -606,6 +605,7 @@ $C_2 \times C_2 \times C_2$, which has elements $(\pm 1, \pm 1, \pm 1)$. We see 
 \end{exmp}
 
 \begin{proposition}\hfill
+  \label{prp:ordgroup}
 \begin{itemize}
   \item $|G_1 \times \ldots \times G_n| =|G_1||G_2|\ldots|G_n|.$
 \item If \emph{all} of the groups $G_i$ are abelian, then so is $G_1 \times \ldots \times G_n$. But if \emph{any} of $G_1, \ldots G_n$ is not abelian then netiher is $G_1 \times \ldots \times G_n$.
@@ -622,30 +622,42 @@ Proof not known.
 
 \item Groups of order 4: Certainly we have $C_4$. Any other group must have 3 elements of order 2, say $a,b,c$. Start our multiplication table:
 
-%      e a b c
-%  e | e a b c
-%  a | a e
-%  b | b    e
-%  c | c     e
+  \begin{table}[h]
+    \centering
+    $\begin{tabu}{l|llll}
+    & e&a&b&c\\\hline
+  e & e&a&b&c\\
+  a & a&e& &\\
+  b & b& &e&\\
+  c & c& & &e 
+    \end{tabu}$
+    \label{tab:startedtable}
+  \end{table}
 
-The six vacant places are all determined by the fact that every element must appear onee in every rw and evry column.
+The six vacant places are all determined by the fact that every element must appear onee in every row and every column.
 
 Complete table:
-%      e a b c
-%  e | e a b c
-%  a | a e c b
-%  b | b c e a
-%  c | c b a e
+\begin{table}[h]
+  \centering
+  $\begin{tabu}{l|llll}
+     & e&a&b&c\\\hline
+   e & e&a&b&c\\
+   a & a&e&c&b\\
+   b & b&c&e&a\\
+   c & c&b&a&e\\
+  \end{tabu}$
+  \label{tab:completesimpletable}
+\end{table}
 
-So $G \equiv C_2 \times C_2$ (So every gorup of order 4 is abelian).
+So $G \equiv C_2 \times C_2$ (So every group of order 4 is abelian).
 
 \item Groups of order 6.
 
-  Certainly we have $C_6$. Any other group has 5 elements with orders 2 or 3, with at least one of order 2 (by prop. ?)
+  Certainly we have $C_6$. Any other group has 5 elements with orders 2 or 3, with at least one of order 2 (by Prop. \ref{prp:ordgroup})
 
-  \underline{Result:} if a group $G$ has only elements of order $\leq 2$, then $G$ is abelian. ( if $g^2 = e\,\forall g$, look at $(ab)^2 = e$ So $ab$\underline{ab}$=e$ and also $ab$\underline{ba}$=aa=e$. y left cancellation, $ab=ba$, for all $a,b$
+  \underline{Result:} if a group $G$ has only elements of order $\leq 2$, then $G$ is abelian. (If $g^2 = e$ for all $g$, look at $(ab)^2 = e$ So $ab\underline{ab}=e$ and also $ab\underline{ba}=aa=e$. By left cancellation, $ab=ba$, for all $a,b$
 
-  The abelian gorups of order 5 are $C_6, C_2 \times C_3$, which are isomorphic. If follows that every group of order 6 hs an element of order 3.
+  The abelian groups of order 5 are $C_6, C_2 \times C_3$, which are isomorphic. If follows that every group of order 6 hs an element of order 3.
 
   Let $a$ be an element of order 3.
 
@@ -656,34 +668,44 @@ So $G \equiv C_2 \times C_2$ (So every gorup of order 4 is abelian).
     \label{}
   \end{equation}
 
-  Start multiplication table:
-
-%  .   |e   a   a^2   b   ba   ba^2
-%  e   |e   a   a^2
-%  a   |a a^2   e
-%  a   |2 a^2   e    a^2
-%  b   |b ba    ba^2 e
-%  ba  |ba ba^2 b
-%  ba^2| ba^2 b ba
+  Starting our multiplication table:
+  \begin{table}[h]
+  \centering
+  $\begin{tabu}{l|llllll}
+     &e   &a   &a^2  & b   &ba   &ba^2\\\hline
+  e   &e   &a   &a^2\\
+  a   &a &a^2 &  e\\
+  a^2    &a^2   &e    &a\\
+  b   &b &ba    &ba^2& e \\
+  ba  &ba& ba^2& b\\
+  ba^2 &ba^2 &b &ba
+    
+  \end{tabu}$
+  \label{tab:multtableincomplete}
+\end{table}
 
 Note that if $ab=ba$ then we can check that $ab$ must have order 6, 
 since $(ab)^2=a^2b^2=a^2$, $(ab)^3=a^3b^3=b.$ But $G$ is not cyclic, by assumption, so $ab\neq ba$.
 Hence we must have $ab = ba^2$.
 
 This allows us to complete the multiplication table:
-\begin{equation}
-  \begin{matrix}
-     & e & a & a^2 & b & ba & ba^2 \\
-   e & e & a & a^2 & b & ba & ba^2 \\
-   a & a & a^2 & e & ba^2 & b & ba \\
-   a^2 & a^2 & e & a & ba & ba^2 & b \\
-   b & b & ba & ba^2 & e & a & a^2               \\
-   ba & ba & ba^2 & b & a^2 & e & a            \\
-   ba^2 & ba^2 & b & ba & a & a^2 & e
- \end{matrix}
-\end{equation}
 
-We can check that  $G$ is isomotphic to $S_3$. So the gorupsof order 6 are $C_6 and S_3$.
+\begin{table}[h]
+\centering
+\label{my-label}
+$\begin{tabu}{l|llllll}
+     & e & a & a^2 & b & ba & ba^2    \\
+  \hline
+   e & e & a & a^2 & b & ba & ba^2    \\
+   a & a & a^2 & e & ba^2 & b & ba    \\
+   a^2 & a^2 & e & a & ba & ba^2 & b  \\
+   b & b & ba & ba^2 & e & a & a^2    \\
+   ba & ba & ba^2 & b & a^2 & e & a   \\
+   ba^2 & ba^2 & b & ba & a & a^2 & e
+\end{tabu}$
+\end{table}
+
+We can check that  $G$ is isomorphic to $S_3$. So the groups of order 6 are $C_6$ and $S_3$.
 
 \item Groups of order 8.
 
@@ -692,17 +714,16 @@ We can check that  $G$ is isomotphic to $S_3$. So the gorupsof order 6 are $C_6 
   Non abelian group $D_8$.
 
   There is one other non abelian group.
-  \begin{equation}
+  \begin{equation*}
     Q_8 = \left\{ \pm1, \pm i, \pm j, \pm k \right\} \text{ where } i^2=j^2=k^2=-1.
     \label{}
-  \end{equation}
-  \begin{equation}
+  \end{equation*}
+  \begin{equation*}
     \begin{matrix}
       ij=k & jk=i & ki=j \\
       ji=-k & kj=-i & ik=-j
     \end{matrix}
-    \label{}
-  \end{equation}
+  \end{equation*}
   This is the \emph{quaternion group}. 
   $Q_8$ has six elements of order 4. 
   $D_8$ only has two elements of order 4, so they are not isomorphic.
@@ -732,7 +753,7 @@ We can check that  $G$ is isomotphic to $S_3$. So the gorupsof order 6 are $C_6 
     \label{}
 \end{equation*}
 
-  So $A,B,C \in GL_2(\mathbb(C))$. I cleain that if $G = \left\{ \pm I, \pm A, \pm B, \pm C \right\}$
+  So $A,B,C \in GL_2(\mathbb(C))$. I claim that if $G = \left\{ \pm I, \pm A, \pm B, \pm C \right\}$
 
   Then $G \leq GL_2(\mathbb(C))$ and there is an isomorphism $G \equiv Q_8$ given by 
 
@@ -745,12 +766,12 @@ We can check that  $G$ is isomotphic to $S_3$. So the gorupsof order 6 are $C_6 
   \end{equation*}
   It follows that since matrix multiplication is associative, the multiplication on $Q_8$ is associative too!
 
-\item All grooups of order 9 are abelian, so either $C_9$ or $C_3 \times C_3$.
-  The groups of order 10 are $C_{10},D_{10}$ Groups of order 12 are $C_{12}, C_{6} \times C_2$ (the abelian ones), $D_{12},A_{4}$, and one other. 
+\item All groups of order 9 are abelian, so either $C_9$ or $C_3 \times C_3$.
+  The groups of order 10 are $C_{10}$ and $D_{10}$. Groups of order 12 are $C_{12}$, $ C_{6} \times C_2$ (the abelian ones), $D_{12},A_{4}$, and one other. 
 
   Groups of order 14 are $C_{14}$ and $D_{14}$. 
 
-  Only gorups of order 15 is $C_{15}$.
+  The only group of order 15 is $C_{15}$.
 
   Therre are 14 groups of order 16.
 \end{enumerate}
@@ -763,8 +784,7 @@ Helpful result:
 \begin{proof}
   Let $S$ to be the subset of $G$ such that 
   \begin{equation*}
-    S = \left\{ g \in G : \ord g > 2 \right\}
-    \label{}
+    S = \left\{ g \in G : \ord g > 2 \right\}.
   \end{equation*}
   $g \in S \iff g^{-1} \in S$ (Since $\ord g^{-1} = \ord g$). And $g \neq g^{-1}$, since $g^2 \neq e$. So $S$ contains pairs $(g,g^{-1})$ of elements, so $|g|$ is even. 
 
@@ -782,21 +802,21 @@ Helpful result:
 For an isomorphism we had two conditions that a map $G \rightarrow H$ has to satisfy:
 
 \begin{enumerate}
-  \item bijection
-  \item respects multiplication
+  \item Bijection
+  \item Respect of multiplication
 \end{enumerate}
 
-If we drop (2), we get the definition of a homomorphism.
+If we drop (2), we get the definition of a homomorphism.\\
 
 \begin{definition}
-  A map $f:G \rightarrow H$ is a \emph{homomorphism} if $f(g_1 g_2)=f(g_1)f(g_2)$ for all $g_1,g_2 \in G.$
+  A map $f:G \rightarrow H$ is a \emph{homomorphism} if $f(g_1 g_2)=f(g_1)f(g_2)$ for all $g_1,g_2 \in G.$\\
 \end{definition}
 
-\underline{Examples}
+\begin{exmps}\hfill
 \begin{enumerate}
   \item Any isomorphism is a homomorphism. In fact an isomorphism is a bijection homomorphism.
   \item Let $G,H$ be any groups. Then
-    $f : G \rightarrow H$ defined by $f(g) = e_H$ is a homomorphism. (Check $f(g_1 g_2)=e_h, f(g_1)f(g_2)=e_He_h = e_h$). This is the ``trivial homomorphism'' $G \rightarrow H.$
+    $f : G \rightarrow H$ defined by $f(g) = e_H$ is a homomorphism. (Check $f(g_1 g_2)=e_h$, $f(g_1)f(g_2)=e_He_h = e_h$). This is the ``trivial homomorphism'' $G \rightarrow H.$
   \item Let $G \leq H$. Then $f:G\rightarrow H$ defined by $f(g)=g$ is a homomorphism. (The inclusion map of $G$ into $H$.)
   \item Define $\text{sign}:S_n \rightarrow C_2$ by $\text{sign}(g)=\text{sign}(g)=+1 \text{ if } g $ is even, $-1$ if $g$ is odd. (We showed before that $\sgn(gh)=\sgn(g)\sgn(h)$.)
   \item Define $f:D_{2n} \rightarrow C_2$ by 
@@ -808,31 +828,30 @@ If we drop (2), we get the definition of a homomorphism.
     So its easy to see that $f$ respects multiplication.
 
   \item Define $f:GL_2(F) \rightarrow F^\times$ by
-
-    $F(g) = \text{det}g$. Then $f$ is a homomorphism. 
+    $$F(g) = \text{det}g.$$ Then $f$ is a homomorphism. 
     (We know that $\text{det}(gh)=(\text{det}g)(\text{det}h)$ for $g,h \in GL_2(F)$.) This can be done for $n>2$ as well.
   \item Let $V,W$ be vector spaces, and let $T:V \rightarrow W$ be a linear transformation. Then $V$ and $W$ are groups under $+$ and $T$ is a homomorphism (We know that $T(v_1 + v_2)=T(v_1)+T(v_2)$ since $T$ preserves addition.) 
-  \item Define $f: (\mathbb{R},+)\rightarrow (\mathbb{C}^\times,\times)$ by $f(x)=e^{2 \pi i x}.$ Then $f$ is a homomorphism. (Check: $f(x+y)=e^{2\pi i (x+y)}=e^{2\pi i x}e^{2 \pi i y}=f(x)f(y)$).
+  \item Define $f: (\mathbb{R},+)\rightarrow (\mathbb{C}^\times,\times)$ by $f(x)=e^{2 \pi i x}.$ Then $f$ is a homomorphism. (Check: $f(x+y)=e^{2\pi i (x+y)}=e^{2\pi i x}e^{2 \pi i y}=f(x)f(y)$).\\
 \end{enumerate}
+  
+\end{exmps}
+
 
 \begin{proposition}
   Let $f: G \rightarrow H$ be a homomorphism. 
   \begin{enumerate}
     \item $f(e_G)=e_H$
     \item $f(g^{-1})=f(g)^{-1}$ for all $g \in G$.
-    \item $\text{ord}f(g)$ divides $\text{ord}g$ for all $g \in G$.
-    \item
+    \item $\ord f(g)$ divides $\ord g$ for all $g \in G$.
   \end{enumerate}
 \end{proposition}
 
 \begin{proof}
-  (1) and (2) are the same as for the corresponding parts of Proposition (3?).
+  (1) and (2) are the same as for the corresponding parts of Proposition \ref{prp:sgn}.
 
   (3) \emph{Claim:} $f(g^k)=f(g)^k$ for all $k\in \mathbb{Z}.$
   \begin{proof}
-    If $k \geq 0$, use induction. If $k<0$, show instead that $f\left( \left( g^{-1} \right)^{-k} \right)=f(g^{-1})^{-k}$. (i.e. replace $g$ with $g^{-1}$ and $k$ with $-k$). now suppose that $k=\text{ord}g$. Then
-
-    $g^k = e_G$. $f(g^k)=f(e_G)=e_H$. Now by the claim, $f(g)^k=e_H$ and so we have $\text{ord}f(g)$ divides $k$.
+    If $k \geq 0$, use induction. If $k<0$, show instead that $f\left( \left( g^{-1} \right)^{-k} \right)=f(g^{-1})^{-k}$. (i.e. replace $g$ with $g^{-1}$ and $k$ with $-k$). Now suppose that $k=\ord g$. Then $g^k = e_G$. $f(g^k)=f(e_G)=e_H$. Now by the claim, $f(g)^k=e_H$ and so we have $\ord f(g)$ divides $k$.
   \end{proof}
 \end{proof}
 
@@ -841,10 +860,10 @@ If we drop (2), we get the definition of a homomorphism.
   
   The \emph{image} of $f$: $\text{Im } f = \left\{ f(g) : g \in G \right\}$.
 
-  The \emph{kernel} of $f$: $\text{Ker } f=\left\{ g \in G : f(g) = e_H \right\}$ 
+  The \emph{kernel} of $f$: $\text{Ker } f=\left\{ g \in G : f(g) = e_H \right\}$\\ 
 \end{definition}
 
-\begin{theorem}
+\begin{theorem}\hfill
   \begin{enumerate}
     \item 
   $\text{Im } f$ is a subgroup of $H$.
@@ -854,7 +873,7 @@ If we drop (2), we get the definition of a homomorphism.
   \label{}
 \end{theorem}
 
-\begin{proof}
+\begin{proof}\hfill
   \begin{enumerate}
     \item Check the axioms.
 
@@ -871,7 +890,7 @@ If we drop (2), we get the definition of a homomorphism.
 \begin{exmp}
   Suppose $G=S_3$. Let $f$ be a homomorphism from $G$ to some group $H$. What are the possibilties or $\text{Im }f$ and $\text{Ker }f$?
 
-  Recell that for $g \in G$ we have $f(g)$ divided $\ord g$.
+  Recall that for $g \in G$ we have $f(g)$ divided $\ord g$.
 
   In $S_3$ we have elements $(123)$, $(12)$ or orders 3 and 2 respectively. So
   \begin{enumerate}
@@ -893,7 +912,7 @@ If we drop (2), we get the definition of a homomorphism.
 
   Similarly $(12)(23)=(123)$, so $f\left( (12) \right)=f\left( (23) \right)$. Hence the image is $\left\{ e_H,f\left( (12) \right) \right\}$, a group of order 2, and $\ker f=\left\{ e,(123),(132) \right\}$.
 
-  If we take $\Ima f$ to be $C_2$, then $f$ is the sign homomorphism.
+  If we take $\Ima f$ to be $C_2$, then $f$ is the sign homomorphism.\\
 \begin{obvs}
   
   Not every subgroup of $S_3$ occurred as the kernel of a homomorphism.
@@ -911,9 +930,10 @@ Check:
   &= e_H.
 \end{align*}
 
-So if $K=\ker f$, then $K=gKg^{-1}=\left\{ gKg^{-1} : k \in K \right\}$ for all $g \in G$
+So if $K=\ker f$, then $K=gKg^{-1}=\left\{ gKg^{-1} : k \in K \right\}$ for all $g \in G.$\\
 
 \begin{proposition}
+  \label{prp:tfae}
   Let $G$ be a group and let $H$ be a subgroup of $G$. The following are equivalent:
   \begin{enumerate}
     \item $H=gHg^{-1}$ for all $g \in G$.
@@ -924,32 +944,35 @@ So if $K=\ker f$, then $K=gKg^{-1}=\left\{ gKg^{-1} : k \in K \right\}$ for all 
   \end{enumerate}
 \end{proposition}
 
-\begin{proof}
-  $(2) \implies (3)$: Suppose that $Hg=gH$ for all $g$. Then if we take a left coset $gH$ then this is equal to the right coset $Hg$.
+\begin{proof}\hfill
+  \begin{itemize}
 
-  $(3)\implies(2):$ Suppose that every left coset of $H$ is a right coset. So for $g \in G$, $gH=Hx$ for some $x \in G$. But $g \in gH$, and so $g \in Hx$. Hence $Hx=Hg$, so $gH=Hg$.
+    \item[$(2) \implies (3)$:] Suppose that $Hg=gH$ for all $g$. Then if we take a left coset $gH$ then this is equal to the right coset $Hg$.
 
-  $(2)\implies(4):$ The same as above.
+\item[$(3)\implies(2):$] Suppose that every left coset of $H$ is a right coset. So for $g \in G$, $gH=Hx$ for some $x \in G$. But $g \in gH$, and so $g \in Hx$. Hence $Hx=Hg$, so $gH=Hg$.
 
-  $(1)\implies(2):$ 
+\item[$(2)\implies(4):$] The same as above.
+
+\item[$(1)\implies(2):$]
   Consider $x \in gHg^{-1}$. So $x=ghg^{-1}$ for some $h \in H$. Now $xg=gh$. So $(gHg^{-1})g=\left\{ (ghg^{-1}) g \right\}=\left\{ gh : h \in H \right\}. $ $gHg^{-1}=H$, so $(gHg^{-1})g=Hg$ Hence $Hg = gH$.
 
-  $(2)\implies(1):$ Suppose that $Hg=gH$. Then $Hgg^{-1}=gHg^{-1} \implies H=gHg^{-1}$.
+\item[$(2)\implies(1):$] Suppose that $Hg=gH$. Then $Hgg^{-1}=gHg^{-1} \implies H=gHg^{-1}$.
 
-  $(1) \implies (5):$ Since $gHg^{-1}=H \implies gHg^{-1} \subseteq H$.
+\item[$(1) \implies (5):$] Since $gHg^{-1}=H \implies gHg^{-1} \subseteq H$.
 
-  $(5) \implies (1):$ Supppse that $gHg^{-1}\subseteq H$ for all $g \in G$. Fix an element $g$. Then $g^{-1} \in G$ and so $g^{-1}H\left( g^{-1} \right)^{-1} \subseteq H$, so $g^{-1}Hg \subseteq H$. So $g\left( g^{-1}Hg \right)g^{-1} \subseteq gHg^{-1}$, and it follows that $H \subseteq gHg^{-1}$. But we know that $gHg^{-1} \subseteq H$, and so $H=gHg^{-2}$.
+\item[$(5) \implies (1):$] Supppse that $gHg^{-1}\subseteq H$ for all $g \in G$. Fix an element $g$. Then $g^{-1} \in G$ and so $g^{-1}H\left( g^{-1} \right)^{-1} \subseteq H$, so $g^{-1}Hg \subseteq H$. So $g\left( g^{-1}Hg \right)g^{-1} \subseteq gHg^{-1}$, and it follows that $H \subseteq gHg^{-1}$. But we know that $gHg^{-1} \subseteq H$, and so $H=gHg^{-2}$.
+  \end{itemize}
 \end{proof}
 
 \begin{definition}
-  A subgroup $H$ of a group $G$ with the property that $gHg^{-1}=H$ for all $g \in G$ (or any of the other equivalent properties from Prop. 16) is said to be a \emph{normal} subgroup of $G$. We write $H \trianglelefteq G$ to mean that it is a normal subgroup.
+  A subgroup $H$ of a group $G$ with the property that $gHg^{-1}=H$ for all $g \in G$ (or any of the other equivalent properties from Prop. \ref{prp:tfae}) is said to be a \emph{normal} subgroup of $G$. We write $H \trianglelefteq G$ to mean that it is a normal subgroup.\\
 \end{definition}
 
-\begin{exmp}
+\begin{exmp}\hfill
   \begin{enumerate}
     \item Every group $G$ has normal subgroups $\left\{ e \right\}$ and $G$. (Easy to see that $g\left\{ e \right\}g^{-1}=\left\{ geg^{-1} \right\}=\left\{ gg^{-1} \right\}=\left\{ e \right\}).$
 
-      And for $g \in G$, $gG = G=Gg$, so $gGg^{-1}=G$ by condition $(2)$ from Prop. 16.
+      And for $g \in G$, $gG = G=Gg$, so $gGg^{-1}=G$ by condition $(2)$ from Prop. \ref{prp:tfae}.
 
     \item If $G$ is abelian then every subgroup of $G$ is normal. 
 
@@ -957,7 +980,7 @@ So if $K=\ker f$, then $K=gKg^{-1}=\left\{ gKg^{-1} : k \in K \right\}$ for all 
 
     \item Let $\nsg{A_n}{S_n}$. Let $g \in S_n$, and let $h \in A_n$. Then $\sgn \left( ghg^{-1} \right)=\sgn(g)\sgn(h)\sgn(g)^{-1}=\sgn(h)=+1$.
 
-      So $gHg^{-1} \in A_n$ for all $h \in A_n$. Hence $gA_ng^{-1} \subseteq A_n$ for all $g$ and this condition $(5)$ from Prop. 16.
+      So $gHg^{-1} \in A_n$ for all $h \in A_n$. Hence $gA_ng^{-1} \subseteq A_n$ for all $g$ and this condition $(5)$ from Prop. \ref{prp:tfae}.
 
       \begin{enumerate}
         \item More generally, if $|G:H|=2$ (index 2 -  so $G = H \cup Hg$ for some $g \in G$) then $\nsg{H}{G}$. We see that the left cosets are $H$ and $gH$, so every left coset is a right coset.
@@ -981,13 +1004,13 @@ Since $\nsg{G}{G}$, and $\nsg{\left\{ e_H \right\}}{H}$.
   \end{enumerate}
 \end{exmp}
 
-\subsection*{Non examples}
+\subsection*{Non-examples}
 \begin{enumerate}
   \item $\gene{(12)}=\left\{ id,(12) \right\}$ in $S_3$ is not normal.
 
     $(13)\left\{ id, (12) \right\}=\left\{ (13),(123) \right\} \neq \left\{ id,(12) \right\}(13) = \left\{ (13)(132) \right\}$.
 
-  \item if $t$ is a reflection in $D_{2n}$, then $\gene{t}=\left\{ id,t \right\}$ is not normal in $D_{2n}$. (Assume $n \geq 3$)
+  \item If $t$ is a reflection in $D_{2n}$, then $\gene{t}=\left\{ id,t \right\}$ is not normal in $D_{2n}$. (Assume $n \geq 3$)
 
     Take $g$ a rotation of maximal order. Then 
     $$g\gene{t}=\left\{ g,gt \right\}=\left\{g,tg^{-1}\right\}\neq \left\{ g,tg \right\}=\gene{t}g$$
@@ -1003,6 +1026,6 @@ Since $\nsg{G}{G}$, and $\nsg{\left\{ e_H \right\}}{H}$.
   f(ghg^{-1})=f(g)f(h)f(g)^{-1} &= f(g)e_Hf(g)^{-1} \,, k \in \ker f\\ &= f(g)f(g)^{-1} = e_H
   \end{align*}
 
-  So $gkg^{-1} \in K$ for all $g \in K$, $k \in K$, so $gKg^{-1} \subseteq K$ for all $g \in G$. This is condition (5) from Prop. 16, so $K \trianglelefteq G$.
+  So $gkg^{-1} \in K$ for all $g \in K$, $k \in K$, so $gKg^{-1} \subseteq K$ for all $g \in G$. This is condition (5) from Prop. \ref{prp:tfae}, so $K \trianglelefteq G$.
 \end{proof}
 \end{document}
