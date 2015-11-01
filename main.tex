@@ -1,9 +1,10 @@
 \documentclass{article}
 \usepackage{amsmath}
 \usepackage[utf8]{inputenc}
-\usepackage{amssymb}
+\usepackage{amssymb,tabu}
 \usepackage{array}
 \usepackage{amsthm}
+\usepackage{parskip}
 
 \newtheorem{theorem}{Theorem}[section]
 
@@ -15,16 +16,24 @@
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem*{remark}{Remark}
 \newtheorem*{exmp}{Example}
+\newtheorem*{exmps}{Examples}
+\newtheorem*{obvs}{Observation}
 
 
 \newcommand{\dtn}{\Delta_n}
 \newcommand{\gene}[1]{\langle #1 \rangle}
 \newcommand{\nsg}[2]{#1 \trianglelefteq #2}
 \newcommand{\func}[3]{#1 : #2 \rightarrow #3}
+\newcommand{\integers}{\mathbb{Z}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\rationals}{\mathbb{Q}}
+\newcommand{\but}[2]{#1 \backslash \{#2\}}
+
 \newcommand{\ism}{\cong}
 \DeclareMathOperator{\sgn}{sgn}
 \DeclareMathOperator{\Ima}{Im}
 \DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\lcm}{lcm}
 \DeclareMathOperator{\ord}{\text{ord}}
 
 
@@ -125,10 +134,10 @@ $G \ism H$ if $G$ and $H$ are isomorphic and $f$ is the isomorphism between them
   \item
 $G \ism H$ if $G$ and $H$ are isomorhpic via some isomorphism (particular isomorphism not mentioned)
   \item 
-$G \not\ism H$ if $G$ and $H$ are not isomorphic.
+$G \not\ism H$ if $G$ and $H$ are not isomorphic.\\
 \end{itemize}
-
-\emph{Examples}: Determine which pairs are isomorphic:
+\begin{exmps}
+Determine which pairs are isomorphic:
 
 \begin{itemize}
   \item $S_2=\{e, (1, 2)\}$
@@ -136,6 +145,8 @@ $G \not\ism H$ if $G$ and $H$ are not isomorphic.
   \item $C_2=\{1,-1\}$ operations: multiplication
 \end{itemize}
 $C_n$ represents $n^{th}$ roots of unity.
+  
+\end{exmps}
 
 Look at the group tables of the above:
 
@@ -216,9 +227,9 @@ Another:
   \item `$\ism$' is an is an equivalence relation on groups.
    We have symmetry, hence order does not matter for isomorphism:
     \begin{itemize}
-      \item[\textbf{Reflexivity}:] $G \ism G $
-      \item[\textbf{Symmetry}:] $G \ism H \iff H \ism G$
-      \item[\textbf{Transitivity}:] $G \ism H, H \ism H \implies G \ism K $ for all groups $G,H,K$
+      \item$G \ism G $ \textbf{(Reflexivity)}
+      \item$G \ism H \iff H \ism G$ \textbf{(Symmetry)}
+      \item $G \ism H, H \ism H \implies G \ism K $ for all groups $G,H,K$\textbf{ (Transitivity)}\\
     \end{itemize}
 \end{enumerate}
 \end{remark}
@@ -237,7 +248,7 @@ Reflections: $T_x, T_y$, Rotations: $I, R_\pi$
 Check $G_1 \ism G_3$.
 \end{exmp}
 
-\textbf{Note}: $G_1, G_3$ are cyclic groups of order 4. Let $a \in D_8$ be a rotation of order 4. 
+\textbf{Note:} $G_1, G_3$ are cyclic groups of order 4. Let $a \in D_8$ be a rotation of order 4. 
 Then $G_3 = \{e,a,a^2, a^3\}$.\hfill\\
 
 Define a map $f:G_1 \rightarrow G_3$ by 
@@ -250,7 +261,7 @@ Define a map $f:G_1 \rightarrow G_3$ by
   \label{}
 \end{equation*}
 
-Note: $f(i^n) = a^n$ for $\forall n \in \mathbb{Z}$
+\textbf{Note:} $f(i^n) = a^n$ for all $n \in \mathbb{Z}$
 
 We can see $f$ is a bijection.
 
@@ -262,45 +273,45 @@ And:
   &= f(i^n)f(i^c)
 \end{align*}
 
-Hence, $f$ \emph{respects} multiplication so $G_1 \equiv G_3.$
-
+Hence, $f$ \emph{respects} multiplication so $G_1 \ism G_3.$\\
 \begin{proposition}
-  Let $G$ and $H$ be groups 
+  Let $G$ and $H$ be groups.
   \begin{enumerate}
     \item If $|G| \neq |H|$ then $G$ and $H$ are not isomorphic
-    \item If $G$ is abelian and $H$ is not abelian then $G \not\equiv H$
-    \item If there exists $k \in \mathbb{N}$ such that $G$ and $H$ have disjoint numbers of elements of order $k$, then $G \not\equiv H$
+    \item If $G$ is abelian and $H$ is not abelian then $G \not\ism H$
+    \item If there exists $k \in \mathbb{N}$ such that $G$ and $H$ have disjoint numbers of elements of order $k$, then $G \not\ism H$
   \end{enumerate}
 \end{proposition}
 
-\textbf{Warning:} There do exist pairs of groups $G, H$ which passes the three above checks but which are not isomorphic.
+\textbf{Warning:} There does exist pairs of groups $G, H$ which passes the three above checks but which are not isomorphic.
 
-\begin{proof}
+\begin{proof}\hfill
   \begin{itemize}
-    \item Any isomorphism is a bijection
+    \item Any isomorphism is a bijection.
     \item Hwk 1: 
       if $f : G \rightarrow H$ is an isomorphism then $f(g_1)$ commutes with $f(g_2) \iff g_1$ commutes with $g_2$ $\forall g_1,g_2 \in G$
     \item Hwk 1: 
-      If $f:G\rightarrow H$ is an isomorphism then $ord(f(g))=ord(g)$ $\forall g\in G$
+      If $f:G\rightarrow H$ is an isomorphism then $\ord(f(g))=\ord(g)$ $\forall g\in G$
   \end{itemize}
 \end{proof}
 
-\underline{Examples:}
+\begin{exmps}\hfill
 \begin{enumerate}
   \item $G=S_4, H=D_8$ - Disjoint orders so not isomorphic.
-  \item $G=S_3, H=C_6=\{1,w,\ldots,w^5\}$ where $w=e^{\frac{2 \pi i}{6}}$ - $H$ is abelian, but $G$ is not, so not isomorphic.
-  \item $G=C_4=\{1,i,-1,-i\}$, $H=\{I,R_\pi,T_x,T_y\}$ (the symmetry group of a rectangle). Orders of $G$ are 1,4,2,4, but the orders of $H$ are 1,2,2,2. We have disjoint numbers of order 2,4, so not isomorphic.
-  \item $G=(\mathbb{R}, +)$, $H=(\mathbb{R}\backslash\{0\}, \times).$ -1 is an element of order 2 in $H$ but $G$ has no elements of order 2 - not isomorphic.
+  \item $G=S_3, H=C_6=\{1,w,\ldots,w^5\}$ where $w=e^{\frac{2 \pi i}{6}}$\\ $H$ is abelian, but $G$ is not, so not isomorphic.
+  \item $G=C_4=\{1,i,-1,-i\}$, $H=\{I,R_\pi,T_x,T_y\}$ \\(the symmetry group of a rectangle). \\ Orders of $G$ are 1,4,2,4, but the orders of $H$ are 1,2,2,2. We have disjoint numbers of order 2,4, so not isomorphic.
+  \item $G=(\mathbb{R}, +)$, $H=(\but{\reals}{0}, \times).$\\ -1 is an element of order 2 in $H$ but $G$ has no elements of order 2. Therefore not isomorphic.\\
 \end{enumerate}
+\end{exmps}
 
-\begin{proposition}
+\begin{proposition}\hfill
   \begin{enumerate}
-    \item Let $G$ be a cyclic group of order $n$. Then $G \equiv \mathbb{Z}_n$
-    \item Let $G$ be an infinite cyclic group. Then $G \equiv \mathbb{Z}$.
+    \item Let $G$ be a cyclic group of order $n$. Then $G \ism \mathbb{Z}_n$
+    \item Let $G$ be an infinite cyclic group. Then $G \ism \mathbb{Z}$.
   \end{enumerate}
 \end{proposition}
 
-\begin{proof}
+\begin{proof}\hfill
   \begin{enumerate}
     \item Let $G=\langle g \rangle $, where $G$ has order $n$. Define a map $f : \mathbb{Z}_n \rightarrow G$ by 
       $$f(i)=g^i \quad \text{for } i=0,\ldots,n-1$$
@@ -310,31 +321,27 @@ Hence, $f$ \emph{respects} multiplication so $G_1 \equiv G_3.$
       \item Suppose that $i+j \geq n$ The, $i+j = i+j-n$ in $\mathbb{Z}_n$ and $i+j-n \in \{0,\ldots,n-1\}$ so $f(i+j)=f(i+j-n)=g^{i+j-n}=g^{i+j}$ (since $g^n=e$).
         And this is $g^i g^j = f(i) f(j)$.
     \end{enumerate}
-  \item Let $G=\langle g \rangle$ where $g$ has infinite order. Define $f : \mathbb{Z} \rightarrow G$ by $f(i)=g^i$ $\forall i \in \mathbb{Z}$. Clearly $f$ is a bijection and $f(i+j)=g^{i+j}=g^i g^j = f(i) f(j)$
+  \item Let $G=\langle g \rangle$ where $g$ has infinite order. Define $f : \mathbb{Z} \rightarrow G$ by $f(i)=g^i$ $\forall i \in \mathbb{Z}$. Clearly $f$ is a bijection and $f(i+j)=g^{i+j}=g^i g^j = f(i) f(j)$.
   \end{enumerate}
 \end{proof}
 
 \begin{remark}
-  It follows that $\mathbb{Z}_n \equiv C_n$ (complex $n^{th}$ roots of unity) for all $n$.
+  It follows that $\mathbb{Z}_n \ism C_n$ (complex $n^{th}$ roots of unity) for all $n$.
 \end{remark}
 
 \section{Even and odd permutations}
 
-Consider the polynomial $\Delta_3 = (x_1 - x_2)(x_1 - x_3) (x_2 - x_3)$
+Consider the polynomial $\Delta_3 = (x_1 - x_2)(x_1 - x_3) (x_2 - x_3)$. 
+Let $g \in S_3$, and consider the effort of applying $g$ to the variables $x_1, x_2, x_3$ in $\Delta_3$.
 
-Let $g \in S_3$.
+$$g(\Delta_3) = (x_{g(1)} - x_{g(2)})(x_{g(1)} - x_{g(3)})(x_{g(2)} - x_{g(3)}).$$
 
-Consider the effort of applying $g$ to the variables $x_1, x_2, x_3$ in $\Delta_3$.
+\noindent We see that $g(\Delta_3)=I\Delta_3$. More generally, let $$\Delta_n = \prod_{i<j\leq n} (x_i - x_j ). $$ 
 
-$g_(\Delta_3) = (x_{g(1)} - x_{g(2)})(x_{g(1)} - x_{g(3)})(x_{g(2)} - x_{g(3)})$. 
+\noindent Then, if $g \in S_n$, we can apply $g$ to $\Delta_n$ by 
+$$g(\Delta_n) = \prod_{i<j\leq n}(x_{g(i)} - x_{g(j)}).$$
 
-We see that $g(\Delta_3)=I\Delta_3$.
-
-More generally, let $\Delta_n = \prod_{i<j\leq n} (x_i - x_j ) $ Then if $g \in S_n$, we can apply $g$ to $\Delta_n$ by 
-$$g(\Delta_n) = \prod_{i<j\leq n}(x_{g(i)} - x_{g(j)})$$
-
-We have $g(\Delta_n) = I \Delta_n$
-
+\noindent We have $g(\Delta_n) = I \Delta_n$.\\
 \begin{definition}
   The \emph{signature} of $g$, $\sgn(g)$, is 
   \begin{align*}
@@ -344,21 +351,24 @@ We have $g(\Delta_n) = I \Delta_n$
 \end{definition}
 
 The \emph{parity} of $g$: If $\sgn(g)=+1$, say that $g$ is \emph{even}.
-If $\sgn(g)=-1$, say that $g$ is \emph{odd}.
+If $\sgn(g)=-1$, say that $g$ is \emph{odd}.\\
 
-\underline{Example}
+\begin{exmp}
+  
 In $S_3$, we have that 
 
 $id,\,(1 2 3), (1 3 2)$ are even.
 
-$(1 2),\, (1 3),\,(2 3)$ are odd.
+$(1 2),\, (1 3),\,(2 3)$ are odd.\\
+\end{exmp}
+\begin{obvs}
+  
+The even permutations in $S_3$ form a subgroup (?)\\
+\end{obvs}
 
-\underline{Observation}
-
-The even permutation is $S_3$ form a subgroup (?)
 
 \begin{proposition}
-  \label{prp:sgn}
+  \label{prp:sgn}\hfill
   \begin{enumerate}
     \item $\sgn(gh)=\sgn(g)\sgn(h)$ for all $g,h \in S_n$.
     \item $\sgn(g^{-1})=\sgn(g)$ for all $g \in S_n$.
@@ -366,7 +376,7 @@ The even permutation is $S_3$ form a subgroup (?)
   \end{enumerate}
 \end{proposition}
 
-\begin{proof}
+\begin{proof}\hfill
   \begin{enumerate}
     \item Let $g,h \in S_n$,
       \begin{align*}
@@ -392,13 +402,13 @@ The even permutation is $S_3$ form a subgroup (?)
 
       Then $\sgn\left( (ij) \right)=(-1)^N$
 
-      Count $p,q$ $p<q$, but $(ij)(p)>(ij)(q)$
+      Count $p,q$. $p<q$, but $(ij)(p)>(ij)(q)$
 
       Cases: 
       \begin{enumerate}
-        \item $i=p, j=q$ - (1 possibilty)
-        \item $p=i,q<j$ - possibilties $q \in \left\{ i+1, \ldots, j-1 \right\}$
-        \item $i<p,q=i$ - possibilties $p \in \left\{ i+1, \ldots , j-1 \right\}$
+        \item $i=p,\, j=q$ - (1 possibilty)
+        \item $p=i,\,q<j$ - possibilties $q \in \left\{ i+1, \ldots, j-1 \right\}$
+        \item $i<p,\,q=i$ - possibilties $p \in \left\{ i+1, \ldots , j-1 \right\}$
       \end{enumerate}
       So there are $2(j-i-2) +1$ possibilties in total.
 
@@ -409,22 +419,20 @@ The even permutation is $S_3$ form a subgroup (?)
 \end{proof}
 
 \begin{proposition}
-  \label{prp:rcycle}
-  Let $c=(a_1 \ldots a_r)$ by an $r$-cycle. 
-
-  Then $c$ is a product of $r-1$ 2-cycles.
+  \label{prp:2cycles}
+  Let $c=(a_1 \ldots a_r)$ be an $r$-cycle. Then $c$ is a product of $r-1$ 2-cycles.
 \end{proposition}
 
 \begin{proof}
   Easy to check that
-    $c=(a,a_n)\ldots(a,a_5)(a,a_4)(a,a_3)(a,a_2)$
+    $c=(a,a_n)\ldots(a,a_5)(a,a_4)(a,a_3)(a,a_2)$.
 \end{proof}
 
 \begin{corollary}
-  An $r$-cycle is even when $r$ is odd and even when $r$ is even.
+  An $r$-cycle is even when $r$ is odd and even when $r$ is even.\\
 \end{corollary}
 
-\begin{proposition}
+\begin{proposition}\hfill
   \begin{enumerate}
     \item Every permutation can be written as a product of 2-cycles.
     \item If $g$ is a product of disjoint cycles of lengths $r_1, \ldots, l_j$
@@ -436,28 +444,28 @@ The even permutation is $S_3$ form a subgroup (?)
 \begin{proof}
   We saw last year that any permutation is a products of disjoint cycles.
 
-  Each of the cycles is a product of 2-cycles by Prop. \ref{prp:rcycle} and so $g$ is too.
+  Each of the cycles is a product of 2-cycles by Prop. \ref{prp:2cycles} and so $g$ is too.
 
-  (2) Follows from Prop. \ref{prp:rcycle} and Prop. \ref{prp:sgn}.1.
+  (2) Follows from Prop. \ref{prp:2cycles} and Prop. \ref{prp:sgn}.1.
 \end{proof}
 
 Rule of thumb:
 
-A permutation is even if it has an even number of cycles of even length
+A permutation is even if it has an even number of cycles of even length.
 
-It is odd if it has an odd number of cycles of even length.
+It is odd if it has an odd number of cycles of even length.\\
 
-\underline{Example}
-
+\begin{exmp}
 $$(1 2 3 4)(6 7 9)(8 4 10) \in S_{10}$$ is odd (one cycle of even length)
+\end{exmp}
+
 
 \section{Alternating Groups}
 
-Define $A_n=\left\{ g \in S_n | \sgn(g) = +1 \right\}$ (The even permutations
- in $S_n$.
+Define $A_n=\left\{ g \in S_n | \sgn(g) = +1 \right\}$ (The even permutations in $S_n$).\\
 
 \begin{theorem}
-  $A_n$ is a subgroup of $S_n$. If $n>1$, then $|A_n|=\frac{1}{2}n!$
+  Let $A_n$ is a subgroup of $S_n$. If $n>1$, then $|A_n|=\frac{1}{2}n!$
   \label{thm:subgroup}
 \end{theorem}
 
@@ -487,7 +495,7 @@ Hence, $|A_n|=\frac{1}{2}|S_n|=\frac{1}{2}n!$
 \textbf{Examples:}\\
 $A_2 = \{ id \}$, $A_3 = \{id, (123), (132)\}$.
 
-What about $A_4$? We know that $|A_4|=\frac{1}{2}4=12$.
+What about $A_4$? We know that $|A_4|=\frac{1}{2}4!=12$.
 
 The cycle structures in $S_4$ are:
 $(1,1,1,1)$ - 1 element, $(2,2)$ - 3 elements, $(3,1)$ - 8 elements.
@@ -537,18 +545,18 @@ The element $(g_1, \ldots , g_n)$ has the inverse $(g_1^{-1}, \ldots g_n^{-1})$.
 \end{proof}
 \emph{Example}: Consider the group $C_1 \times C_2$ which has elements $(1,1), (1,-1),(-1,1),(-1,-1)$
 
-\begin{table}[]
+\begin{table}[h]
 
 \centering
 \label{my-label}
-\begin{tabular}{l|llll}
+$\begin{tabu}{l|llll}
   & e & a & b & c \\ 
   \hline
 e & e & a & b & c \\
 a & a & e & c & b \\
 b & b & c & e & a \\
 c & c & b & a & e
-\end{tabular}
+\end{tabu}$
 \end{table}
 
 Recall the group of symmetries of the rectangle, $\{I, R_\pi, T_x, T_y\}$.
@@ -577,8 +585,8 @@ $c \rightarrow T_y$\\
 
 Recall from M1P2 that $S_4$ has a subgroup $$\{id,  (12)(34)=x, (13)(24)=y, (14)(23)=z\}.$$
 
-This has group table 
-\begin{table}[]
+This has group table:
+\begin{table}[h]
 \centering
 \begin{tabular}{l|llll}
    & id & x  & y  & z \\
@@ -590,15 +598,18 @@ z  & z  & y  & x  & id
 \end{tabular}
 \end{table}
 
-So this too is isomorphic to $C_2 \times C_2$, via $e \rightarrow id, a \rightarrow id, a \rightarrow x, b \rightarrow y, c \rightarrow z$.
+So this too is isomorphic to $C_2 \times C_2$, via $e \rightarrow id, a \rightarrow id, a \rightarrow x, b \rightarrow y, c \rightarrow z$.\\
 
-\emph{Example}: $C_2 \times C_2 \times C_2$, which has elements $(\pm 1, \pm 1, \pm 1)$. We see there are 8 elements and $x^2=(1,1,1)=e$ for any $x$.
+\begin{exmp}
+  
+$C_2 \times C_2 \times C_2$, which has elements $(\pm 1, \pm 1, \pm 1)$. We see there are 8 elements and $x^2=(1,1,1)=e$ for any $x$.
+\end{exmp}
 
-\begin{proposition}
+\begin{proposition}\hfill
 \begin{itemize}
-\item $$|G_1 \times \ldots \times G_n| =|G_1||G_2|\ldots|G_n|.$$
+  \item $|G_1 \times \ldots \times G_n| =|G_1||G_2|\ldots|G_n|.$
 \item If \emph{all} of the groups $G_i$ are abelian, then so is $G_1 \times \ldots \times G_n$. But if \emph{any} of $G_1, \ldots G_n$ is not abelian then netiher is $G_1 \times \ldots \times G_n$.
-\item Let $(g_1, \ldots g_n) \in G_1 \times \ldots \times G_n$. Then $\ord (g_1, \ldots , g_n) = lcm (\ord g, \ldots , \ord g_n)$.
+\item Let $(g_1, \ldots g_n) \in G_1 \times \ldots \times G_n$. Then $\ord (g_1, \ldots , g_n) = \lcm (\ord g, \ldots , \ord g_n)$.
 Proof not known.
 \end{itemize}
 \end{proposition}
@@ -883,8 +894,10 @@ If we drop (2), we get the definition of a homomorphism.
   Similarly $(12)(23)=(123)$, so $f\left( (12) \right)=f\left( (23) \right)$. Hence the image is $\left\{ e_H,f\left( (12) \right) \right\}$, a group of order 2, and $\ker f=\left\{ e,(123),(132) \right\}$.
 
   If we take $\Ima f$ to be $C_2$, then $f$ is the sign homomorphism.
-
-  \textbf{Observation:} Not every subgroup of $S_3$ occurred as the kernel of a homomorphism.
+\begin{obvs}
+  
+  Not every subgroup of $S_3$ occurred as the kernel of a homomorphism.
+\end{obvs}
 \end{exmp}
 
 The next section explores which subgroups can occur.
