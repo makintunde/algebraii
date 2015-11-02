@@ -4,22 +4,23 @@
 \usepackage{amssymb,tabu}
 \usepackage{array}
 \usepackage{amsthm}
+\newtheorem{theorem}{Theorem}[section]
 \usepackage{parskip}
 
-\newtheorem{theorem}{Theorem}[section]
 
 \theoremstyle{definition}
-\newtheorem{definition}{Definition}[section]
+\newtheorem{definition}{Definition}
 
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}{Proposition}
-\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem*{corollary}{Corollary}
 \newtheorem*{remark}{Remark}
 \newtheorem*{exmp}{Example}
 \newtheorem*{exmps}{Examples}
 \newtheorem*{obvs}{Observation}
 
-
+% Isomorphism symbol with function on top
+\newcommand{\myiso}[1]{\stackrel{\mathclap{\normalfont\mbox{#1}}}{\cong}}
 \newcommand{\dtn}{\Delta_n}
 \newcommand{\gene}[1]{\langle #1 \rangle}
 \newcommand{\nsg}[2]{#1 \trianglelefteq #2}
@@ -52,10 +53,10 @@ A group is a set $G$ with a binary operation $*$ such that
 \begin{itemize}
 \item Associativity: $(x * y)*z = x * (y * z)$ for all $x,y,z \in G$.
 \item Identity: There is $e \in G$ such that $e * x = x * e$ for all $x \in G$.
-\item Inverses: For all $x \in G$ there exists $y \in G$ such that $x * y = yz * y = e$
+\item Inverses: For all $x \in G$ there exists $y \in G$ such that $x * y = yz * y = e$\\
 \end{itemize}
 
-\subsection{Some groups}
+\begin{exmps}\hfill
 \begin{enumerate}
 \item
 \begin{itemize}
@@ -82,13 +83,15 @@ More generally if $\Omega$ is a set then $\Sym(\Omega)$, the symmetric group on 
 
 \item Let $F$ be a field. Then $GL_n(F)$, the \emph{General Linear Group of degree $n$ over $F$}, is the set of \emph{invertible} $n \times n$ matrices with entries from $F$. It is a group under matrix multiplication. 
 \end{enumerate}
+  
+\end{exmps}
 
 \section{Motivating Example}
 
 \begin{table}[h]
 \centering
-\begin{tabular}{l|llllll}
-$s_3$  & e     & (123) & (132) & (12)  & (13)  & (23)  \\
+$\begin{tabu}{l|llllll}
+S_3   & e     & (123) & (132) & (12)  & (13)  & (23)  \\
 \hline
 e     & e     & (123) & (132) & (12)  & (13)  & (23)   \\
 (123) & (123) & (132) & e     & (13)  & (23)  & (12)   \\
@@ -96,18 +99,35 @@ e     & e     & (123) & (132) & (12)  & (13)  & (23)   \\
 (12)  & (12)  & (23)  & (13)  & e     & (132) & (123)  \\
 (13)  & (13)  & (12)  & (23)  & (123) & e     & (132)  \\
 (23)  & (23)  & (13)  & (12)  & (132) & (123) & e      \\
-\end{tabular}
+\end{tabu}$
 \end{table}
 
+Now I want to do the Cayley table for $D_6$. We define $R$
+to be the rotation, and $U, V, W$ to be the reflections of 
+the triangle: Then the table is:
+
+\begin{table}[h]
+  \centering
+  $\begin{tabu}{l|llllll}
+    D_6    & e      & R      & R^{-1} & U      & V      & W      \\\hline
+    e      & e      & R      & R^{-1} & U      & V      & W      \\
+    R      & R      & R^{-1} & e      & V      & W      & U      \\
+    R^{-1} & R^{-1} & e      & R      & W      & U      & V      \\
+    U      & U      & W      & V      & e      & R^{-1} & R      \\
+    V      & V      & U      & W      & R      & e      & R^{-1} \\
+    W      & W      & V      & U      & R^{-1} & R      & e
+  \end{tabu}$
+  \label{tab:cayleyd6}
+\end{table}
 These tables coincide if we make the equivalence:
 $$ 
 \begin{matrix}
-  e & \leftrightarrow & e \\
-  R & \leftrightarrow & (123) \\
-  R^{-1} & \leftrightarrow & (132) \\
-  U & \leftrightarrow & (12) \\
-  V & \leftrightarrow & (13) \\
-  W & \leftrightarrow & (23) \\
+  e      &\longleftrightarrow&  e \\
+  R      &\longleftrightarrow&  (123) \\
+  R^{-1} &\longleftrightarrow&  (132) \\
+  U      &\longleftrightarrow&  (12) \\
+  V      &\longleftrightarrow&  (13) \\
+  W      &\longleftrightarrow&  (23) \\
 \end{matrix}
 $$
 
@@ -130,7 +150,7 @@ $G$ and $H$ are \emph{isomorphic} if an isomorphism $G \rightarrow H$ exists.
 
 \begin{itemize}
   \item 
-$G \ism H$ if $G$ and $H$ are isomorphic and $f$ is the isomorphism between them.
+    $G \overset{f}{\ism} H$ if $G$ and $H$ are isomorphic and $f$ is the isomorphism between them.
   \item
 $G \ism H$ if $G$ and $H$ are isomorhpic via some isomorphism (particular isomorphism not mentioned)
   \item 
@@ -182,23 +202,22 @@ e     & e     & (1,2) \\
 -1    & -1 & 1    
 \end{tabular}
 \end{table}
-All groups are isomorphic, which can be shown by `relabelling': 
-
-\begin{table}[h]
+All groups are isomorphic, which can be shown by ``relabelling'': 
+\begin{table}[!hp]
   \centering
-\label{my-label}
-\begin{tabular}{lllll}
-  $S_2$  &  & $\mathbb{Z}_2$ & & $C_2$\\
-\hline
-e     & $\leftrightarrow$ & 0 & $\leftrightarrow$ & 1 \\
-(1,2) & $\leftrightarrow$ & 1 & $\leftrightarrow$ & -1    
-\end{tabular}
+  $\begin{tabu}{rcccl}
+S_2  &  & \mathbb{Z}_2 & & C_2\\
+e     & \longleftrightarrow & 0 & \longleftrightarrow & 1 \\
+(1,2) & \longleftrightarrow & 1 & \longleftrightarrow & -1    
+  \end{tabu}$
+  \label{tab:relabelling}
 \end{table}
+
 
 Are $\mathbb{Z}_3=\{0,1,2\}$ and $C_3=\{1,w,w^2\}$, where $w=e^{\frac{2\pi i}{3}}$ isomorphic?
 
 \textbf{Yes}, an isomorphism is:
-\begin{equation}
+\begin{equation*}
   f : \left\{ 
        \begin{matrix}
         0 & \mapsto & 1 \\
@@ -207,10 +226,10 @@ Are $\mathbb{Z}_3=\{0,1,2\}$ and $C_3=\{1,w,w^2\}$, where $w=e^{\frac{2\pi i}{3}
         \mathbb{Z}_3 & \mapsto & C_3
       \end{matrix}
       \right.
-\end{equation}
+\end{equation*}
 
 Another:
-\begin{equation}
+\begin{equation*}
   \hat{f} : \left\{
        \begin{matrix}
         0 & \mapsto & 1 \\
@@ -218,8 +237,8 @@ Another:
         2 & \mapsto & w \\
       \end{matrix} 
       \right.
-\end{equation}
-
+ \end{equation*}
+ 
 \begin{remark}\hfill
 \begin{enumerate}
   \item Let $G$ be finite and let $G \ism H$ then $|G|=|H|$ i.e. sets are the same size, clearly since isomorphism is a bijection.
@@ -341,7 +360,7 @@ $$g(\Delta_3) = (x_{g(1)} - x_{g(2)})(x_{g(1)} - x_{g(3)})(x_{g(2)} - x_{g(3)}).
 \noindent Then, if $g \in S_n$, we can apply $g$ to $\Delta_n$ by 
 $$g(\Delta_n) = \prod_{i<j\leq n}(x_{g(i)} - x_{g(j)}).$$
 
-\noindent We have $g(\Delta_n) = I \Delta_n$.\\
+\noindent We have $g(\Delta_n) = \pm\Delta_n$.\\
 \begin{definition}
   The \emph{signature} of $g$, $\sgn(g)$, is 
   \begin{align*}
@@ -363,7 +382,7 @@ $(1 2),\, (1 3),\,(2 3)$ are odd.\\
 \end{exmp}
 \begin{obvs}
   
-The even permutations in $S_3$ form a subgroup (?)\\
+The even permutations in $S_3$ form a subgroup (this always happens)\\
 \end{obvs}
 
 
@@ -425,7 +444,7 @@ The even permutations in $S_3$ form a subgroup (?)\\
 
 \begin{proof}
   Easy to check that
-    $c=(a,a_n)\ldots(a,a_5)(a,a_4)(a,a_3)(a,a_2)$.
+    $$c=(a,a_n)\ldots(a,a_5)(a,a_4)(a,a_3)(a,a_2).$$
 \end{proof}
 
 \begin{corollary}
@@ -1028,4 +1047,139 @@ Since $\nsg{G}{G}$, and $\nsg{\left\{ e_H \right\}}{H}$.
 
   So $gkg^{-1} \in K$ for all $g \in K$, $k \in K$, so $gKg^{-1} \subseteq K$ for all $g \in G$. This is condition (5) from Prop. \ref{prp:tfae}, so $K \trianglelefteq G$.
 \end{proof}
+
+\section{Quotient Groups}
+Let $G$ be a group, and let $H$ be a subgroup. Look at the left cosets $\left\{ gH:g\in G \right\}$ of $H$ in $G$. Notice that $\left\{ gH:g\in G \right\}$ is a set, where elements are cosets.
+
+I want to try to give $\left\{ gH:g\in G \right\}$ a group structure. What is the obvious way of defining $(g_1 H)(g_2 H)$? All we have available is multiplication in $G$, so we try defining
+\[
+  (g_1 H )(g_2 H) = g_1 g_2 H.
+\]
+
+What possible problem is there? 
+
+Well, if $g_1 H=g_1'H$, and $g_2 H=g_2' H$, then we need to know that
+\[
+  g_1g_2 H = g_1' g_2' H.
+\]
+
+Otherwise our multiplication will not be well-defined.
+
+This might or might not be true.\\
+
+\begin{exmp}
+  Take $G = S_3$. $H = \left\{ id, (12) \right\}$.
+
+  Cosets $id\, H=(12)H=H$, $(13)H=(123)H$, $(23)H=(132)H$.
+
+  Now $(13)(23)=(123)$, but $(123)(132)=id$.
+
+  So our intended definition doesn't work here, since we'd have 
+  \[
+    ((123)H)((132)H)=((13)H)(\left( 23 \right)H)=(123)H \neq id\,H.
+  \]
+  This is a contradiction.\\
+\end{exmp}
+
+\begin{proposition}
+  If $H \trianglelefteq G$, then the definition of coset multiplication above is well-defined.
+\end{proposition}
+
+\begin{proof}
+  Suppose $H \trianglelefteq G$, then $gH=Hg$ for all $g \in G$.
+
+  Now suppose $g_1H=g_1'H$, $g_2H=g_2'H$.
+
+  Then $g_1' = g_1h_1$, $g_2'=g_2h_2$, for some $h_1,\,h_2 \in H$.
+
+  $g_1'g_2'=g_1(h_1g_2)h_2$. Now $h_1g_2 \in Hg_2$, and $Hg_2=g_2H$, so $h_1g_2=g_2h_3$ for some $h_3 \in H$. So $g_1'g_2'=g_1g_2h_3h_2 \in g_1g_2H$. So
+  \[
+    g_1'g_2'H = g_1g_2H.
+  \]
+\end{proof}
+
+\begin{definition}
+  Let $G$ be a group, and $N$ a normal subgroup of $G$. Then $\frac{G}{N}$ is the set of all cosets of $N$ in $G$, With multiplication given by $(g_1N)(g_2N)=g_1g_2N$. This is the \emph{quotient} of $G$ by $N$.\\
+\end{definition}
+
+\begin{proposition}
+  Let $N \trianglelefteq G$. Then $\frac{G}{N}$ is a group.
+\end{proposition}
+
+\begin{proof}\hfill
+  \begin{itemize}
+    \item (Associativity:) Let $g_1,g_2,g_3 \in G$.
+      Then 
+      \begin{align*}
+        ( (g_1N)(g_2N))(g_3N) &= (g_1g_2N)(g_3N) \\
+        &= (g_1g_2)g_3N=g_1(g_2g_3)N \quad \text{Since } G \text{ is associative.)}\\
+         &= (g_1N)(g_2g_3N)\\
+         &=(g_1N)\left( (g_2N)(g_3N) \right).
+      \end{align*}
+      So $\frac{G}{N}$ is associative.
+    \item (Identity:) Let $e$ be the identiy in $G$. Then
+      \begin{align*}
+        (eN)(gN)=egN=gN
+      \end{align*}
+      and
+      \begin{align*}
+        (gN)(eN)=geN=gN
+      \end{align*} for all $g \in G$.
+
+\item Inverses: Let $g \in G$ Then
+  \begin{align*}
+    (gN)(g^{-1}N) = gg^{-1} = eN \\
+    (g^{-1}N)(gN) = g^{-1}gN = eN
+  \end{align*}
+  so $g^{-1}N$ is an inverse for $gN$ in $\frac{G}{N}$.
+  So $\frac{G}{N}$ is a group.
+  \end{itemize}
+\end{proof}
+
+\textbf{Remember:} $\big|\frac{G}{N}\big|$ = number of  cosets of $N$ in $G$
+ whenever $G$ is a finite group.
+
+
+\begin{exmps}\hfill
+  \begin{enumerate}
+    \item $A_n \trianglelefteq S_n$ \dots
+      $A_n$ in $S_n$ are $\left\{ A_n , (12)A_n\right\}$, so
+      $\big|\frac{S_n}{A_n}\big|$ has order 2. We have
+      $A_nA_n = A_n$, $(12)A_nA_n=(12)A_n$, $A_n(12)A_n=(12)A_n$, $(12)A_n(12)A_n=A_n$.
+
+      Notice that we can interpret e.g. $A_n(12)A_n$ as a set $\left\{ g_1(12)g_2 : g_1,g_2 \in A_n \right\}$. In this case all of the identities above are true.
+
+    \item For any group $G$, $G \trianglelefteq G$. Here we have $\frac{G}{G}=\left\{ G \right\}$, a group of size 1.
+
+      Also, $\left\{ e \right\} \trianglelefteq G$, and $\frac{G}{\left\{ e \right\}}=\left\{ g\left\{ e \right\}:g \in G \right\}$, which has the same size as $G$. Notice that the map $G \rightarrow \frac{G}{\left\{ e \right\}}$ defined by $g \mapsto g\left\{ e \right\}=\left\{ g \right\}$ is an isomorphism, since $g_1g_2 \mapsto \left\{ g_1g_2 \right\}=g_1g_2\left\{ e \right\}=(g_1\left\{ e \right\})(g_2\left\{ e \right\})=\phi(g_1)\phi(g_2)$. 
+
+
+\newpage
+    \item Let $G=D_{2n}$ and let $E = \gene{g}$ be the rotation subgroup. Then $R \trianglelefteq D_{2n}$. Now $\frac{D_{2n}}{R}=\left\{ R,tR \right\}$, where $t$ is a reflection.
+
+      So $\frac{D_{2n}}{R}$ is a group of order 2.
+
+      \begin{table}[h]
+        \centering
+        $\begin{tabu}{l|ll}
+          & R & tr \\\hline
+        R & R & tr \\
+        tr & tr & R
+        \end{tabu}$
+        \label{tab:d2ntable}
+      \end{table}
+      or in other words
+
+      \begin{table}[h]
+        \centering
+        \begin{tabular}{l|ll}
+          & Rotation & Reflection\\\hline
+          Rotation & Rotation & Reflection\\
+          Reflection & Reflection & Rotation.
+        \end{tabular}
+        \label{tab:rottable}
+      \end{table}
+  \end{enumerate}
+
+\end{exmps}
 \end{document}
