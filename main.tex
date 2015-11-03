@@ -28,6 +28,7 @@
 \newcommand{\integers}{\mathbb{Z}}
 \newcommand{\reals}{\mathbb{R}}
 \newcommand{\rationals}{\mathbb{Q}}
+\newcommand{\naturals}{\mathbb{N}}
 \newcommand{\but}[2]{#1 \backslash \{#2\}}
 
 \newcommand{\ism}{\cong}
@@ -35,6 +36,7 @@
 \DeclareMathOperator{\Ima}{Im}
 \DeclareMathOperator{\Sym}{Sym}
 \DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\hcf}{hcf}
 \DeclareMathOperator{\ord}{\text{ord}}
 
 
@@ -454,7 +456,7 @@ The even permutations in $S_3$ form a subgroup (this always happens)\\
 \begin{proposition}\hfill
   \begin{enumerate}
     \item Every permutation can be written as a product of 2-cycles.
-    \item If $g$ is a product of disjoint cycles of lengths $r_1, \ldots, l_j$
+    \item If $g$ is a product of disjoint cycles of lengths $r_1, \ldots, r_k$
 
       Then the signature of $g$ is $\prod_{i} (-1)^{r_i - 1}$
   \end{enumerate}
@@ -603,24 +605,24 @@ $c \rightarrow T_y$\\
 
 Recall from M1P2 that $S_4$ has a subgroup $$\{id,  (12)(34)=x, (13)(24)=y, (14)(23)=z\}.$$
 
-This has group table:
-\begin{table}[h]
+This has the above group table.
+\begin{table}[!ht]
 \centering
-\begin{tabular}{l|llll}
+$\begin{tabu}{l|llll}
    & id & x  & y  & z \\
    \hline
 id & id & x  & y  & z \\
 x  & x  & id & z  & y \\
 y  & y  & z  & id & x \\
 z  & z  & y  & x  & id 
-\end{tabular}
+\end{tabu}$
 \end{table}
 
-So this too is isomorphic to $C_2 \times C_2$, via $e \rightarrow id, a \rightarrow id, a \rightarrow x, b \rightarrow y, c \rightarrow z$.\\
+This is also isomorphic to $C_2 \times C_2$, via $e \rightarrow id, a \rightarrow id, a \rightarrow x, b \rightarrow y, c \rightarrow z$.\\
 
 \begin{exmp}
   
-$C_2 \times C_2 \times C_2$, which has elements $(\pm 1, \pm 1, \pm 1)$. We see there are 8 elements and $x^2=(1,1,1)=e$ for any $x$.
+$C_2 \times C_2 \times C_2$, which has elements $(\pm 1, \pm 1, \pm 1)$. We see there are 8 elements and $x^2=(1,1,1)=e$ for any $x$.\\
 \end{exmp}
 
 \begin{proposition}\hfill
@@ -632,6 +634,75 @@ $C_2 \times C_2 \times C_2$, which has elements $(\pm 1, \pm 1, \pm 1)$. We see 
 Proof not known.
 \end{itemize}
 \end{proposition}
+
+\begin{proof}\hfill
+  \begin{enumerate}
+    \item We know from set theory that $|A \times B| = |A| \times |B|$ (for sets $A,B$). An easy induction shows that $|A_1 \times A_2 \times \dots \times A_n| = |A_1| \times |A_2| \times \dots \times |A_n|$.
+    \item Suppose that $G_1, \dots , G_n$ are all abelian. For all $i$, let $g_i,h_i\in G_i$. Then $g_ih_i=h_ig_i$. Take $g,h \in G_1 \times \dots \times G_n$, say $g=\left( g_1, \dots , g_n \right)$, $h = \left( h_1, \dots , h_n \right)$. Now
+\begin{align*}
+  gh &= \left( g_1 h_1, \dots , g_n h_n \right)\\
+  &= \left( h_1g_1, \dots , h_n g_n \right)\\
+  &= hg
+\end{align*}
+
+For the converse, suppose that $G_i$ is not abelian for some $i$. Then there exists $g_i,h_i \in G$ such that $g_ih_i \neq h_ig_i$. Define $g,h \in G_1 \times \dots \times G_n$ by $g = \left( e_1,\dots e_{i-1},g_ie_{i+1},\dots,e_n \right)$ and $h = \left( e_1, \dots e_{i-1},h_i,e_{i-1},\dots,e_n \right)$ where $e_j$ is the identity of $G_j$ (or $H_j$ respectively) for all $j$. Now
+
+\begin{align*}
+  gh &= \left( e_1,\dots,e_{i-1},g_ih_i,e_{i+1},\dots,e_n \right)\\
+  hg &= \left( e_1,\dots,e_{i-1},h_ig_i,e_{i+1},\dots,e_n \right)
+\end{align*}
+
+So $gh \neq hg$, since they differ in the $i$th coordinate.
+
+\item Let $g_i \in G_i$ and let $\ord g_i=h_i$ for all $i$. Let $m=\lcm(k_1,\dots k_n)$.
+
+  \textbf{Fact:} $(g_1, \dots ,g_n)^{k}=(g_1^k,\dots,g_n^k)$ for all $k \in \integers$. (Proof: \emph{Exercise}).
+
+  By this fact, we have 
+  \begin{align*}
+    \left( g_1, \dots, g_n \right)^m &= \left( g_1^m, \dots,g_n^m \right)\\
+    &= \left( e_1, \dots,e_n \right)
+  \end{align*}
+  Since $k_i | m$ for all $i$.
+
+  Suppose that $\lcm(l,k_i)<m,(l>0)$. Since $m$ is the \emph{least} common multiple of $k_1, \dots, k_n$, we must have that $k_i\nmid l$ for some $i$. So $g_i^l\neq e_i$. Hence $\left( g_1^l,\dots,g_n^l \right) \neq \left( e_1,\dots,e_n \right)$, since they differ in coordinate $i$. So $\left( g_1 ,\dots,g_n \right)^l \neq \left( e_1, \dots,e_n \right)$. Hence $\ord \left( g_1 ,\dots,g_n \right)=m$, as required.
+  \end{enumerate}
+\end{proof}
+
+\begin{exmp}
+  All cyclic groups are abelian, so any direct product of cyclic groups is abelian. For example $C_4 \times C_2$ and $C_2 \times C_2 \times C_2$ are ``new'' abelian groups of order 8.
+
+  Note that these are not isomorphic, and neither of them is isomorphic to $C_8$. $C_8$ has an element of order 8. $C_4 \times C_2$ has an element $(i,-1)$ of order 4 but no element or order 8.  $C_2 \times C_2 \times C_2$ has no element of order $> 2$.
+
+\end{exmp}
+  \emph{What about $C_2 \times C_4$?}
+
+  \textbf{Observation:} For any groups $G,H$ we have $G \times H \ism H \times G$. An isomorphism is given by $(g,h)\mapsto (h,g)$ (routine check), so $C_2 \times C_4 \ism C_4 \times C_2$.\\
+
+  \begin{proposition}
+  \label{prp:hcfcyclic}
+    Let $m,n \in \naturals$ be such that $\hcf(m,n)=1$. Then $C_m \times C_n \ism C_{mn}$.
+  \end{proposition}
+
+  \begin{proof}
+    Let $C_m = \gene{g}$, $C_n=\gene{h}$. Then $\ord(g)=m$ and $\ord(h)=n$. So $\ord(gh)$ is $\lcm(m,n)$ by Prop. \ref{prp:ordgroup}.3. But $\lcm(m,n)=mn/\hcf(m,n)$ and this is $mn$ since $\hcf(m,n)=1$. So $C_m \times C_n$ has an element $(h,g)$ of order $mn$, so it is cyclic. Hence $C_m \times C_n \ism C_{mn}$.\\
+  \end{proof} 
+
+  \begin{theorem}(Fundamental Theorem of Finite Abelian Groups)\hfill\\
+    Every finite abelian group is a direct product of cyclic groups.
+    \label{thm:funda}
+  \end{theorem}
+
+  \begin{proof}
+    Omitted.
+  \end{proof}
+
+  \begin{exmps}\hfill
+    \begin{enumerate}
+      \item There is only one abelian group (up to isomorphism) of order 6. The only factorisations of 6 are 6, $3 \times 2$. So the only direct proposition of cyclic groups which have order 6 are $C_6$ and $C_3 \times C_2$. But these are isomorphic by Prop. \ref{prp:hcfcyclic}.
+      \item There are exactly three abelian groups of order 8 - those listed above.
+    \end{enumerate}
+  \end{exmps}
 
 \section{Small groups}
 \begin{enumerate}
