@@ -665,7 +665,7 @@ So $gh \neq hg$, since they differ in the $i$th coordinate.
   \end{align*}
   Since $k_i | m$ for all $i$.
 
-  Suppose that $\lcm(l,k_i)<m,(l>0)$. Since $m$ is the \emph{least} common multiple of $k_1, \dots, k_n$, we must have that $k_i\nmid l$ for some $i$. So $g_i^l\neq e_i$. Hence $\left( g_1^l,\dots,g_n^l \right) \neq \left( e_1,\dots,e_n \right)$, since they differ in coordinate $i$. So $\left( g_1 ,\dots,g_n \right)^l \neq \left( e_1, \dots,e_n \right)$. Hence $\ord \left( g_1 ,\dots,g_n \right)=m$, as required.
+  Suppose that $l<m$, ($l>0$). Since $m$ is the \emph{least} common multiple of $k_1, \dots, k_n$, we must have that $k_i\nmid l$ for some $i$. So $g_i^l\neq e_i$. Hence $\left( g_1^l,\dots,g_n^l \right) \neq \left( e_1,\dots,e_n \right)$, since they differ in coordinate $i$. So $\left( g_1 ,\dots,g_n \right)^l \neq \left( e_1, \dots,e_n \right)$. Hence $\ord \left( g_1 ,\dots,g_n \right)=m$, as required.
   \end{enumerate}
 \end{proof}
 
@@ -863,7 +863,7 @@ We can check that  $G$ is isomorphic to $S_3$. So the groups of order 6 are $C_6
 
   The only group of order 15 is $C_{15}$.
 
-  Therre are 14 groups of order 16.
+  There are 14 groups of order 16.
 \end{enumerate}
 
 Helpful result:
@@ -1213,8 +1213,7 @@ This might or might not be true.\\
 
 \begin{exmps}\hfill
   \begin{enumerate}
-    \item $A_n \trianglelefteq S_n$ \dots
-      $A_n$ in $S_n$ are $\left\{ A_n , (12)A_n\right\}$, so
+    \item $A_n \trianglelefteq S_n$. The cosets of $A_n$ in $S_n$ are $\left\{ A_n , (12)A_n\right\}$, so
       $\big|\frac{S_n}{A_n}\big|$ has order 2. We have
       $A_nA_n = A_n$, $(12)A_nA_n=(12)A_n$, $A_n(12)A_n=(12)A_n$, $(12)A_n(12)A_n=A_n$.
 
@@ -1222,7 +1221,7 @@ This might or might not be true.\\
 
     \item For any group $G$, $G \trianglelefteq G$. Here we have $\frac{G}{G}=\left\{ G \right\}$, a group of size 1.
 
-      Also, $\left\{ e \right\} \trianglelefteq G$, and $\frac{G}{\left\{ e \right\}}=\left\{ g\left\{ e \right\}:g \in G \right\}$, which has the same size as $G$. Notice that the map $G \rightarrow \frac{G}{\left\{ e \right\}}$ defined by $g \mapsto g\left\{ e \right\}=\left\{ g \right\}$ is an isomorphism, since $g_1g_2 \mapsto \left\{ g_1g_2 \right\}=g_1g_2\left\{ e \right\}=(g_1\left\{ e \right\})(g_2\left\{ e \right\})=\phi(g_1)\phi(g_2)$. 
+      Also, $\left\{ e \right\} \trianglelefteq G$, and $\frac{G}{\left\{ e \right\}}=\left\{ g\left\{ e \right\}:g \in G \right\}$, which has the same size as $G$. Notice that the map $\phi : G \rightarrow \frac{G}{\left\{ e \right\}}$ defined by $g \overset{\phi}{\mapsto} g\left\{ e \right\}=\left\{ g \right\}$ is an isomorphism, since $g_1g_2 \overset{\phi}{\mapsto} \left\{ g_1g_2 \right\}=g_1g_2\left\{ e \right\}=(g_1\left\{ e \right\})(g_2\left\{ e \right\})=\phi(g_1)\phi(g_2)$. 
 
 
 \newpage
