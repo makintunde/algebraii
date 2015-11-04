@@ -4,14 +4,14 @@
 \usepackage{amssymb,tabu}
 \usepackage{array}
 \usepackage{amsthm}
-\newtheorem{theorem}{Theorem}[section]
+\newtheorem{theorem}{Theorem}
 \usepackage{parskip}
 
 
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}
 
-\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{lemma}{Lemma}
 \newtheorem{proposition}{Proposition}
 \newtheorem*{corollary}{Corollary}
 \newtheorem*{remark}{Remark}
@@ -29,6 +29,7 @@
 \newcommand{\reals}{\mathbb{R}}
 \newcommand{\rationals}{\mathbb{Q}}
 \newcommand{\naturals}{\mathbb{N}}
+\newcommand{\complexes}{\mathbb{C}}
 \newcommand{\but}[2]{#1 \backslash \{#2\}}
 
 \newcommand{\ism}{\cong}
@@ -1208,12 +1209,12 @@ This might or might not be true.\\
 \end{proof}
 
 \textbf{Remember:} $\big|\frac{G}{N}\big|$ = number of  cosets of $N$ in $G$
- whenever $G$ is a finite group.
+ whenever $G$ is a finite group.\\
 
 
 \begin{exmps}\hfill
   \begin{enumerate}
-    \item $A_n \trianglelefteq S_n$. The cosets of $A_n$ in $S_n$ are $\left\{ A_n , (12)A_n\right\}$, so
+     \item $A_n \trianglelefteq S_n$. The cosets of $A_n$ in $S_n$ are $\left\{ A_n , (12)A_n\right\}$, so
       $\big|\frac{S_n}{A_n}\big|$ has order 2. We have
       $A_nA_n = A_n$, $(12)A_nA_n=(12)A_n$, $A_n(12)A_n=(12)A_n$, $(12)A_n(12)A_n=A_n$.
 
@@ -1248,8 +1249,114 @@ This might or might not be true.\\
           Reflection & Reflection & Rotation.
         \end{tabular}
         \label{tab:rottable}
-      \end{table}
-  \end{enumerate}
+       \end{table}
 
+     \item Let $G=D_{2n}$, and let $N$ be any subgroup of rotations. Say that $|N|=m$, where $m$ is a divisor of $n$.
+
+       Check that $N$ is normal. If $R$ is the subgroup of all rotations in $G$, then $R \trianglelefteq G$. So $g r g^{-1} \in R$ for any $r \in R$, $g \in G$. Since $N \leq R$, we see that $g N g^{-1} \subseteq R$.
+
+       Let $x \in N$. Then $x^m = e$. Now we see that 
+       \begin{align*}
+       \left( gxg^{-1} \right)^m &= (gxg^{-1})(gxg^{-1})\dots m \dots(gxg^{-1})\\
+       &= gx^mg^{-1}\\
+       &= geg^{-1} = e.
+       \end{align*}
+       So $(gxg^{-1})\in N$, since $N$ contains all rotations with order dividing $m$. So $gNg^{-1}\subseteq N$. So $N$ is normal (this is by condition 5 in the the list of equivalent conditions for normality.)
+
+       What is the quotient group $G/N$?
+
+       Take $g$ to be the rotation of order $n$. (so $\gene{g}=R$). Notice that  $R/N$ has size $n/m$, and it's easy to check that the elements are
+       \[
+         eN,\,gN,\,g^{2}N,\dots,g^{\frac{n}{m} - 1}N.
+       \]
+       Notice that 
+       \[
+         \frac{R}{N}=\gene{gN},
+       \]
+       a cyclic group of order $n/m$. 
+
+       Now let $t$ be a reflection in $G$.
+
+       Then $tgt=g^{-1}$ (you get the inverse of the rotation). So $(tn)(gN)(tN)=tgtN=g^{-1}N=(gN)^{-1}$.
+
+       So we see that $G/N$ is isomorphic to $D_{2n/m}$, with $gN$ a rotation of order $n/m$, and $tN$ a reflection.
+  \end{enumerate}
 \end{exmps}
+
+  \begin{theorem}
+    (First Isomorphic Theorem). Let $\func{f}{G}{H}$ be a homomorphism. Then
+    \[
+      \frac{G}{\ker f} \ism \Ima f.
+    \]
+    \label{thm:firstisomorphic}
+  \end{theorem}
+
+  \begin{proof}
+    We need to define a map
+    \[
+      \func{\phi}{\frac{G}{\ker f}}{\Ima f}.
+    \]
+    The obvious choice is to take $\phi (gK)=f(g)$ (where $K = \ker f$).
+
+    We need to check that $\phi$ is well-defined.
+
+    Suppose that $g_1K=g_2K$. Then $g_2=g_1k$ for some $k \in K$. Now $f(g_2)=f(g_1k)=f(g_1)f(k)=f(g_1)e_H=f(g_1)$.
+
+    So the definition of $\phi$ is alright.
+
+    Chek that $\phi$ is a bijection.
+
+    Surjective: Let $y \in \Ima f$. Then $y=f(x)$ for some $x \in G$. Now $\phi(xK)=f(x)=y$. 
+
+    So $\Ima \phi = \Ima f$.
+
+    Injective: Suppose that $\phi(g_1K)=\phi(g_2)K$. (We want to show that $g_1K$ and $g_2K$ are the same coset.)
+
+    Then $f(g_1)=f(g_2)$. So $f(g_1)f(g_2)^{-1}=e_H$.
+
+    So $f(g_1g_2^{-1})=e_H$, and so $g_1g_2^{-1}\in K$. But this implies that $g_1K=g_2K$. So $\phi$ is injective.
+
+    Finally, check that $\phi$ is a homomorphism.
+
+    Check 
+    \begin{align*}
+    \phi((g_1K)(g_2K)) &= \phi(g_1g_2K)\\
+    =f(g_1g_2)&=f(g_1)f(g_2)\\
+    &=\phi(g_1K)\phi(g_2K).
+    \end{align*}
+    So $\phi$ is indeed a homomorphism, and bijective, so an isomorphism.
+  \end{proof}
+
+  \begin{corollary}
+    Let $G$ be a finite group, and $\func{f}{G}{H}$ a homomorphism. Then
+    \[
+      \frac{|G|}{|\ker f|} = |\Ima f|. 
+    \]
+  \end{corollary}
+\begin{proof}
+  This is immediate from Theorem \ref{thm:firstisomorphic}, since 
+  \[
+    \bigl|\frac{G}{\ker f}\bigr| = \frac{|G|}{|\ker f|} = |\Ima f|. 
+  \]
+\end{proof}
+Notice that (in the form $|G|=|\Ima f||\ker f|$) this looks like the Rank-Nullity theorem for vector spaces -- if $\func{T}{V}{W}$ is a linear transformation then $\dim V = \dim \Ima T + \dim \ker T$.
+
+\begin{exmps}\hfill
+  \begin{enumerate}
+    \item $\func{\sgn}{S_n}{C_2}$ is a homomorphism.
+      $\ker \sgn = A_n$ (by definition!), and $\frac{S_n}{A_n}$ is a group of order 2, so isomorphic to $\Ima \sgn$, which is $C_2$.
+    \item $\func{\phi}{(\reals,+)}{(\complexes^\times,\times)}$ defined by $\phi(r)=e^{2\pi i r}$ is a homomorphism.
+      Clearly $\ker \phi = \integers$.
+      And $\Ima \phi = \left\{ e^{2\pi i r} : r \in \reals \right\}$= the unit circle.
+
+      So $\frac{\reals}{\integers}\ism$ the unit circle.
+
+      %-----.------.-------.O[------|------.------.----- real line
+      %    ^
+      %    | integer points
+
+      The elements of $[0,1)$ form a set of coset representations (every coset is $r+\integers$ for exactly one $r \in [0,1)$) And since $0+\integers = 1+\integers$ it's not too hard to visualise $[0,1)$ as a circle.
+  \end{enumerate}
+\end{exmps}
+
 \end{document}
