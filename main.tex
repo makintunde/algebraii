@@ -1356,7 +1356,99 @@ Notice that (in the form $|G|=|\Ima f||\ker f|$) this looks like the Rank-Nullit
       %    | integer points
 
       The elements of $[0,1)$ form a set of coset representations (every coset is $r+\integers$ for exactly one $r \in [0,1)$) And since $0+\integers = 1+\integers$ it's not too hard to visualise $[0,1)$ as a circle.
+
+      \item Suppose $f:S_3 \rightarrow H$ is a surjective homomorphism. (So $\Ima f = H$). We worked out before the possible groups $H$ before. Here is a more systematic way of doing $H$. We know that $H \ism S_3/\ker f$ (by 1st Isomorphism Theorem), and $\ker f$ is a normal subgroup of $S_3$.
+
+        \emph{What are the normal subgroups?}
+
+        \textbf{Claim:} $\gene{(12)},\gene{(13)}, \gene{(23)}$ are not normal.
+
+        \begin{proof}
+          Take $g=(123)$. Then $g(12)g^{-1}=(23)$, $g(23)g^{-1}=(13)$ and $g(13)g^{-1}=(12)$. So $gHg^{-1} \not\subseteq H$ for any of the subgroups of $H$ listed above.
+        \end{proof}
+          So the normal subgroups of $S_3$ are ${e}$, $A_3$, $S_3$. We know that $S_3/{id} \ism S_3$, $S_3/A_3 \ism C_2$ and $S_3/S_3 \ism {e}$. Hence $H$ is one of $S_3$, $C_2$ or ${e}$. (This is the same as our previous answer.)
+
   \end{enumerate}
 \end{exmps}
+
+  \begin{proposition}
+    Let $G$ be a group and let $N \trianglelefteq G$. Then there is a group $H$ and a homomorphism $f : G \rightarrow H$ such that $\ker f = N$.
+  \end{proposition}
+
+  \begin{proof}
+    Take $H=G/N$. Define $f:G \rightarrow G/N$ by $f(g)=gN$. (This is the canonical map from $G$ to $G/N$.)
+
+    \textbf{Claim 1:} $f$ is a homomorphism.
+
+    \begin{proof}
+      $f(g_1g_2)=g_1g_2N=(g_1N)(g_2N)=f(g_1)f(g_2)$
+    \end{proof}
+
+    \textbf{Claim 2:} $\ker f = N$.
+    \begin{proof}
+      Remember that the identiy of $G/N$ is $N$. Now $f(G)=N \iff g^N = N \iff g \in N$.
+    \end{proof}
+  \end{proof}
+
+  \subsection*{Summary on homomorphisms, normal subgroups, quotient subgroups}
+  There is a 1-1 correspondence between normal subgroups of $G$ and homomorphisms
+  of $G$ (up to isomorphic images.)
+
+  [Since for each normal subgroup $N \trianglelefteq G$, there is a homomorphism $G \rightarrow G/N$ with kernel $N$. For every homomorphism $f$, $\ker f \trianglelefteq G$.]
+
+  If we want to find all groups $H$ such that there exists a surjective homomorphism
+  $G \rightarrow G$ (homomorphic image of $G$), the systematic method is:
+  \begin{enumerate}
+    \item First find all normal subgroups, $N_1, \dots, N_k$ of $G$.
+    \item Second, calculate the quotient groups $G/N_1, \dots, G/N_k$. These are the homomorphic images.
+  \end{enumerate}
+
+  \subsection{Symmetry Groups in 3 Dimensions}
+
+  Recall that $\reals^3$  comes with a natural ``distance'' function,
+  \[
+    d(x,y)=\sqrt{(x_1 - y_1)^2 + (x_2 - y_2)^2 + (x_3 - y_3)^2}
+  \]
+
+  \begin{definition}
+    (Isometry). A bijection $f:\reals^3 \rightarrow \reals^3$ such that $s(f(x),f(y))=d(x,y)$ for all $x,y \in \reals^3$ is called an \textit{isometry} of $\reals^3$.
+  \end{definition}
+
+  E.g. Translations: $f(x)=x+a$ for some constant vector $a$. Rotations, reflections (through planes). 
+
+  The set of all isometries of $\reals^3$ forms a group under composition. Write $I(\reals^3)$ for this group. Now let $\Pi$ be a subset of $\reals^3$. The symmetry group of $\Pi$, written $G(\Pi)$ is the set $\left\{ g \in I(\reals^3):g(\Pi) = \Pi \right\}$. (Here $g(\Pi)=\left\{  g(x):x \in \Pi \right\})$.
+
+  There are many interesting symmetry groups, and we'll just look at a few. 
+  \begin{exmp}
+    $\Pi$ is a regular tetrahedron in $\reals^3$.
+
+    $G(\Pi)$ clearly contains no translations (since the central point has to be invariant under any isometry).
+
+    Let $R$ be the subgroup of all rotations in $G(\Pi)$.
+
+    \textbf{Claim:} $|R|=12$.
+
+    We can certainly rotate any of the four faces to be the ``botto'' face. Then keeping that face fixed, we can rotate to any of three positions.
+
+    We can identify the rotations as follows:
+
+    \underline{View looking down on the tetrahedron.}
+
+    % -----
+
+    We have rotations $\prod, \Pi^2$. There are 4 choices from the ``top'' vertex, so 8 rotations of order 3.
+
+    \underline{View looking down from the perceptive on an edge.}
+
+
+    Rotation $p$ of order 2, one for each pair of opposite edges. So elements of order 2.
+
+    The identity rotation makes up the total of 12.
+  \end{exmp}
+
+
+
+
+
 
 \end{document}
