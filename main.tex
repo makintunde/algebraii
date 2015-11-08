@@ -6,8 +6,14 @@
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}
 \usepackage{parskip}
-
-
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks,
+  citecolor=black,
+  filecolor=black,
+  linkcolor=black,
+  urlcolor=black
+}
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}
 
@@ -51,6 +57,8 @@
 
 \maketitle
 
+\tableofcontents
+\newpage
 \section{Groups}
 A group is a set $G$ with a binary operation $*$ such that 
 \begin{itemize}
@@ -89,7 +97,7 @@ More generally if $\Omega$ is a set then $\Sym(\Omega)$, the symmetric group on 
   
 \end{exmps}
 
-\section{Motivating Example}
+\subsection*{Motivating Example}
 
 \begin{table}[h]
 \centering
@@ -429,10 +437,10 @@ The even permutations in $S_3$ form a subgroup (this always happens)\\
       Cases: 
       \begin{enumerate}
         \item $i=p,\, j=q$ - (1 possibilty)
-        \item $p=i,\,q<j$ - possibilties $q \in \left\{ i+1, \ldots, j-1 \right\}$
-        \item $i<p,\,q=i$ - possibilties $p \in \left\{ i+1, \ldots , j-1 \right\}$
+        \item $p=i,\,q<j$ - possibilities $q \in \left\{ i+1, \ldots, j-1 \right\}$
+        \item $i<p,\,q=i$ - possibilities $p \in \left\{ i+1, \ldots , j-1 \right\}$
       \end{enumerate}
-      So there are $2(j-i-2) +1$ possibilties in total.
+      So there are $2(j-i-2) +1$ possibilities in total.
 
       So $N=2(j-i-2)+1$ is odd. 
 
@@ -551,7 +559,7 @@ Check the group axioms:
     &= ((g_1 h_1)k_1, \ldots , (h_n h_n)k_n), & 
       \text{each } G_i \text{ associative}\\
     &= (g_1, \ldots, g_n) (h_1 k_1, \ldots, h_n k_n) & \\
-    &= (g_1, \ldots, g_n) ((h_1, \ldots, h_n) (h_1, \ldots, h_n)) &
+    &= (g_1, \ldots, g_n) ((h_1, \ldots, h_n) (k_1, \ldots, k_n)) &
   \end{align*}
 \item
   \textbf{Identity:}
@@ -619,7 +627,7 @@ z  & z  & y  & x  & id
 \end{tabu}$
 \end{table}
 
-This is also isomorphic to $C_2 \times C_2$, via $e \rightarrow id, a \rightarrow id, a \rightarrow x, b \rightarrow y, c \rightarrow z$.\\
+This is also isomorphic to $C_2 \times C_2$, via $e \rightarrow id, a \rightarrow x, b \rightarrow y, c \rightarrow z$.\\
 
 \begin{exmp}
   
@@ -631,7 +639,7 @@ $C_2 \times C_2 \times C_2$, which has elements $(\pm 1, \pm 1, \pm 1)$. We see 
 \begin{itemize}
   \item $|G_1 \times \ldots \times G_n| =|G_1||G_2|\ldots|G_n|.$
 \item If \emph{all} of the groups $G_i$ are abelian, then so is $G_1 \times \ldots \times G_n$. But if \emph{any} of $G_1, \ldots G_n$ is not abelian then netiher is $G_1 \times \ldots \times G_n$.
-\item Let $(g_1, \ldots g_n) \in G_1 \times \ldots \times G_n$. Then $\ord (g_1, \ldots , g_n) = \lcm (\ord g, \ldots , \ord g_n)$.
+\item Let $(g_1, \ldots g_n) \in G_1 \times \ldots \times G_n$. Then $\ord (g_1, \ldots , g_n) = \lcm (\ord g_1, \ldots , \ord g_n)$.
 Proof not known.
 \end{itemize}
 \end{proposition}
@@ -879,7 +887,7 @@ Helpful result:
   \end{equation*}
   $g \in S \iff g^{-1} \in S$ (Since $\ord g^{-1} = \ord g$). And $g \neq g^{-1}$, since $g^2 \neq e$. So $S$ contains pairs $(g,g^{-1})$ of elements, so $|g|$ is even. 
 
-  But $|G|=|S| + |\left\{ g : \ord g=2 \right\}| + 1$ (identitity). 
+  But $|G|=|S| + |\left\{ g : \ord g=2 \right\}| + 1$ (identity). 
 
   So $|\left\{ g : \ord g = 2 \right\}|=|G|-|S|-1$ which is odd. 
 
@@ -979,7 +987,7 @@ If we drop (2), we get the definition of a homomorphism.\\
 \end{proof}
 
 \begin{exmp}
-  Suppose $G=S_3$. Let $f$ be a homomorphism from $G$ to some group $H$. What are the possibilties or $\text{Im }f$ and $\text{Ker }f$?
+  Suppose $G=S_3$. Let $f$ be a homomorphism from $G$ to some group $H$. What are the possibilities or $\text{Im }f$ and $\text{Ker }f$?
 
   Recall that for $g \in G$ we have $f(g)$ divided $\ord g$.
 
@@ -1366,8 +1374,7 @@ Notice that (in the form $|G|=|\Ima f||\ker f|$) this looks like the Rank-Nullit
         \begin{proof}
           Take $g=(123)$. Then $g(12)g^{-1}=(23)$, $g(23)g^{-1}=(13)$ and $g(13)g^{-1}=(12)$. So $gHg^{-1} \not\subseteq H$ for any of the subgroups of $H$ listed above.
         \end{proof}
-          So the normal subgroups of $S_3$ are ${e}$, $A_3$, $S_3$. We know that $S_3/{id} \ism S_3$, $S_3/A_3 \ism C_2$ and $S_3/S_3 \ism {e}$. Hence $H$ is one of $S_3$, $C_2$ or ${e}$. (This is the same as our previous answer.)
-
+          So the normal subgroups of $S_3$ are $\{e\}$, $A_3$, $S_3$. We know that $S_3/\{id\} \ism S_3$, $S_3/A_3 \ism C_2$ and $S_3/S_3 \ism \{e\}$. Hence $H$ is one of $S_3$, $C_2$ or $\{e\}$. (This is the same as our previous answer.)\\
   \end{enumerate}
 \end{exmps}
 
@@ -1376,7 +1383,7 @@ Notice that (in the form $|G|=|\Ima f||\ker f|$) this looks like the Rank-Nullit
   \end{proposition}
 
   \begin{proof}
-    Take $H=G/N$. Define $f:G \rightarrow G/N$ by $f(g)=gN$. (This is the canonical map from $G$ to $G/N$.)
+    Take $H=G/N$. Define $f:G \rightarrow G/N$ by $f(g)=gN$. (This is the \textit{canonical map} from $G$ to $G/N$.)
 
     \textbf{Claim 1:} $f$ is a homomorphism.
 
@@ -1390,20 +1397,20 @@ Notice that (in the form $|G|=|\Ima f||\ker f|$) this looks like the Rank-Nullit
     \end{proof}
   \end{proof}
 
-  \subsection*{Summary on homomorphisms, normal subgroups, quotient subgroups}
+  \subsubsection*{Summary on homomorphisms, normal subgroups, quotient subgroups}
   There is a 1-1 correspondence between normal subgroups of $G$ and homomorphisms
   of $G$ (up to isomorphic images.)
 
   [Since for each normal subgroup $N \trianglelefteq G$, there is a homomorphism $G \rightarrow G/N$ with kernel $N$. For every homomorphism $f$, $\ker f \trianglelefteq G$.]
 
   If we want to find all groups $H$ such that there exists a surjective homomorphism
-  $G \rightarrow G$ (homomorphic image of $G$), the systematic method is:
+  $G \rightarrow G$ (\textit{homomorphic image} of $G$), the systematic method is:
   \begin{enumerate}
     \item First find all normal subgroups, $N_1, \dots, N_k$ of $G$.
-    \item Second, calculate the quotient groups $G/N_1, \dots, G/N_k$. These are the homomorphic images.
+    \item Second, calculate the quotient groups $G/N_1, \dots, G/N_k$. These are the \textit{homomorphic images.}
   \end{enumerate}
 
-  \subsection{Symmetry Groups in 3 Dimensions}
+  \subsection{Symmetry Groups in Three Dimensions}
 
   Recall that $\reals^3$  comes with a natural ``distance'' function,
   \[
