@@ -1410,7 +1410,7 @@ Notice that (in the form $|G|=|\Ima f||\ker f|$) this looks like the Rank-Nullit
     \item Second, calculate the quotient groups $G/N_1, \dots, G/N_k$. These are the \textit{homomorphic images.}
   \end{enumerate}
 
-  \subsection{Symmetry Groups in Three Dimensions}
+  \section{Symmetry Groups in Three Dimensions}
 
   Recall that $\reals^3$  comes with a natural ``distance'' function,
   \[
@@ -1443,7 +1443,7 @@ Notice that (in the form $|G|=|\Ima f||\ker f|$) this looks like the Rank-Nullit
 
     % -----
 
-    We have rotations $\prod, \Pi^2$. There are 4 choices from the ``top'' vertex, so 8 rotations of order 3.
+    We have rotations $\Pi, \Pi^2$. There are 4 choices from the ``top'' vertex, so 8 rotations of order 3.
 
     \underline{View looking down from the perceptive on an edge.}
 
@@ -1453,9 +1453,83 @@ Notice that (in the form $|G|=|\Ima f||\ker f|$) this looks like the Rank-Nullit
     The identity rotation makes up the total of 12.
   \end{exmp}
 
+  We found 12 rotations of a tetrahedron. Identity rotation and 8 rotations of order 3 (2 for each face), and 3 rotations of order 2.
 
+  \textbf{Claim:} The rotations form an group isomorphic to $A_4$.
 
+  \begin{proof}
+    Number the vertices of the tetrahedron $1,2,3,4$. Identify each rotation with its effect on the vertex numbers.
 
+    % figure
+    Easy to check that this gives a bijection between the set of rotations and $A_4$, since every rotation is giving an even permutation, and $|A_4|=12$.  Now composing rotations is equivalent to composing permutations, so the bijection respects multiplication. So the rotations form a group isomorphic to $A_4$.
+  \end{proof}
 
+  There are other symmetries of the tetrahedron, namely reflections.
+
+  Take a plane passing through two vertices, and the midpoint of the edge opposite the edge through these two vertices. A reflection through this plane is a symmetry of the tetrahedron. 
+
+  Let this reflection be $g$. Let $R$ be the group of rotations. Then $g \not\in R$, and so $gR \neq R$. So $G \supseteq R \cup gR$ (where $G$ is the symmetry group of the tetrahedron). 
+
+  So $|G| \geq 24$.
+
+  But any symmetry must fix the set of vertices (as a set), and symmetry is determined by how it permutes the vertices.
+
+  Since there are only 24 permutations of the vertices, we have $|G|=24$, and $G \ism S_4$.
+\newpage
+  \section{Counting Using Groups}
+  Given an equilateral triangle, how many different ways are there of colouring the edges red or green. (where colourings which are the same up to rotation or reflection count as the same). 
+
+  Possibilities: 
+  \begin{itemize}
+    \item All edges red
+    \item Two edges red, one green
+    \item One red, two green
+    \item All green
+  \end{itemize}
+ How about a more complicated example - say 10 colours available instead of 2. We need a technique.
+
+ Idea is: 
+ \begin{itemize}
+   \item 
+ $\Gamma$ a structure (i.e. a trianlge/polygon/subset of $\reals^n$).
+ \item 
+ $H$ a group of symmetries of $\Gamma$. (Maybe $H$ is not the whole symmetry group.)
+ \item $C$ a set of colours.
+ \end{itemize}
+
+ Apply colours from $C$ to points/lines of $\Gamma$.
+
+ If two colourings $A,B$ satisfy $A=hB$ for some $h \in H$, treat $A$ and $B$ as the same. Count the total number of colourings.
+
+ \begin{definition}
+   If $A$ is a colouring of $\Gamma$, then the set $\left\{ hA : h \in H \right\}$ is the \emph{orbit} of $A$ under the action of $H$.
+
+   \begin{exmp}
+     $\Gamma$ is an equilateral triangle, $C = \left\{ red, green \right\}$, colouring the edges, $H=$symmetry group$=D_6$.
+
+     $A = g,r,r$
+
+     Orbit of $A = \left\{ (g,r,r),(r,g,r),(r,r,g) \right\}$
+ 
+   \end{exmp}
+ \end{definition}
+ \begin{definition}
+   If $A$ is a colouring of $\Gamma$, then the set $\left\{ h \in H : hA=A \right\}$ is the \emph{stabilizer} of $A$ in $H$.
+
+   The stabilizer of $A$ is a subgroup of $H$. (Exercise.)
+
+   \begin{exmp}
+     $\Gamma, H, A$ as in the examples above.
+
+     Stabilizer of $A$ in $H$ is $\left\{ id,t \right\}$, where $t$ is the reflection through the axis $x$.
+   \end{exmp}
+ \end{definition}
+
+ \begin{theorem}
+   Assuming that the group $H$ is finite, we have
+   
+   $|$Orbit of $A||$Stabilizer of $A|=|H|$ for all colourings $A$.
+   \label{thm:orbitstabilizer}
+ \end{theorem}<++>
 
 \end{document}
