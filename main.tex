@@ -14,6 +14,7 @@
   linkcolor=black,
   urlcolor=black
 }
+\usepackage{tikz} 
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}
 
@@ -1425,7 +1426,7 @@ Notice that (in the form $|G|=|\Ima f||\ker f|$) this looks like the Rank-Nullit
 
   The set of all isometries of $\reals^3$ forms a group under composition. Write $I(\reals^3)$ for this group. Now let $\Pi$ be a subset of $\reals^3$. The symmetry group of $\Pi$, written $G(\Pi)$ is the set $\left\{ g \in I(\reals^3):g(\Pi) = \Pi \right\}$. (Here $g(\Pi)=\left\{  g(x):x \in \Pi \right\})$.
 
-  There are many interesting symmetry groups, and we'll just look at a few. 
+  There are many interesting symmetry groups, and we'll just look at a few. \\
   \begin{exmp}
     $\Pi$ is a regular tetrahedron in $\reals^3$.
 
@@ -1435,20 +1436,48 @@ Notice that (in the form $|G|=|\Ima f||\ker f|$) this looks like the Rank-Nullit
 
     \textbf{Claim:} $|R|=12$.
 
-    We can certainly rotate any of the four faces to be the ``botto'' face. Then keeping that face fixed, we can rotate to any of three positions.
+    We can certainly rotate any of the four faces to be the ``bottom'' face. Then keeping that face fixed, we can rotate to any of three positions.
 
     We can identify the rotations as follows:
 
     \underline{View looking down on the tetrahedron.}
 
     % -----
+    \begin{figure}[h]
+      \centering
+      \begin{tikzpicture}[scale=3]
+        \draw (0,0) -- (1,0);
+        \draw (0,0) -- (1/2,{sqrt(3)/2});
+        \draw (1/2,{sqrt(3)/2}) -- (1,0);
+        \draw[dotted] (1/2,{sqrt(3)/6}) -- (1/2,{sqrt(3)/2});
+        \draw[dotted] (1/2,{sqrt(3)/6}) -- (0,0);
+        \draw[dotted] (1/2,{sqrt(3)/6}) -- (1,0);
+        \node at (1.15,0.5) {$\Pi$};
+        \draw [line width = 1, ->, gray] (1.1,0.1) arc [radius=1, start angle=0, end angle= 55];
+      \end{tikzpicture}
+      \label{fig:lookingdown}
+    \end{figure}
+
 
     We have rotations $\Pi, \Pi^2$. There are 4 choices from the ``top'' vertex, so 8 rotations of order 3.
 
     \underline{View looking down from the perceptive on an edge.}
+    \begin{figure}[h]
+      \centering
+      \begin{tikzpicture}[scale=3]
+        \draw (0,0.5) -- (0.5,1);
+        \draw (1,0.5) -- (0.5,1);
+        \draw (0,0.5) -- (0.5,0);
+        \draw (1,0.5) -- (0.5,0);
+        \draw (0.5,1) -- (0.5,0);
+        \draw[dotted] (0,0.5) -- (1,0.5);
+        \node at (1.2,0.5) {$\rho$};
+        \draw [line width = 1, ->, gray] (0.6,0) arc [radius=0.5, start angle=-90, end angle=90];
+      \end{tikzpicture}
+      \label{fig:lookingdownedge}
+    \end{figure}
 
-
-    Rotation $p$ of order 2, one for each pair of opposite edges. So elements of order 2.
+    Rotation $\rho$ of order 2, one for each pair of opposite edges. So elements of order 2.
 
     The identity rotation makes up the total of 12.
   \end{exmp}
@@ -1461,6 +1490,41 @@ Notice that (in the form $|G|=|\Ima f||\ker f|$) this looks like the Rank-Nullit
     Number the vertices of the tetrahedron $1,2,3,4$. Identify each rotation with its effect on the vertex numbers.
 
     % figure
+    \begin{figure}[h]
+      \centering
+      \begin{tikzpicture}[scale=3]
+        \draw (0,0) -- (1,0);
+        \node[below left] at (0,0) {3};
+        \node[below right] at (1,0) {2};
+        \node at (0.5,1) {1};
+        \node[below] at (1/2,{sqrt(3)/6}) {4};
+        \draw (0,0) -- (1/2,{sqrt(3)/2});
+        \draw (1/2,{sqrt(3)/2}) -- (1,0);
+        \draw[dotted] (1/2,{sqrt(3)/6}) -- (1/2,{sqrt(3)/2});
+        \draw[dotted] (1/2,{sqrt(3)/6}) -- (0,0);
+        \draw[dotted] (1/2,{sqrt(3)/6}) -- (1,0);
+        \node at (1.15,0.5) {$\Pi$};
+        \draw [line width = 1, ->, gray] (1.1,0.1) arc [radius=1, start angle=0, end angle= 55];
+      \end{tikzpicture}
+      \label{fig:pftriangle}
+    \end{figure}
+
+    \begin{figure}[h]
+      \centering
+      \begin{tikzpicture}[scale=3]
+        \draw (0,0) -- (1,0);
+        \node[below left] at (0,0) {1};
+        \node[below right] at (1,0) {3};
+        \node at (0.5,1) {2};
+        \node[below] at (1/2,{sqrt(3)/6}) {4};
+        \draw (0,0) -- (1/2,{sqrt(3)/2});
+        \draw (1/2,{sqrt(3)/2}) -- (1,0);
+        \draw[dotted] (1/2,{sqrt(3)/6}) -- (1/2,{sqrt(3)/2});
+        \draw[dotted] (1/2,{sqrt(3)/6}) -- (0,0);
+        \draw[dotted] (1/2,{sqrt(3)/6}) -- (1,0);
+      \end{tikzpicture}
+      \label{fig:pftriangle}
+    \end{figure}
     Easy to check that this gives a bijection between the set of rotations and $A_4$, since every rotation is giving an even permutation, and $|A_4|=12$.  Now composing rotations is equivalent to composing permutations, so the bijection respects multiplication. So the rotations form a group isomorphic to $A_4$.
   \end{proof}
 
@@ -1477,7 +1541,7 @@ Notice that (in the form $|G|=|\Ima f||\ker f|$) this looks like the Rank-Nullit
   Since there are only 24 permutations of the vertices, we have $|G|=24$, and $G \ism S_4$.
 \newpage
   \section{Counting Using Groups}
-  Given an equilateral triangle, how many different ways are there of colouring the edges red or green. (where colourings which are the same up to rotation or reflection count as the same). 
+  Given an equilateral triangle, how many different ways are there of colouring the edges red or green? (where colourings which are the same up to rotation or reflection count as the same). 
 
   Possibilities: 
   \begin{itemize}
@@ -1491,7 +1555,7 @@ Notice that (in the form $|G|=|\Ima f||\ker f|$) this looks like the Rank-Nullit
  Idea is: 
  \begin{itemize}
    \item 
- $\Gamma$ a structure (i.e. a trianlge/polygon/subset of $\reals^n$).
+ $\Gamma$ a structure (i.e. a triangle/polygon/subset of $\reals^n$).
  \item 
  $H$ a group of symmetries of $\Gamma$. (Maybe $H$ is not the whole symmetry group.)
  \item $C$ a set of colours.
@@ -1499,37 +1563,37 @@ Notice that (in the form $|G|=|\Ima f||\ker f|$) this looks like the Rank-Nullit
 
  Apply colours from $C$ to points/lines of $\Gamma$.
 
- If two colourings $A,B$ satisfy $A=hB$ for some $h \in H$, treat $A$ and $B$ as the same. Count the total number of colourings.
+ If two colourings $A,B$ satisfy $A=hB$ for some $h \in H$, treat $A$ and $B$ as the same. Count the total number of colourings.\\
 
  \begin{definition}
-   If $A$ is a colouring of $\Gamma$, then the set $\left\{ hA : h \in H \right\}$ is the \emph{orbit} of $A$ under the action of $H$.
+   If $A$ is a colouring of $\Gamma$, then the set $\left\{ hA : h \in H \right\}$ is the \emph{orbit} of $A$ under the action of $H$.\\
 
    \begin{exmp}
      $\Gamma$ is an equilateral triangle, $C = \left\{ red, green \right\}$, colouring the edges, $H=$symmetry group$=D_6$.
 
      $A = g,r,r$
 
-     Orbit of $A = \left\{ (g,r,r),(r,g,r),(r,r,g) \right\}$
- 
+     Orbit of $A = \left\{ (g,r,r),(r,g,r),(r,r,g) \right\}$\\
    \end{exmp}
  \end{definition}
  \begin{definition}
    If $A$ is a colouring of $\Gamma$, then the set $\left\{ h \in H : hA=A \right\}$ is the \emph{stabilizer} of $A$ in $H$.
 
-   The stabilizer of $A$ is a subgroup of $H$. (Exercise.)
+   The stabilizer of $A$ is a subgroup of $H$. (Exercise.)\\
 
    \begin{exmp}
      $\Gamma, H, A$ as in the examples above.
 
-     Stabilizer of $A$ in $H$ is $\left\{ id,t \right\}$, where $t$ is the reflection through the axis $x$.
+     Stabilizer of $A$ in $H$ is $\left\{ id,t \right\}$, where $t$ is the reflection through the axis $x$.\\
    \end{exmp}
  \end{definition}
 
  \begin{theorem}
    Assuming that the group $H$ is finite, we have
-   
-   $|$Orbit of $A||$Stabilizer of $A|=|H|$ for all colourings $A$.
+  \[ 
+  \big|\text{Orbit of }A\big| \big|\text{Stabilizer of } A\big|=\big|H\big| \] for all colourings $A$.
+  
    \label{thm:orbitstabilizer}
- \end{theorem}<++>
+ \end{theorem}
 
 \end{document}
