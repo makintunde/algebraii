@@ -39,13 +39,16 @@
 \newcommand{\naturals}{\mathbb{N}}
 \newcommand{\complexes}{\mathbb{C}}
 \newcommand{\but}[2]{#1 \backslash \{#2\}}
-
+\newcommand{\A}{\mathcal{A}}
 \newcommand{\ism}{\cong}
 \DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\Orb}{Orb}
+\DeclareMathOperator{\Stab}{Stab}
 \DeclareMathOperator{\Ima}{Im}
 \DeclareMathOperator{\Sym}{Sym}
 \DeclareMathOperator{\lcm}{lcm}
 \DeclareMathOperator{\hcf}{hcf}
+\DeclareMathOperator{\fix}{fix}
 \DeclareMathOperator{\ord}{\text{ord}}
 
 
@@ -1677,4 +1680,191 @@ Notice that (in the form $|G|=|\Ima f||\ker f|$) this looks like the Rank-Nullit
    \label{thm:orbitstabilizer}
  \end{theorem}
 
-\end{document}
+ Recall: We have a structure $S$ (e.g. edges of a polygon, vertices of a polygon, etc.) $G$ The symmetry group. $C$ a set of colours. \emph{How many colourings of $S$ are possible, if we don't distinguish colourings related by a symmetry?}
+
+ Let $\mathcal{A}=$ set of all possible colourings. For $A \in \mathcal{A}$, we defined Orbit: $\Orb_G(A)=\left\{ gA : g \in G \right\}$ and Stabiliser: $\Stab_G(A) = \left\{ g \in G : gA = A \right\}$ and Orbit-Stabiliser Theorem says $|\Orb_G(A)||\Stab_G(A)|=|G|$.
+
+ \begin{proof}
+   (Idea): Suppose $g_1,g_2\in G$ are such that $g_1A=g_2A$. Then $g_2^{-1}g_1A=A$, and so $g_2^{-1}g_1A \in \Stab_G(A)$. So $g_1\Stab_G(A)=g_2\Stab_G(A)$. Conversely, if $g_1\Stab_G(A)=g_2\Stab_G(A)$ then $g_1A=g_2A$. So elements of $\Orb_G(A)$ are in bijection with the cosets of $\Stab_G(A)$ in $G$. Since the number of cosets is $|G|/|\Stab_G(A)|$, we're done.
+ \end{proof} 
+
+ \begin{exmp}
+   Take $S=$ edges of a square and $G=D_8$ (full symmetry group). $C = \left\{ red, green \right\}=\left\{ R,G \right\}$. 
+   
+   So
+   $A=$
+   \begin{figure}[h]
+     \centering 
+     \begin{tikzpicture}[scale=2]
+       \draw[green] (0,0) -- (0,1);
+       \draw[green] (0,0) -- (1,0);
+       \draw[green] (1,0) -- (1,1);
+       \draw[red] (0,1) -- (1,1);
+       \draw[dotted] (0,1) -- (1,0);
+       \node[below right] at (1,0) {$x$};
+       \node[below] at (0.5,0) {$G$};
+       \node[left] at (0,0.5) {$G$};
+       \node[right] at (1,0.5) {$G$};
+       \node[above] at (0.5,1) {$R$};
+     \end{tikzpicture}
+     \label{fig:coloursquare}
+   \end{figure}
+ 
+ \end{exmp}
+
+  Then orbit is the rotations:
+
+  $\Orb_G(A)=$
+   \begin{figure}[h]
+     \centering 
+     \begin{tikzpicture}
+       \draw[green] (0,0) -- (0,1);
+       \draw[green] (0,0) -- (1,0);
+       \draw[green] (1,0) -- (1,1);
+       \draw[red] (0,1) -- (1,1);
+       \node[below] at (0.5,0) {$G$};
+       \node[left] at (0,0.5) {$G$};
+       \node[right] at (1,0.5) {$G$};
+       \node[above] at (0.5,1) {$R$};
+     \end{tikzpicture}\hfill
+     \begin{tikzpicture}
+       \draw[green] (0,0) -- (0,1);
+       \draw[green] (0,0) -- (1,0);
+       \draw[red] (1,0) -- (1,1);
+       \draw[green] (0,1) -- (1,1);
+       \node[below] at (0.5,0) {$G$};
+       \node[left] at (0,0.5) {$G$};
+       \node[right] at (1,0.5) {$R$};
+       \node[above] at (0.5,1) {$G$};
+     \end{tikzpicture}\hfill
+     \begin{tikzpicture}
+       \draw[green] (0,0) -- (0,1);
+       \draw[red] (0,0) -- (1,0);
+       \draw[green] (1,0) -- (1,1);
+       \draw[green] (0,1) -- (1,1);
+       \node[below] at (0.5,0) {$R$};
+       \node[left] at (0,0.5) {$G$};
+       \node[right] at (1,0.5) {$G$};
+       \node[above] at (0.5,1) {$G$};
+     \end{tikzpicture}\hfill
+     \begin{tikzpicture}
+       \draw[red] (0,0) -- (0,1);
+       \draw[green] (0,0) -- (1,0);
+       \draw[green] (1,0) -- (1,1);
+       \draw[green] (0,1) -- (1,1);
+       \node[below] at (0.5,0) {$G$};
+       \node[left] at (0,0.5) {$R$};
+       \node[right] at (1,0.5) {$G$};
+       \node[above] at (0.5,1) {$G$};
+     \end{tikzpicture}
+     \label{fig:coloursquaremult}
+   \end{figure}
+
+   $\Stab_G(A)=\left\{ id, \text{ reflection through }x \right\}$.
+
+   And we have $|\Orb_G(A)||\Stab_G(A)|=4 \times 2 = 8 = |G|$.\\
+   \begin{lemma}
+     (Orbit-Counting, Burnside). The number of orbits of $G$ on colourings
+     is
+     \[
+       \frac{1}{G} \sum_{g \in G}\fix(g)
+     \]
+     Where $\fix(g)$ is the number of colourings fixed by $g$.
+     \label{lem:orbitcounting}
+   \end{lemma}
+
+   \begin{proof}
+     Notice that
+\begin{align*}
+  \sum_g \fix(g) &= \sum_g |\left\{ A : gA = A \right\}| \\
+  &= |\left\{ (g,A) : g \in G, A \in \mathcal{A},gA=A \right\}|\\
+  &= \sum_{A \in \mathcal{A}}|\left\{ g \in G | gA = A \right\}|\\
+  &= \sum_{A \in \A} |\Stab_G(A)|\\
+  &= \sum_{A \in \A} \frac{|G|}{|\Orb_G(A)|}
+\end{align*}
+
+so
+
+\begin{align*}
+  \frac{1}{|G|}\sum_{g \in G} \fix(g) = \sum_{A \in \A} \frac{1}{\Orb_G(A)}.
+\end{align*}
+  But every orbit counts exactly 1 in this sum since the orbit $O$ has $|O|$ colourings, each counting $\frac{1}{|O|}$. So $\sum_{A \in \mathcal{A}}\frac{1}{|orb(A)|}$ is the number of orbits.
+\end{proof}
+
+\begin{exmps}
+  A necklace has 6 beads, each red or green. How many different necklaces are possible?
+
+  Model the necklace as vertices of a regular hexagon.
+
+  The appropriate symmetry group is $D_{12}$ (f h symmetry group). Consider the symmetries as permuations of the beads.
+
+  \begin{itemize}
+    \item Rotations: 
+      \begin{itemize}
+        \item 
+        $id$ fixes all $2^6$ colourings. 
+      \item $R_\pi = (14)(25)(36)$.
+        We need $1,4$ the same colour etc.
+      \item $R_\pi$ has 3 cycles, so $2^3$ colourings are fixed.
+
+      \item $R_{2\pi/3},R_{4\pi/3}=(135)(246),(153)(264)$.
+        Both have 2 cycles, so fix $2^2$ colourings.
+      \item $R_{2\pi/6},R_{10\pi/6}=(123456)(165432)$
+
+       Just one cycle, so fix 2 colourings. 
+      \end{itemize}
+      
+
+     \item Reflections: Axis through opposite edges (3 reflections) $(12)(36)(45)$. 
+% fig
+       \begin{figure}[h]
+         \centering
+         \begin{tikzpicture}
+           \draw[dotted] (1,1.74) -- (1,0);
+           \draw (0,0.87) -- (0.5,0);
+           \draw (0.5,0) -- (1.5,0);
+           \draw (1.5,0) -- (2,0.87);
+           \draw (2,0.87) -- (1.5,1.73);
+           \draw (1.5,1.73) -- (0.5,1.73);
+           \draw (0.5,1.73) -- (0,0.87);
+         \end{tikzpicture}
+
+         \label{fig:necklace1}
+       \end{figure}
+      
+       
+       3 cycles, so $2^3$ fixed colourings. 
+% fig
+Axis through opposite vertices (3 reflections) 
+       $(13)(2)(46)(5)$.
+
+       \begin{figure}[h]
+         \centering
+         \begin{tikzpicture}
+           \draw[dotted] (0.5,0) -- (1.5,1.73);
+           \draw (0,0.87) -- (0.5,0);
+           \draw (0.5,0) -- (1.5,0);
+           \draw (1.5,0) -- (2,0.87);
+           \draw (2,0.87) -- (1.5,1.73);
+           \draw (1.5,1.73) -- (0.5,1.73);
+           \draw (0.5,1.73) -- (0,0.87);
+         \end{tikzpicture}
+
+         \label{fig:necklace1}
+       \end{figure}
+       
+
+       4 cycles. so $2^4$ fixed colourings.
+
+       
+       Now the Orbit-Counting lemma gives
+
+       \begin{align*}
+         \# \text{orbits} &= \frac{1}{12}(64 + 8 + 2\times4 + 2\times 2 + 3 \times 8 + 3 \times 16)\\ 
+       &= \frac{1}{12}\times 156 \\
+       &= 13.
+       \end{align*}
+  \end{itemize}
+\end{exmps}
+
+ \end{document}
