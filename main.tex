@@ -148,7 +148,7 @@ $$
 $$
 
 From an algebraic point of view these two groups are ``the same''. We say they are \textit{isomorphic}.
-
+\section{Isomorphisms}
 Here's a formal definition.\\
 
 
@@ -158,7 +158,7 @@ Let $G$ and $H$ be groups, and let $f : G \rightarrow H$ be a function. We say t
 \item $f$ is a bijection.
 \item $f(g_1 * g_2)=f(g_1) * f(g_2) $ for all $g_1, g_2 \in G$.
 
-Note that in $f(g_1 * g_2)$ the multiplication is happening in $G$, but in $f(g_1) * f(g_2)$ the multiplication is in $H$. If condition (2) is satisfied, we say that f \emph{respects} $*$.
+Note that in $f(g_1 * g_2)$ the multiplication is happening in $G$, but in $f(g_1) * f(g_2)$ the multiplication is in $H$. If condition (2) is satisfied, we say that $f$ \emph{respects} $*$.
 
 $G$ and $H$ are \emph{isomorphic} if an isomorphism $G \rightarrow H$ exists.
 \end{enumerate}
@@ -1867,4 +1867,144 @@ Axis through opposite vertices (3 reflections)
   \end{itemize}
 \end{exmps}
 
+\section{Linear Algebra}
+\subsection{Determinants}
+We know determinants for $2 \times 2$ matrices
+\[
+  \begin{vmatrix}
+    a & b \\
+    c & d
+  \end{vmatrix} = ad - bc
+\]
+$3 \times 3$ matrices 
+\[
+  \begin{vmatrix}
+    a & b & c \\
+    d & e & f \\
+    g & h & i
+  \end{vmatrix} = 
+  a \begin{vmatrix}
+    e & f \\
+    h & i
+  \end{vmatrix} - 
+  b\begin{vmatrix}
+   d & f \\
+   g & i
+  \end{vmatrix} +
+  c\begin{vmatrix}
+    d & e \\
+    g & h
+  \end{vmatrix} = aei - afh - bdi +bfg +cdh-ceg.
+\]
+
+Let $A=(a_{ij})$  be an $n \times n$ matrix.
+
+Write $A_{ij}$ for the minor obtained by deleting the $i^{th}$ row and the $j^{th}$ column. We could define $\det A$ (or $|A|$ ) by analogy with the $3 \times 3$ case, as
+
+\[
+  |A| = a_{11}|A_{11}| - a_{12}|A_{12}| + a_{13}|A_{13}| \cdots + (-1)^{n-1}a_{1n}|A_{1n}|.
+\]
+
+(Definition by expansion alog the first row.)
+
+This is a \emph{recursive} definition -- $n \times n$ determinants are defined in terms of $(n-1) \times (n-1)$ determinants.
+
+Expanding along a different row (or a column) would give the same result (proof later)
+
+
+In fact we will use an alternative definition.
+
+The terms in \[
+  \begin{vmatrix}
+    a & b & c \\
+    d & e & f \\
+    g & h & i
+  \end{vmatrix}
+\]
+
+are each a product of three entries, one from each row and column.
+
+Suppise we pick the entry in column $f(i)$ from row $i$, then $f$ is a permutation of $\left\{ 1,2,3 \right\}$. So the terms correspond to elements of $S_3$.
+
+\begin{align*}
+  aei &\leftrightarrow \text{id} \\
+bfg &\leftrightarrow (123) \\
+cdh &\leftrightarrow (132) \\
+-bdi &\leftrightarrow (12) \\
+-cdg &\leftrightarrow (13) \\
+-afh &\leftrightarrow (23).
+\end{align*}
+Notice the sign before each term is just the signature of the corresponding permutation.
+
+Similarly for the $2 \times 2$ determinant: 
+$\begin{vmatrix}a & b \\ c & d\end{vmatrix}$
+
+\begin{align*}
+  ad &\leftrightarrow \text{id} \\
+  -bc &\leftrightarrow (12).
+\end{align*}
+
+\begin{definition}
+  Let $A$ be an $n \times n$ matrix, $A = (a_{ij})$. The determinant of $A$ is 
+  \[
+    \det A = \sum_{\sigma \in S_n} \sgn(\sigma) a_{1\sigma(1)}a_{2\sigma (2)}\dots a_{n \sigma (n)}.
+  \]
+\end{definition}
+
+\begin{proposition}
+  \label{prp:swaprows}
+  Suppose that $B$ is obtained from $A$ by swapping two rows. Then I claim $\det B = -\det A$.\\
+\end{proposition}
+
+  \begin{proof}
+    Suppose that rows $p$ and $q$ are the rows that are going to be swapped. Let $A=(a_{ij}),B=(b_{ij})$. I claim that we can write 
+    \[
+    b_{ij} = a_{\tau (i) j}, \quad\text{where }\tau = (pq) \quad (2-\text{cycle}).\]
+
+      \begin{align*}
+        \det B &= \sum_{\sigma \in S_n} \sgn(\sigma) b_{1\sigma(1)}b_{2\sigma (2)}\dots b_{n \sigma (n)}\\
+        &= \sum_{\sigma \in S_n} \sgn(\sigma) a_{\tau(1)\sigma(1)}a_{\tau(2)\sigma (2)}\dots a_{\tau(n) \sigma (n)}\\
+        &= \sum_{\sigma \in S_n} \sgn(\sigma) a_{1\tau^{-1}\sigma(1)}a_{2\tau^{-2}\sigma (2)}\dots a_{n\tau^{-n} \sigma (n)}
+      \end{align*} (Same $n$ factors in each product, but in a different order). Notice that $\tau = \tau^{-1}$.
+      \begin{align*}
+        &= \sgn{\tau} \sum_{\sigma \in S_n}\sgn(\tau)\sgn(\sigma)a_{1\tau\sigma(1)}\dots a_{n \tau\sigma(n)} \\
+        &= - \sum_{\sigma \in S_n}\sgn(\tau\sigma)a_{1\tau\sigma(1)}\dots a_{n \tau\sigma(n)} \\
+        &= - \sum_{\tau\sigma \in S_n}\sgn(\tau\sigma)a_{1\tau\sigma(1)}\dots a_{n \tau\sigma(n)} 
+      \end{align*} Since the sum is over all group elements in either case.
+      \begin{align*}
+        &= -\det A.
+      \end{align*}
+  \end{proof}
+
+  \begin{proposition}
+    if $A$ has an all-0 row, then $\det A=0$.
+
+    If $A$ has two rows the same then $\det A=0$.
+
+    If $A$ is triangular (upper or lower) then $\det A=a_{11}a_{22}\dots a_{nn}$
+  \end{proposition}
+
+  \begin{proof}
+    Suppose that $A$ has all $0$s in row $i$. Then $a_{i\sigma(i)}=0$ for all $\sigma \in S_{n}$. So $a_{1\sigma(1)}\dots a_{n\sigma(n)}=0$, for all $\sigma$.
+
+    So $\det A = 0$.
+
+    Suppose that $A$ has rows $p$ and $q$ the same. Let $B$ the matrix obtained from $A$ by exchanging rows $p$ and $q$. Then $\det B=-\det A$ by Prop \ref{prp:swaprows}.  But clearly $B=A$, so $\det A = - \det A$. So $\det A=0$.
+
+    Let $\sigma$ be a non-identiy permutation in $S_n$. There must exist $i,j \in \left\{ 1,\dots n \right\}$ with $\sigma(i) > i, \sigma(j)<j$. Whether $A$ is upper-or-lower-triangular, one of $a_{i\sigma(i)}$ or $a_{j\sigma(j)}$ is 0. So $a_{1\sigma(1)}\dots a_{n\sigma(n)}=0$, and so the only $\sigma \in S_n$ which contributes to the $\det A$ is the identity.
+
+    Hence $\det A = \sgn(id)a_{11}\dots a_{nn}$ and $\sgn(id)=+1$, giving the result. 
+
+  \end{proof}
+    \begin{proposition}
+      (Row operations).
+      \begin{itemize}
+        \item Let $B$ be obtained by swapping two rows. Then $\det B=-\det A$.
+        \item Let $B$ be obtained from $A$ by multiplying a row by a scalar $\lambda$.
+
+          Then $\det B = \lambda \det A$.
+        \item Let $B$ be obtained from $A$ by adding $\lambda$ times row $i$ to row $j$, where $i \neq j$ 
+          then $\det B = \det A$.
+      \end{itemize}
+    \end{proposition}
  \end{document}
