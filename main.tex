@@ -41,6 +41,7 @@
 \newcommand{\but}[2]{#1 \backslash \{#2\}}
 \newcommand{\A}{\mathcal{A}}
 \newcommand{\ism}{\cong}
+\newcommand{\elemt}[2]{#1_{{#2}\sigma(#2)}}
 \DeclareMathOperator{\sgn}{sgn}
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\Orb}{Orb}
@@ -1978,6 +1979,7 @@ $\begin{vmatrix}a & b \\ c & d\end{vmatrix}$
   \end{proof}
 
   \begin{proposition}\hfill
+    \label{prp:rowssame}
     \begin{itemize}
       \item 
     If $A$ has an all-0 row, then $\det A=0$.
@@ -2004,13 +2006,227 @@ $\begin{vmatrix}a & b \\ c & d\end{vmatrix}$
   \end{proof}
     \begin{proposition}
       (Row operations).
-      \begin{itemize}
+      \begin{enumerate}
         \item Let $B$ be obtained by swapping two rows. Then $\det B=-\det A$.
         \item Let $B$ be obtained from $A$ by multiplying a row by a scalar $\lambda$.
 
           Then $\det B = \lambda \det A$.
         \item Let $B$ be obtained from $A$ by adding $\lambda$ times row $i$ to row $j$, where $i \neq j$. 
           Then $\det B = \det A$.
-      \end{itemize}
+      \end{enumerate}
      \end{proposition}
+     \begin{proof}\hfill
+       \begin{enumerate}
+         \item 
+       $(i)$ Suppose that $A$ has all 0s in row $i$. Then $a_{i\sigma(i)}
+       = 0$ for all $\sigma \in n$.
+       So $a_{1\sigma(1)}\dots a_{n\sigma(n)} = 0$, for all $\sigma$. So
+       $\det A = 0$.
+     \item  Suppose that $A$ has rows $p$ and $q$ the same. Let $B$ be the
+       matrix obtained
+       from $A$ by exchanging rows $p$ and $q$. Then $\det B = -\det A
+       $ (Proposition \ref{prp:swaprows}.)
+       But clearly $B = A$, so $\det A = -\det A$. So $\det A = 0$.
+
+     \item Let $\sigma$  be a non-identity permutation. There must exist
+       $i, j \in \left\{ 1,\dots ,n \right\}$ 
+       with $\sigma(i) > i$ and $\sigma(j) < j$. Whether $A$ is upper or
+       lower triangular, one of $a_{i\sigma(i)}$ or $a_{j\sigma(j)}$
+       is 0. So $a_{1\sigma(1)}\dots a_{n\sigma(n)} = 0$, for all
+       non-identity $\sigma$’s, and so
+       the only $\sigma \in S_n$ which contributes to $\det A$ is the
+       identity. Hence $\det A = \sgn(\id) a_{11}\dots a_{nn}$. And
+       $\sgn(\id) = +1$, giving the result.
+       \end{enumerate}
+     \end{proof}
+
+\begin{proposition}\hfill
+  \label{prp:rowops}
+  \begin{enumerate}
+    \item Let $B$ be obtained from $A$ by swapping two rows. Then $\det B
+      = - \det A$.
+    \item Let $B$ be obtained from $A$ by multiplying a row by a scalar
+      $\lambda$. Then $\det B = \lambda\det A$.
+    \item Let $B$ be obtained from $A$ by adding $\lambda$ times row $i$
+      to row $j$ $(i \neq j)$.
+      Then $\det B = \det A$.
+  \end{enumerate}
+\end{proposition}
+
+\begin{proof}\hfill
+  \begin{enumerate}
+    \item This is Proposition \ref{prp:swaprows}.
+    \item Suppose we multiply row $p$ by scalar $\lambda$. So
+      \[
+        b_{ij} = \begin{cases}
+          \lambda a_{ij}, & \text{if } i=p \\
+          a_{ij}, & \text{otherwise}
+                 \end{cases}
+      \]
+      For $\sigma \in S_n$ we have 
+      \begin{align*}
+        b_{1\sigma(1)}\dots b_{n\sigma(n)} &= a_{1\sigma(1)}\dots \lambda
+        a_{p\sigma(p)}\dots a_{n \sigma(n)} \\
+        &= \lambda (  a_{1\sigma(1)}\dots  a_{n\sigma(n)} )
+      \end{align*}
+      So
+      \begin{align*}
+        \sum_\sigma \sgn (\sigma)  b_{1\sigma(1)}\dots b_{n\sigma(n)} &=
+        \lambda \sum_\sigma \sgn(\sigma)  a_{1\sigma(1)}\dots
+        a_{n\sigma(n)}\\
+        \implies \det B &= \lambda \det A
+      \end{align*}
+    \item We have $b_{ij} = a_{jk} + \lambda_{ik}$ for all $k$ Also, $b_{kk}=a_{kk}$ is $k \neq j$. We have, for $\sigma \in S_n$,
+
+      \begin{align*}
+        b_{1\sigma(1)}\dotsb_{n\sigma(n)} &= a_{1 \sigma(1)} \dots ( a_{j
+        \sigma(j)} + \lambda  a_{i \sigma(j)} ) \dots a_{n\sigma(n)} \\
+        &= \elemt{a}{1} \dots \elemt{a}{j} \dots\elemt{a}{n} + \elemt{a}{1} \dots \lambda a_{i\sigma(j)} \dots a_{n\sigma(n)}
+      \end{align*}
+      It follows that
+
+      \[
+        |B| = |A| + \lambda 
+        \begin{vmatrix}
+          a_{11} & \cdots & a_{1n}\\
+          \vdots &        & \vdots \\
+          a_{i1} & \cdots & a_{1n} \\
+          \vdots &        & \vdots \\
+          a_{i1} & \cdots & a_{in} \\
+          \vdots &        & \vdots \\
+          a_{n1} & \cdots & a_{nn} \\
+        \end{vmatrix}
+      \]
+      And this is 0 since the matrix on the right has two rows the same (Prop. \ref{prp:rowssame}). 
+  \end{enumerate}
+\end{proof}
+
+\begin{exmp}
+  What is the determinant of 
+  \[
+    \left(\begin{matrix}
+      1 & 2 & 2 & 0 \\
+      1 & 4 & 0 & 3 \\
+      -1 & 0 & -2 & 3 \\
+      1 & 0 & 8 & -6
+    \end{matrix}\right)
+  \]
+  Use row operations. By Prop. \ref{prp:rowops} we have
+\begin{align*}
+    |A| =
+    \begin{vmatrix}
+      1 & 2 & 2 & 0 \\
+      1 & 4 & 0 & 3 \\
+      -1 & 0 & -2 & 3 \\
+      1 & 0 & 8 & -6
+    \end{vmatrix} &= 
+    \begin{vmatrix}
+      1 & 2 & 2 & 0 \\
+      0 & 2 & -2 & 3 \\
+      0 & 0 & 2 & 0 \\
+      0 & 0 & 4 & -3
+    \end{vmatrix}\\
+    &=
+    \begin{vmatrix}
+      1 & 2 & 2 & 0 \\
+      0 & 2 & -2 & 3 \\
+      0 & 0 & 2 & 0 \\
+      0 & 0 & 0 & -3 
+    \end{vmatrix}\\
+    &= -12
+\end{align*}
+
+\end{exmp}
+
+\begin{proposition}
+  Suppose that $B$ can be obtained from $A$ by row operations:
+  \begin{enumerate}
+    \item 
+  Exchanging rows
+    \item 
+  Scaling rows by non-zero scalar
+    \item 
+  Adding multiples of one-row to another row.
+  \end{enumerate}
+  Then $\det B = 0 \iff \det A = 0$.
+\end{proposition}
+
+\begin{proof}
+  Clear from Prop. \ref{prp:rowops}.
+\end{proof}
+
+\begin{proposition}
+  \label{prp:dettran}
+  Let $A$ be an $n\times n$ matrix. Then $|A| = |A|^T$  (where $A^T$
+  is
+  the \emph{transpose} of $A$.)
+\end{proposition}
+
+\begin{proof}
+  Let $A^T = (b_{ij})$. Then $b_{ij} = a_{ji}$. Let $\sigma \in S_n$. We
+  have
+\begin{align*}
+  \elemt{b}{1} \dots \elemt{b}{n} &= a_{\sigma(1)1} \dots a_{\sigma(n)n} \\
+  &= a_{1\sigma^{-1}(1)}\dots a_{n \sigma^{-1}(n)}
+\end{align*}
+
+So 
+
+\[
+  \det A^T = \sum_{\sigma in S_n}\sgn(\sigma)  a_{1\sigma^{-1}(1)}\dots
+  a_{n \sigma^{-1}(n)}
+\]
+Now summing over all $\sigma$ is equivalent to summing over $\sigma^{-1}$
+and $\sgn(\sigma) = \sgn(\sigma^{-1})$
+
+\begin{align*}
+  &= \sum_{\sigma^{-1} \in S_n}\sgn (\sigma^{-1})a_{1\sigma^{-1}(1)}\dots
+    a_{n \sigma^{-1}(n)}\\
+    &= \det A
+\end{align*}
+\end{proof}
+Proposition \ref{prp:dettran}  implies that all of our results concerning
+rows and row operations
+also hold for columns / column operations (since columns of $A$ are the
+rows of $A^T$
+).
+
+\subsection*{Expansion along rows / columns}
+Let $A = (a_{ij} )$, and let $A_{ij}$ be the minor obtained by deleting row $i$ and column
+$j$. Then
+
+\textbf{Claim:} 
+\[
+  \det A = \sum_{j=1}^n (-1)^{i+j}a_{ij}|A_{ij}|, \quad \text{for any } i
+\]
+
+\begin{proof}
+  First suppose $i = 1$. We have from the definition that $|A|$ is a sum
+  over
+  all elements $\sigma \in S_n$. Consider all $\sigma$ such that
+  $\sigma(1) = 1$. It's not hard to see
+  that
+
+  \[
+    \sum_{\sigma(1)=1}\sgn(\sigma)a_{11}a_{2\sigma(1)}\dots a_{n\sigma(n)}
+    = a_{11}|A_{11}|
+  \]
+
+  How about $\sigma$ such that $\sigma(1) = 2$? Let $B$ be obtained from $A$ by swapping columns 1 and 2. Then
+  \[
+  B = 
+  \begin{vmatrix}
+    a_{12} & a_{11} & \cdots & a_{1n} \\
+    a_{22} & a_{21} & \cdots & a_{2n} \\
+    \vdots & \vdots & & \vdots  \\
+    a_{n2} & a_{n1} & \cdots & a_{nn}
+  \end{vmatrix}
+  \]
+  So terms of $\det A$ corresponding to $\sigma(1) = 2$ are the same as
+  the terms of  $b_{11}|B_{11}|$. But swapping two columns negates the
+  determinant, so
+  \[
+    \sum_{\sigma(1)=2}\sgn (\sigma) a_{12}a_{2\sigma(2)} \dots a_{n\sigma(n)} = -b_{11}|B_{11}| = -a_{12}|A_{12}|
+  \]
+\end{proof}
  \end{document}
