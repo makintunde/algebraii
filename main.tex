@@ -47,7 +47,10 @@
 
 \maketitle
 
-\tableofcontents \newpage \section{Groups} A group is a set $G$ with a binary
+\tableofcontents \newpage
+
+\section{Groups} 
+A group is a set $G$ with a binary
 operation $*$ such that \begin{itemize} \item Associativity: $(x * y)*z = x *
     (y * z)$ for all $x,y,z \in G$.  \item Identity: There is $e \in G$ such
       that $e * x = x * e$ for all $x \in G$.  \item Inverses: For all $x \in
@@ -85,7 +88,7 @@ $R_1$
   
 \end{exmps}
 
-\subsection*{Motivating Example}
+\subsubsection*{Motivating Example}
 
 \begin{table}[h] \centering $\begin{tabu}{l|llllll} S_3   & e     & (123) &
     (132) & (12)  & (13)  & (23)  \\ \hline e     & e     & (123) & (132) &
@@ -112,7 +115,7 @@ and $U, V, W$ to be the reflections of the triangle: Then the table is:
 \end{matrix} $$
 
 From an algebraic point of view these two groups are ``the same''. We say they
-are \textit{isomorphic}.  \section{Isomorphisms} Here's a formal definition.\\
+are \textit{isomorphic}.  \subsection{Isomorphisms} Here's a formal definition.\\
 
 
 \begin{definition} Let $G$ and $H$ be groups, and let $f : G \rightarrow H$ be
@@ -253,7 +256,7 @@ three above checks but which are not isomorphic.
 \begin{remark} It follows that $\mathbb{Z}_n \ism C_n$ (complex $n^{th}$ roots
   of unity) for all $n$.  \end{remark}
 
-\section{Even and odd permutations}
+\subsection{Even and odd permutations}
 
 Consider the polynomial $\Delta_3 = (x_1 - x_2)(x_1 - x_3) (x_2 - x_3)$.  Let
 $g \in S_3$, and consider the effort of applying $g$ to the variables $x_1,
@@ -357,7 +360,7 @@ It is odd if it has an odd number of cycles of even length.\\
   length) \end{exmp}
 
 
-\section{Alternating Groups}
+\subsection{Alternating Groups}
 
 Define $A_n=\left\{ g \in S_n | \sgn(g) = +1 \right\}$ (The even permutations
 in $S_n$).\\
@@ -400,7 +403,7 @@ $(3,1,1)$ - 20 elements, $(5)$ - 24 elements. These four numbers add up to 60.
 
 \emph{Exercise:} Do this for $A_6$.
 
-\section{Direct products} Recall that if we have set $X_1, \ldots, X_n$, the
+\subsection{Direct products} Recall that if we have set $X_1, \ldots, X_n$, the
 Cartesian product $X_1 \times X_2 \times \ldots \times X_n$ is the set of
 tuples $\{(x_1, \ldots,x_n) : x_i \in X_i\}$
 
@@ -554,7 +557,7 @@ So $gh \neq hg$, since they differ in the $i$th coordinate.
               three abelian groups of order 8 - those listed above.
           \end{enumerate} \end{exmps}
 
-\section{Small groups} \begin{enumerate} \item Every group of order 1 is
+\subsection{Small groups} \begin{enumerate} \item Every group of order 1 is
     isomorphic to $\{1\}$.  \item Every group of prime order is cyclic, so
       isomorphic to $C_8$. So only one group of order $2,3,5,7,\ldots$
 
@@ -675,7 +678,7 @@ Helpful result: \begin{proposition} Let $G$ be a group of even order. Then $G$
 \end{proof}
 
 
-\section{Homomorphisms}
+\subsection{Homomorphisms}
 
 For an isomorphism we had two conditions that a map $G \rightarrow H$ has to
 satisfy:
@@ -683,7 +686,7 @@ satisfy:
 \begin{enumerate} \item Bijection \item Respect of multiplication
   \end{enumerate}
 
-If we drop (2), we get the definition of a homomorphism.\\
+If we drop (1), we get the definition of a homomorphism.\\
 
 \begin{definition} A map $f:G \rightarrow H$ is a \emph{homomorphism} if $f(g_1
   g_2)=f(g_1)f(g_2)$ for all $g_1,g_2 \in G.$\\ \end{definition}
@@ -766,11 +769,11 @@ done for $n>2$ as well.  \item Let $V,W$ be vector spaces, and let $T:V
       $\text{ker }f \leq G$.  \end{enumerate} \end{proof}
 
 \begin{exmp} Suppose $G=S_3$. Let $f$ be a homomorphism from $G$ to some group
-  $H$. What are the possibilities or $\text{Im }f$ and $\text{Ker }f$?
+  $H$. What are the possibilities for $\text{Im }f$ and $\text{Ker }f$?
 
   Recall that for $g \in G$ we have $f(g)$ divided $\ord g$.
 
-  In $S_3$ we have elements $(123)$, $(12)$ or orders 3 and 2 respectively. So
+  In $S_3$ we have elements $(123)$, $(12)$ of orders 3 and 2 respectively. So
 \begin{enumerate} \item $f\left( (123) \right)$ has order 3 or else $f\left(
     (123) \right)=e_H$ \item $f\left( (12) \right)$ has order 2 or else
       $f\left( (12) \right)=e_H$ \end{enumerate}
@@ -778,7 +781,7 @@ done for $n>2$ as well.  \item Let $V,W$ be vector spaces, and let $T:V
   \textbf{Case 1:} $f\left( (123) \right)$ has order 3 and $f\left(
   (12)\right)$ has order 2. In this case $|\text{Im }f|$ is divisible by both 2
   and 3. But $|\text{Im }f| \leq 6$, so we must have $\text{Im } f=6$. So
-  (ocnsidered as a map $G \rightarrow \Ima f$) $f$ is bijective. Hence $\Ima f
+  (considered as a map $G \rightarrow \Ima f$) $f$ is bijective. Hence $\Ima f
   \cong S_3$.
 
   \textbf{Case 2:} $f\left( (12) \right)=e_H$. In this case observe that
@@ -806,7 +809,7 @@ done for $n>2$ as well.  \item Let $V,W$ be vector spaces, and let $T:V
   Not every subgroup of $S_3$ occurred as the kernel of a homomorphism.
 \end{obvs} \end{exmp}
 
-The next section explores which subgroups can occur.
+The next subsection explores which subgroups can occur.
 
 Suppose $\func{f}{G}{H}$ is a homomorphism, and suppse $g \in \ker f$. Let
 $g_1$ be every element of $G$. Then I claim $g_1,g_0,g_1^{-1}\in \ker f$.
@@ -908,7 +911,7 @@ subgroup of $G$. The following are equivalent: \begin{enumerate} \item
   S_4$. (Check that the right and left cosets are equal.) \end{enumerate}
   \end{exmp}
 
-\subsection*{Non-examples} \begin{enumerate} \item $\gene{(12)}=\left\{ id,(12)
+\subsubsection*{Non-examples} \begin{enumerate} \item $\gene{(12)}=\left\{ id,(12)
       \right\}$ in $S_3$ is not normal.
 
     $(13)\left\{ id, (12) \right\}=\left\{ (13),(123) \right\} \neq \left\{
@@ -932,7 +935,7 @@ subgroup of $G$. The following are equivalent: \begin{enumerate} \item
   for all $g \in G$. This is condition (5) from Prop. \ref{prp:tfae}, so $K
   \trianglelefteq G$.  \end{proof}
 
-\section{Quotient Groups} Let $G$ be a group, and let $H$ be a subgroup. Look
+\subsection{Quotient Groups} Let $G$ be a group, and let $H$ be a subgroup. Look
 at the left cosets $\left\{ gH:g\in G \right\}$ of $H$ in $G$. Notice that
 $\left\{ gH:g\in G \right\}$ is a set, where elements are cosets.
 
@@ -1175,7 +1178,7 @@ systematic method is: \begin{enumerate} \item First find all normal subgroups,
         $G/N_1, \dots, G/N_k$. These are the \textit{homomorphic images.}
     \end{enumerate}
 
-  \section{Symmetry Groups in Three Dimensions}
+  \subsection{Symmetry Groups in Three Dimensions}
 
   Recall that $\reals^3$  comes with a natural ``distance'' function, \[
   d(x,y)=\sqrt{(x_1 - y_1)^2 + (x_2 - y_2)^2 + (x_3 - y_3)^2} \]
@@ -1302,7 +1305,7 @@ systematic method is: \begin{enumerate} \item First find all normal subgroups,
   determined by how it permutes the vertices.
 
   Since there are only 24 permutations of the vertices, we have $|G|=24$, and
-  $G \ism S_4$.  \newpage \section{Counting Using Groups} Given an equilateral
+  $G \ism S_4$.  \newpage \subsection{Counting Using Groups} Given an equilateral
   triangle, how many different ways are there of colouring the edges red or
   green? (where colourings which are the same up to rotation or reflection
   count as the same). 
