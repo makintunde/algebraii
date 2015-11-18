@@ -33,6 +33,9 @@
 \newcommand{\naturals}{\mathbb{N}} \newcommand{\complexes}{\mathbb{C}}
 \newcommand{\but}[2]{#1 \backslash \{#2\}} \newcommand{\A}{\mathcal{A}}
 \newcommand{\ism}{\cong} \newcommand{\elemt}[2]{#1_{{#2}\sigma(#2)}}
+\renewcommand{\vec}[1]{\mathbf{#1}}
+\newcommand{\Det}[1]{|#1|}
+
 \DeclareMathOperator{\sgn}{sgn} \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\Orb}{Orb} \DeclareMathOperator{\Stab}{Stab}
 \DeclareMathOperator{\Ima}{Im} \DeclareMathOperator{\Sym}{Sym}
@@ -1664,7 +1667,8 @@ Similarly for the $2 \times 2$ determinant: $\begin{vmatrix}a & b \\ c &
 
 \end{exmp}
 
-\begin{proposition} Suppose that $B$ can be obtained from $A$ by row
+\begin{proposition}
+  \label{prp:detab} Suppose that $B$ can be obtained from $A$ by row
 operations: \begin{enumerate} \item Exchanging rows \item Scaling rows by
     non-zero scalar \item Adding multiples of one-row to another row.
   \end{enumerate} Then $\det B = 0 \iff \det A = 0$.  \end{proposition}
@@ -1712,4 +1716,259 @@ $A_{ij}$ be the minor obtained by deleting row $i$ and column $j$. Then
     of $\det A$ corresponding to $\sigma(1) = 2$ are the same as the terms of
     $b_{11}|B_{11}|$. But swapping two columns negates the determinant, so \[
       \sum_{\sigma(1)=2}\sgn (\sigma) a_{12}a_{2\sigma(2)} \dots a_{n\sigma(n)}
-      = -b_{11}|B_{11}| = -a_{12}|A_{12}| \] \end{proof} \end{document}
+      = -b_{11}|B_{11}| = -a_{12}|A_{12}| \] \end{proof} 
+    
+    \[
+    A = \left( 
+    \begin{matrix}
+      a_{11} & a_{12} & \dots & a_{1n} \\
+      \vdots &        &       & \vdots \\
+      a_{n1} & a_{n2} & \dots & a_{nn}
+    \end{matrix}
+    \right)
+  \]
+  \[
+    B = \left( 
+    \begin{matrix}
+      a_{12} & a_{11} & \dots & a_{1n} \\
+      \vdots &        &       & \vdots \\
+      a_{n2} & a_{n1} & \dots & a_{nn}
+    \end{matrix}
+    \right)
+    \]
+
+   ($A$ with columns 1 and 2 swapped)
+
+   We have $|B| = -|A|$ (prop \ref{prp:swaprows}
+
+   If $\sgn(\sigma)a_{1\sigma(1)}\dots a_{n\sigma(n)}$ is a term of $|A|$, 
+   then $-\sgn(\sigma)a_{1\sigma(1)\dots a_{n\sigma(n)}}$ 
+   must be a term in $|B|$.
+
+   We know that the terms of $|B|$ including $b_{11}=a_{12}$ are
+   given by $b_{11}|B_{11}| = a_{12}|A_{12}|$.
+
+   Hence the terms of $|A|$ including $a_{12}$ are given by  $-a_{12}|A_{12}|$.
+
+   How about the terms of $|A|$ including $a_{13}$? 
+   Bring the $3^{rd}$ columns to the front, without changing the order
+   of the columns. Do this by first swapping columns 1 and 3, then 2 and 3.
+
+   (Note $(123)=(23)(13)$.)
+   
+   If $B$ is the resulting matrix then 
+   $|B|=|A|$ (Since we've swapped columns twice.)
+
+   \[
+   B = \left( 
+   \begin{matrix}
+     a_{13} & a_{11} & a_{12} & \dots & a_{1n} \\
+     \vdots &        &        &       & \vdots \\
+     a_{n3} & a_{n1} & a_{n2} & \dots & a_{nn}
+   \end{matrix}
+   \right)
+   \]
+  
+
+   The  terms of $|B|$ including $a_{13}$ are given $a_{13}|A_{13}|$. So
+   these are the terms of $|A|$ too.
+
+   Continue in this way. Since bringing column $j$ to the front induces a $j-$
+   cycle, we get $|B|=(-1)^{j+1}|A|$. So we end up with 
+   \begin{align*}
+     |A| &= a_{11}|A_{11}| - a_{12}|A_{12}| + a_{13}|A_{13}| - \dots\\
+     &= \sum_{j=1}^n (-1)^{j+1}a_{ij}|A_{ij}|.
+   \end{align*}
+   This accounts for expansion along the $1^{st}$ row.
+
+   How about expanding along row $i$?
+
+   We can do this by first bringing row $i$ to the top without changing the
+   order of the other rows.
+
+   This induces an $i-$cycle on the rows, which can be done by swapping
+   rows $i-1$ times.
+
+   So if $B$ is the resulting matrix, then $|B|=(-1)^{i-1}|A|$.
+
+   So we get
+
+   \begin{align*}
+     |A| &= (-1)^{i-1} \sum_{j=1}^n (-1)^{j+1} a_{ij} |A_{ij}| \\
+     &= \sum_{j=1}^n (-1)^{i+j} a_{ij} |A_{ij}|.
+   \end{align*}
+
+   \begin{remark}
+     We can also find determinants by expansion along columns. (By Prop. \ref{prp:dettran}).
+   \end{remark}
+  
+   \begin{proposition}
+     Let $A$ be an $n\times n$ matrix.
+     The following statements are equivalent. 
+     \begin{enumerate}
+       \item $|A| \neq 0$.
+       \item $A$ is invertible.
+       \item The system of equations $A\underline{x}=\underline{0}$ has no 
+         solutions except $\underline{x}=\underline{0}$.
+       \item $A$ can be reduced to $I$ by row operations.
+     \end{enumerate}
+   \end{proposition}
+
+   \begin{proof}
+     $(2) \iff (3) \iff (4)$ from $M1GLA$.
+     \begin{itemize}
+       \item[$(4) \iff (1)$] Suppose $I$ can be obtained from $A$. by row
+         operations. We know $|I|\neq 0$ and so $|A|\neq 0$, by Prop.
+         \ref{prp:detab}.
+
+       \item[$(1)\iff (4)$] Let $A_{ech}$ be the row echelon form of $A$.
+         Then $A_{ech}$ is obtained from $A$ by row operations.
+
+         So if $|A|\neq 0$ then $|A_{ech}| \neq 0$.
+
+         So $A_{ech}$ has no all$-0$ rows.
+
+         Hence $A_{ech}$ can be transferred to $I$ by row operations.
+     \end{itemize}
+   \end{proof}
+
+   The last major property of determinants that we want is $\Det{AB} =
+   \Det{A}\Det{B}$. For this we require:
+
+   \subsubsection*{Elementary Matrices}
+
+   \[
+     A_{i}(\lambda) = \left( 
+ %    \begin{matrix}
+ %      1 &        & & & & \\
+ %        & \ddots & & & & \\
+ %        &        & 1 & & & \\
+ %        &        &   & \lambda & & \\
+ %        &        &   &         & \ddots & \\
+ %        &        &   &         &        & 1 \\
+ %    \end{matrix}
+     \right)
+   \]
+   $\lambda \neq 0$, $I$ with row $i$ scaled by $\lambda$.
+
+  \[
+    B_{ij} = \left( 
+ %   \begin{matrix}
+ %    1 &  & & & 
+ %    & & \\
+ %      & \ddots 
+ %   \end{matrix}
+    \right)
+  \]
+  $I$ with rows $i$ and $j$ swapped.
+
+  \[
+    C_{ij}(\lambda) = \left( 
+g  %  \begin{matrix}
+  %    1 & & & & & \\
+  %      & & 
+  %  \end{matrix}
+    \right)
+  \]
+
+    $i \neq j$, $\lambda \neq 0$ - $I$ with $\lambda$ times row $j$ added to 
+    row $i$.
+
+    The elementary matrices correspond to elementary row operations.
+
+    If $M$ is an $n \times n$ matrix with rows $r_1,\dots r_n$ then:
+
+    Multiplying row $r_i$ by $\lambda$ $\rightarrow$ $A_i(\lambda)M$
+
+    Swapping rows $r_i$ and $r_j$ $\rightarrow$ $B_{ij}M$
+
+    Adding $\lambda r_j$ to $r_i$ $\rightarrow$ $C_{ij}(\lambda)M$.
+
+\begin{exmps}
+  $A_2(3) = \left( 
+\begin{matrix}
+  1 & 0 \\
+  0 & 3
+\end{matrix}
+  \right)$.
+
+  $\left( 
+  \begin{matrix}
+    1 & 0 \\
+    0 & 3
+  \end{matrix}
+  \right)\left( 
+  \begin{matrix}
+    p & q \\
+    r & s
+  \end{matrix}
+  \right) = \left( 
+  \begin{matrix}
+    p & q \\
+    3r & 3s
+  \end{matrix}
+  \right)$
+
+  $B_{12} = \left( 
+  \begin{matrix}
+    0 & 1 \\
+    1 & 0
+  \end{matrix}
+  \right)$
+
+  $\left( 
+  \begin{matrix}
+    0 & 1\\
+    1 & 0
+  \end{matrix}
+  \right)\left( 
+  \begin{matrix}
+    p & q \\
+    r & s
+  \end{matrix}
+  \right) = \left( 
+  \begin{matrix}
+    r & s \\
+    p & q
+  \end{matrix}
+  \right)$
+
+  $C_{12}(3) = \left( 
+  \begin{matrix}
+    1 & 3 \\
+    0 & 1
+  \end{matrix}
+  \right)$
+
+  $\left( 
+  \begin{matrix}
+    1 & 3 \\
+    0 & 1
+  \end{matrix}
+  \right)\left( 
+  \begin{matrix}
+    p & q \\
+    r & s
+  \end{matrix}
+  \right) = \left( 
+  \begin{matrix}
+    p + 3r & q + 3s \\
+    r & s
+  \end{matrix}
+  \right).$
+
+We observe that
+
+\begin{align*}
+  \Det{A_i(\lambda)} &= \lambda \\
+    \Det{B_{ij}} &= -1\\
+    \Det{C_{ij}(\lambda)} = 1
+\end{align*}
+
+(Since all of these are obtained by applying an elementary row op. to $I$.)
+
+So we have $\Det{EM}=\Det{E}\Det{M}$ Whenever $E$ is an elementary matrix,
+by Prop. \ref{prp:swaprows}
+\end{exmps}
+    \end{document}
+
