@@ -1839,39 +1839,44 @@ $A_{ij}$ be the minor obtained by deleting row $i$ and column $j$. Then
 
    \[
      A_{i}(\lambda) = \left( 
- %    \begin{matrix}
- %      1 &        & & & & \\
- %        & \ddots & & & & \\
- %        &        & 1 & & & \\
- %        &        &   & \lambda & & \\
- %        &        &   &         & \ddots & \\
- %        &        &   &         &        & 1 \\
- %    \end{matrix}
+     \begin{matrix}
+       1 &        & & & & \\
+         & \ddots & & & & \\
+         &        & 1 & & & \\
+         &        &   & \lambda & & \\
+         &        &   &         & \ddots & \\
+         &        &   &         &        & 1 \\
+     \end{matrix}
      \right)
    \]
    $\lambda \neq 0$, $I$ with row $i$ scaled by $\lambda$.
 
   \[
     B_{ij} = \left( 
- %   \begin{matrix}
- %    1 &  & & & 
- %    & & \\
- %      & \ddots 
- %   \end{matrix}
+    \begin{matrix}
+     1 &  & & & & &  \\
+      & \ddots & & & & & \\
+      & & 0 & & 1 & &  \\
+      & & &  \ddots & &  & &  \\
+      & & 1 & & 0 & &  \\
+      &  & & & & \ddots & \\
+      &  & & & & &1  \\
+    \end{matrix}
     \right)
   \]
-  $I$ with rows $i$ and $j$ swapped.
+  $i \neq$ j, $I$ with rows $i$ and $j$ swapped.
 
   \[
     C_{ij}(\lambda) = \left( 
-g  %  \begin{matrix}
-  %    1 & & & & & \\
-  %      & & 
-  %  \end{matrix}
+    \begin{matrix}
+      1 &        &         &  \\
+        & \ddots & \lambda &  \\
+        &        &         & 1
+    \end{matrix}
     \right)
   \]
 
-    $i \neq j$, $\lambda \neq 0$ - $I$ with $\lambda$ times row $j$ added to 
+    $i \neq j$, $\lambda \neq 0$. $I$ with $\lambda$ times row $j$ added to 
     row $i$.
 
     The elementary matrices correspond to elementary row operations.
@@ -1882,9 +1887,9 @@ g  %  \begin{matrix}
 
     Swapping rows $r_i$ and $r_j$ $\rightarrow$ $B_{ij}M$
 
-    Adding $\lambda r_j$ to $r_i$ $\rightarrow$ $C_{ij}(\lambda)M$.
+    Adding $\lambda r_j$ to $r_i$ $\rightarrow$ $C_{ij}(\lambda)M$.\\
 
-\begin{exmps}
+    \begin{exmps}
   $A_2(3) = \left( 
 \begin{matrix}
   1 & 0 \\
@@ -1892,7 +1897,8 @@ g  %  \begin{matrix}
 \end{matrix}
   \right)$.
 
-  $\left( 
+  \begin{align*}
+  \left( 
   \begin{matrix}
     1 & 0 \\
     0 & 3
@@ -1907,16 +1913,20 @@ g  %  \begin{matrix}
     p & q \\
     3r & 3s
   \end{matrix}
-  \right)$
+  \right)
+\end{align*}
 
-  $B_{12} = \left( 
+  For $
+    B_{12} = \left( 
   \begin{matrix}
     0 & 1 \\
     1 & 0
   \end{matrix}
-  \right)$
+  \right)
+$
 
-  $\left( 
+\begin{align*}  
+\left( 
   \begin{matrix}
     0 & 1\\
     1 & 0
@@ -1931,16 +1941,20 @@ g  %  \begin{matrix}
     r & s \\
     p & q
   \end{matrix}
-  \right)$
+  \right)
+\end{align*}
 
-  $C_{12}(3) = \left( 
+For $
+  C_{12}(3) = \left( 
   \begin{matrix}
     1 & 3 \\
     0 & 1
   \end{matrix}
-  \right)$
+  \right)
+$
 
-  $\left( 
+  \begin{align*}
+  \left( 
   \begin{matrix}
     1 & 3 \\
     0 & 1
@@ -1955,20 +1969,23 @@ g  %  \begin{matrix}
     p + 3r & q + 3s \\
     r & s
   \end{matrix}
-  \right).$
+  \right).
+\end{align*}
 
 We observe that
 
 \begin{align*}
   \Det{A_i(\lambda)} &= \lambda \\
     \Det{B_{ij}} &= -1\\
-    \Det{C_{ij}(\lambda)} = 1
+    \Det{C_{ij}(\lambda)} &= 1
 \end{align*}
 
-(Since all of these are obtained by applying an elementary row op. to $I$.)
+(Since all of these are obtained by applying an elementary row operation to $I$.)
 
-So we have $\Det{EM}=\Det{E}\Det{M}$ Whenever $E$ is an elementary matrix,
-by Prop. \ref{prp:swaprows}
+So we have $\Det{EM}=\Det{E}\Det{M}$ whenever $E$ is an elementary matrix,
+by Prop. \ref{prp:rowops}
 \end{exmps}
-    \end{document}
+
+
+\end{document}
 
