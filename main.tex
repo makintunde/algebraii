@@ -1882,13 +1882,15 @@ $A_{ij}$ be the minor obtained by deleting row $i$ and column $j$. Then
     The elementary matrices correspond to elementary row operations.
 
     If $M$ is an $n \times n$ matrix with rows $r_1,\dots r_n$ then:
-
-    Multiplying row $r_i$ by $\lambda$ $\rightarrow$ $A_i(\lambda)M$
-
-    Swapping rows $r_i$ and $r_j$ $\rightarrow$ $B_{ij}M$
-
-    Adding $\lambda r_j$ to $r_i$ $\rightarrow$ $C_{ij}(\lambda)M$.\\
-
+   
+    \begin{itemize}
+      \item 
+    Multiplying row $r_i$ by $\lambda$ $\longrightarrow$ $A_i(\lambda)M$
+    \item
+    Swapping rows $r_i$ and $r_j$ $\longrightarrow$ $B_{ij}M$
+    \item
+    Adding $\lambda r_j$ to $r_i$ $\longrightarrow$ $C_{ij}(\lambda)M$.\\
+    \end{itemize}
     \begin{exmps}
   $A_2(3) = \left( 
 \begin{matrix}
@@ -1983,9 +1985,229 @@ We observe that
 (Since all of these are obtained by applying an elementary row operation to $I$.)
 
 So we have $\Det{EM}=\Det{E}\Det{M}$ whenever $E$ is an elementary matrix,
-by Prop. \ref{prp:rowops}
+by Prop. \ref{prp:rowops}.
 \end{exmps}
 
+For every elementary row operation there is a corresponding elementary matrix $E$ (one of $A_i(\lambda),B_{ij},C_{ij}(\lambda)$) with the property that if $y$ is obtained from $x$ by performing the row operation, then 
+\[
+  Y = EX,\quad \text{ and } \quad \Det{Y} = \Det{E}\Det{X}.
+\]
+
+\begin{proposition}
+  \label{prp:elemprod}
+  Let $E_1,\dots,E_n$ be the elementary matrices, and let 
+  $A=E_1,\dots,E_n$. Then $\Det{A}=\Det{E_1}\dots\Det{E_n}$
+\end{proposition}
+
+  \begin{proof}
+    \begin{align*}
+      \Det{E_1,\dots,E_n} &= \Det{E_1}\Det{\left( E_2 \dots E_n \right)}\\
+      &= \Det{E_1}\Det{E_2}\Det{\left( E_3 \dots E_n \right)}
+    \end{align*}
+    and so on.
+
+    So
+    \begin{align*}
+      \Det{E_1,\dots,E_n} = \Det{E_1}\Det{E_2}\dots\Det{E_n}
+    \end{align*}
+  Then $\Det{A}=\Det{E_1}\dots\Det{E_n}$, as required.
+  \end{proof}
+
+  \textbf{Observation:} If $E$ is an elementary matrix then so is $E^{-1}$.
+  \begin{align*}
+    A_i(\lambda)^{-1} &= A_i(\lambda^{-1}) \\ B_{ij}^{-1} &= B_{ij}.\\
+    C_{ij}(\lambda)^{-1} &= C_{ij}(-\lambda).
+  \end{align*}
+
+  \begin{proposition}
+    Let $A$ be an invertible $n \times n$ matrix. Then $A$ can be written as
+    a product of elementary matrices.
+  \end{proposition}
+
+  \begin{proof}
+    Since $A$ is invertible, there is a sequence of row operations which 
+    reduces $A$ to the identity matrix $I$. Let $E_1,E_2, \dots E_k$
+    be the elementary matrices which correspond to these row operations.
+    (Taken in order).
+
+    Then \[
+      I = E_k E_{k-1}\dots E_1 A
+    \]
+
+    So \[
+      A^{-1} = E_k E_{k-1} \dots E_1.
+    \]
+
+    Hence
+    \[
+      A = E_1^{-1}E_2^{-1} \dots E_k^{-1},
+    \]
+
+    and since $E_i^{-1}$ is elementary for all $i$, we have written $A$
+    as a product of elementary matrices.
+  \end{proof}
+
+  \begin{exmp}
+    Let $A = \left( 
+    \begin{matrix}
+      1 & 2 \\
+      3 & 4
+    \end{matrix}
+    \right)$. Reduce to $I$ using row operations.
+
+\begin{align*}
+  \left( 
+\begin{matrix}
+    1 & 2 \\
+          3 & 4
+\end{matrix}
+\right) \underset{C_{21}(-3)}{\longrightarrow} \left( 
+  \begin{matrix}
+    1 & 2 \\
+    0 & -2
+  \end{matrix}
+  \right) \underset{A_2(-1/2)}{\longrightarrow} \left( 
+  \begin{matrix}
+    1 & 2 \\
+    0 & 1
+  \end{matrix}
+  \right) \underset{C_{12}(-2)}{\rightarrow} \left( 
+  \begin{matrix}
+    1 & 0 \\
+    0 & 1
+  \end{matrix}
+  \right)
+\end{align*}
+
+So $I = C_{12}(-2)A_2(-1/2)C_{12}(-3)A$
+
+So $A = C_{12}(-2)^{-1}A_2(-1/2)^{-1}C_{12}(-3)^{-1}$
+\begin{align*}
+  &= C_{21}(3)A_2(-2)C_{12}(2) \\
+  &= 
+  \left( 
+\begin{matrix}
+    1 & 0 \\
+          3 & 1
+\end{matrix}
+  \right) \left( 
+  \begin{matrix}
+    1 & 0 \\
+    0 & -2
+  \end{matrix}
+  \right) \left( 
+  \begin{matrix}
+    1 & 2 \\
+    0 & 1
+  \end{matrix}
+  \right).
+\end{align*}
+
+  \end{exmp}
+
+  \begin{theorem}
+    Let $A,B$ be $n \times n$ matrices. Then $|AB| = |A||B|$.
+    \label{thm:proddet}
+  \end{theorem}
+
+  \begin{proof}
+    If $\Det{A}=0$ then $A$ is not invertible. Suppose that $AB$ is
+    invertible, with inverse $C$. 
+
+    Then $ABC=I$ and so $BC$ is an inverse for $A$ - a contradiction.
+
+    So $AB$ is not invertible, and so $\Det{AB}=0$
+
+    Now suppose that $\Det{A}\neq 0$. So $A$ is invertible.
+
+    So $A$ can be written as $A = E_1 \dots E_k$, where the $E_i$
+    are elementary matrices. We have $AB = E_1 \dots E_k B$ and so
+
+\begin{align*}
+  |AB| = |E_1 \dots E_k B| &= |E_1| |\left( E_2 \dots E_k B\right)| \\
+  &= |E_1||E_2||\left( E_3 \dots E_k B \right)|
+\end{align*} \dots and so on.
+
+We end up with $|AB| = |E_1||E_2| \dots |E_k| |B| = |A||B|$ by Prop. \ref{prp:elemprod}
+  \end{proof}
+
+
+  \begin{proposition}
+    Let $P$ be invertible. Then 
+    \begin{enumerate}
+      \item $|P^{-1}| = \frac{1}{|P|}$.
+      \item $|P^{-1}AP| = |PAP^{-1}| = |A|$ for any matrix $A$.
+    \end{enumerate}
+    \label{prp:pap}
+  \end{proposition}
+
+  \begin{proof}\hfill
+    \begin{enumerate}
+      \item $PP^{-1} = I$, so $|P||P^{-1}| = 1$ by Theorem \ref{thm:proddet}.
+      \item 
+        \begin{align*}
+          |PAP^{-1}| &= |P^{-1}||A||P| 
+          \qquad \text{ by Theorem \ref{thm:proddet} }\\
+          &= \frac{1}{|P|}|A||P| \qquad\text{ by } (1)\\
+          &= |A|
+        \end{align*} ($PAP^{-1}$ is similar)
+    \end{enumerate}
+  \end{proof}
+
+
+  \subsection*{More on vector spaces}
+  Let $V$ be a vector space, and let $W$ be a subspace of $V$.
+
+  $V$ is a group with binary operation $+$, and $W$ is a subgroup.
+ 
+  Since $V$ is abelian, $W$ is a \underline{normal} subgroup. So we can form the quotient group $V/W = \left( v+W : v \in V \right)$
+
+  This is a group, but you can make it into a vector space.
+
+  Let $F$ be the field of scalars, and let $\lambda \in F$. We define 
+  scalar multiplication by
+  \begin{align*}
+    \lambda(v + W) = \lambda v + W
+  \end{align*}
+We need to check that this is well-defined.
+
+Suppose that $v_1 + W = v_2 + W$. (We have two representatives of the same
+coset). Then $v_2 = v_1 + w$ for some $w \in W$. 
+
+Now \[
+\lambda v_2 = \lambda (v_1 + w) = \lambda v_1 + \lambda w \in \lambda v_1
++ W.\]
+
+So \[
+  \lambda v_2 + W = \lambda v_1 + W
+\]
+
+as required.
+
+Check the vector space axioms hold for $V/W$. We only need to check the ones including scalars.
+
+\begin{enumerate}
+  \item 
+    $\lambda (u_1 + u_2) = \lambda u_1 + \lambda u_2$.
+
+    Check: 
+    \begin{align*}
+    \lambda \left( (v_1 + W) + (v_2 + W) \right) &= \lambda \left( v_1 +
+    v_2 + W \right) \\
+     &= \lambda (v_1 + v_2) + W \\ &= \lambda v_1 + \lambda v_2 + W\\
+     &= (\lambda v_1 + W) + (\lambda v_2 + W) \\ &= \lambda(v_1 + W) + \lambda(v_2 + W)
+    \end{align*}
+  \item
+$(\lambda_1 + \lambda_2)u = \lambda_1 u + \lambda_2 u$.
+  \item
+$\lambda_1 ( \lambda_2u) = (\lambda_1 \lambda_2) u$.
+  \item 
+$1u = u$
+\end{enumerate}
+
+Checks: Leave as exercise.
+
+The vector space $V/W$ is the \emph{quotient space} of $V$ by $W$.
 
 \end{document}
 
