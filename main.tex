@@ -242,16 +242,21 @@ three above checks but which are not isomorphic.
           cyclic group. Then $G \ism \mathbb{Z}$.  \end{enumerate}
     \end{proposition}
 
-\begin{proof}\hfill \begin{enumerate} \item Let $G=\langle g \rangle $, where
+\begin{proof}\hfill \begin{enumerate} \item Let $G=\langle g \rangle$, where
           $G$ has order $n$. Define a map $f : \mathbb{Z}_n \rightarrow G$ by
           $$f(i)=g^i \quad \text{for } i=0,\ldots,n-1$$ Clearly $f$ is a
           bijection.  \begin{enumerate} \item Suppose that $i+j<n$ for $i,j \in
-              \{0,\ldots,n-1\}.$ Then $f(i+j)=g^{i+j}=g^i g^j = f(i)f(j)$.
-            \item Suppose that $i+j \geq n$ The, $i+j = i+j-n$ in
-              $\mathbb{Z}_n$ and $i+j-n \in \{0,\ldots,n-1\}$ so
+              \{0,\ldots,n-1\}.$ 
+            
+              Then $f(i+j)=g^{i+j}=g^i g^j = f(i)f(j)$.
+            \item Suppose that $i+j \geq n$. 
+              
+              Then, $i+j = i+j-n$ in  $\mathbb{Z}_n$ and $i+j-n \in \{0,\ldots,n-1\}$ so
               $f(i+j)=f(i+j-n)=g^{i+j-n}=g^{i+j}$ (since $g^n=e$).  And this is
             $g^i g^j = f(i) f(j)$.  \end{enumerate} \item Let $G=\langle g
-          \rangle$ where $g$ has infinite order. Define $f : \mathbb{Z}
+          \rangle$ where $g$ has infinite order. 
+          
+          Define $f : \mathbb{Z}
           \rightarrow G$ by $f(i)=g^i$ $\forall i \in \mathbb{Z}$. Clearly $f$
           is a bijection and $f(i+j)=g^{i+j}=g^i g^j = f(i) f(j)$.
       \end{enumerate} \end{proof}
@@ -905,7 +910,7 @@ subgroup of $G$. The following are equivalent: \begin{enumerate} \item
 
     \item $G \times H$ has a subgroup  $G \times \left\{ e_H \right\}$
       isomorphic to $G$. Call this $\hat{G}$. Then $\nsg{\hat{G}}{G \times H}$.
-      \begin{align*} (g,h)\hat{G}(g^{-1},h^{-1}) &= g^{-1}Gg^{-1} \times
+      \begin{align*} (g,h)\hat{G}(g^{-1},h^{-1}) &= gGg^{-1} \times
         h\left\{ e_H \right\}h^{-1} \\ &= G \times \left\{ e_H \right\} =
         \hat{G} \end{align*} Since $\nsg{G}{G}$, and $\nsg{\left\{ e_H
       \right\}}{H}$.
@@ -931,10 +936,12 @@ subgroup of $G$. The following are equivalent: \begin{enumerate} \item
   \trianglelefteq G$.  \end{proposition}
 
 \begin{proof} Let $K = \ker f$, and let $k \in K$. For $g \in G$, we have
-  \begin{align*} f(ghg^{-1})=f(g)f(h)f(g)^{-1} &= f(g)e_Hf(g)^{-1} \,, k \in
-    \ker f\\ &= f(g)f(g)^{-1} = e_H \end{align*}
+  \begin{align*} f(gkg^{-1}) &=f(g)f(k)f(g)^{-1} \\
+    &= f(g)e_Hf(g)^{-1},  \quad \text{ since }k \in \ker f\\ 
+    &= f(g)f(g)^{-1} \\
+    &= e_H \end{align*}
 
-  So $gkg^{-1} \in K$ for all $g \in K$, $k \in K$, so $gKg^{-1} \subseteq K$
+  So $gkg^{-1} \in K$ for all $g \in G$, $k \in K$, so $gKg^{-1} \subseteq K$
   for all $g \in G$. This is condition (5) from Prop. \ref{prp:tfae}, so $K
   \trianglelefteq G$.  \end{proof}
 
@@ -1162,8 +1169,14 @@ whenever $G$ is a finite group.\\
 
     \begin{proof} $f(g_1g_2)=g_1g_2N=(g_1N)(g_2N)=f(g_1)f(g_2)$ \end{proof}
 
-    \textbf{Claim 2:} $\ker f = N$.  \begin{proof} Remember that the identiy of
-      $G/N$ is $N$. Now $f(G)=N \iff g^N = N \iff g \in N$.  \end{proof}
+    \textbf{Claim 2:} $\ker f = N$.  \begin{proof} Remember that the identity of
+      $G/N$ is $N$.
+      
+      Now 
+      \begin{align*}
+      f(G)=N \iff  g^N = N \iff g \in N. 
+      \end{align*}
+    \end{proof}
   \end{proof}
 
   \subsubsection*{Summary on homomorphisms, normal subgroups, quotient
@@ -1187,7 +1200,7 @@ systematic method is: \begin{enumerate} \item First find all normal subgroups,
   d(x,y)=\sqrt{(x_1 - y_1)^2 + (x_2 - y_2)^2 + (x_3 - y_3)^2} \]
 
   \begin{definition} (Isometry). A bijection $f:\reals^3 \rightarrow \reals^3$
-    such that $s(f(x),f(y))=d(x,y)$ for all $x,y \in \reals^3$ is called an
+    such that $d(f(x),f(y))=d(x,y)$ for all $x,y \in \reals^3$ is called an
     \textit{isometry} of $\reals^3$.  \end{definition}
 
   E.g. Translations: $f(x)=x+a$ for some constant vector $a$. Rotations,
