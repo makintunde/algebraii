@@ -26,6 +26,7 @@
 \newtheorem*{obvs}{Observation}
 
 % Isomorphism symbol with function on top
+\newcommand{\ts}{\textsuperscript}
 \newcommand{\myiso}[1]{\stackrel{\mathclap{\normalfont\mbox{#1}}}{\cong}}
 \newcommand{\dtn}{\Delta_n} \newcommand{\gene}[1]{\langle #1 \rangle}
 \newcommand{\nsg}[2]{#1 \trianglelefteq #2} \newcommand{\func}[3]{#1 : #2
@@ -1404,37 +1405,61 @@ systematic method is: \begin{enumerate}[(i)] \item First find all normal subgrou
    $|G|/|\Stab_G(A)|$, we're done.  \end{proof} 
 
  \begin{exmp} Take $S=$ edges of a square and $G=D_8$ (full symmetry group). $C
-   = \left\{ red, green \right\}=\left\{ R,G \right\}$. 
+   = \left\{ red, green \right\}=\left\{ r,g \right\}$. 
    
    So $A=$ \begin{figure}[h] \centering \begin{tikzpicture}[scale=2]
-       \draw[green] (0,0) -- (0,1); \draw[green] (0,0) -- (1,0); \draw[green]
+       \draw[red] (0,0) -- (0,1); \draw[green] (0,0) -- (1,0); \draw[green]
        (1,0) -- (1,1); \draw[red] (0,1) -- (1,1); \draw[dotted] (0,1) -- (1,0);
-       \node[below right] at (1,0) {$x$}; \node[below] at (0.5,0) {$G$};
-       \node[left] at (0,0.5) {$G$}; \node[right] at (1,0.5) {$G$};
-       \node[above] at (0.5,1) {$R$}; \end{tikzpicture}
+       \node[below right] at (1,0) {$x$}; \node[below] at (0.5,0) {$g$};
+       \node[left] at (0,0.5) {$r$}; \node[right] at (1,0.5) {$g$};
+       \node[above] at (0.5,1) {$r$}; \end{tikzpicture}
      \label{fig:coloursquare} \end{figure}
  
  \end{exmp}
 
   Then orbit is the rotations:
 
-  $\Orb_G(A)=$ \begin{figure}[h] \centering \begin{tikzpicture} \draw[green]
-      (0,0) -- (0,1); \draw[green] (0,0) -- (1,0); \draw[green] (1,0) -- (1,1);
-      \draw[red] (0,1) -- (1,1); \node[below] at (0.5,0) {$G$}; \node[left] at
-      (0,0.5) {$G$}; \node[right] at (1,0.5) {$G$}; \node[above] at (0.5,1)
-      {$R$}; \end{tikzpicture}\hfill \begin{tikzpicture} \draw[green] (0,0) --
-      (0,1); \draw[green] (0,0) -- (1,0); \draw[red] (1,0) -- (1,1);
-      \draw[green] (0,1) -- (1,1); \node[below] at (0.5,0) {$G$}; \node[left]
-      at (0,0.5) {$G$}; \node[right] at (1,0.5) {$R$}; \node[above] at (0.5,1)
-      {$G$}; \end{tikzpicture}\hfill \begin{tikzpicture} \draw[green] (0,0) --
-      (0,1); \draw[red] (0,0) -- (1,0); \draw[green] (1,0) -- (1,1);
-      \draw[green] (0,1) -- (1,1); \node[below] at (0.5,0) {$R$}; \node[left]
-      at (0,0.5) {$G$}; \node[right] at (1,0.5) {$G$}; \node[above] at (0.5,1)
-      {$G$}; \end{tikzpicture}\hfill \begin{tikzpicture} \draw[red] (0,0) --
-      (0,1); \draw[green] (0,0) -- (1,0); \draw[green] (1,0) -- (1,1);
-      \draw[green] (0,1) -- (1,1); \node[below] at (0.5,0) {$G$}; \node[left]
-      at (0,0.5) {$R$}; \node[right] at (1,0.5) {$G$}; \node[above] at (0.5,1)
-      {$G$}; \end{tikzpicture} \label{fig:coloursquaremult} \end{figure}
+  $\Orb_G(A)=$ \begin{figure}[h] \centering 
+    \begin{tikzpicture} 
+      \draw[red] (0,0) -- (0,1); 
+      \draw[green] (0,0) -- (1,0); 
+      \draw[green] (1,0) -- (1,1);
+      \draw[red] (0,1) -- (1,1); 
+      \node[below] at (0.5,0) {$g$}; 
+      \node[left] at  (0,0.5) {$r$}; 
+      \node[right] at (1,0.5) {$g$}; 
+      \node[above] at (0.5,1) {$r$}; 
+    \end{tikzpicture}\hfill 
+    \begin{tikzpicture} 
+      \draw[green] (0,0) --  (0,1); 
+      \draw[green] (0,0) -- (1,0); 
+      \draw[red] (1,0) -- (1,1);
+      \draw[red] (0,1) -- (1,1); 
+      \node[below] at (0.5,0) {$g$}; \node[left]
+      at (0,0.5) {$g$}; \node[right] at (1,0.5) {$r$}; \node[above] at (0.5,1)
+      {$r$}; 
+    \end{tikzpicture}\hfill 
+    \begin{tikzpicture} 
+      \draw[green] (0,0) --  (0,1); 
+      \draw[red] (0,0) -- (1,0); 
+      \draw[red] (1,0) -- (1,1);
+      \draw[green] (0,1) -- (1,1); 
+      \node[below] at (0.5,0) {$r$}; 
+      \node[left] at (0,0.5) {$g$}; 
+      \node[right] at (1,0.5) {$r$}; 
+      \node[above] at (0.5,1) {$g$}; 
+    \end{tikzpicture}\hfill 
+    \begin{tikzpicture} 
+      \draw[red] (0,0) --  (0,1); 
+      \draw[red] (0,0) -- (1,0); 
+      \draw[green] (1,0) -- (1,1);
+      \draw[green] (0,1) -- (1,1); 
+      \node[below] at (0.5,0) {$r$}; 
+      \node[left] at (0,0.5) {$r$}; 
+      \node[right] at (1,0.5) {$g$}; 
+      \node[above] at (0.5,1) {$g$}; 
+    \end{tikzpicture} \label{fig:coloursquaremult} 
+  \end{figure}
 
    $\Stab_G(A)=\left\{ id, \text{ reflection through }x \right\}$.
 
@@ -1519,13 +1544,13 @@ b\begin{vmatrix} d & f \\ g & i \end{vmatrix} + c\begin{vmatrix} d & e \\ g & h
 Let $A=(a_{ij})$  be an $n \times n$ matrix.
 
 Write $A_{ij}$ for the minor obtained by deleting the $i^{th}$ row and the
-$j^{th}$ column. We could define $\det A$ (or $|A|$ ) by analogy with the $3
+$j^{th}$ column. We could define $\det A$ (or $|A|$ ) by analongy with the $3
 \times 3$ case, as
 
 \[ |A| = a_{11}|A_{11}| - a_{12}|A_{12}| + a_{13}|A_{13}| \cdots +
 (-1)^{n-1}a_{1n}|A_{1n}|.  \]
 
-(Definition by expansion alog the first row.)
+(Definition by expansion along the first row.)
 
 This is a \emph{recursive} definition -- $n \times n$ determinants are defined
 in terms of $(n-1) \times (n-1)$ determinants.
@@ -1546,7 +1571,7 @@ permutation of $\left\{ 1,2,3 \right\}$. So the terms correspond to elements of
 $S_3$.
 
 \begin{align*} aei &\leftrightarrow \text{id} \\ bfg &\leftrightarrow (123) \\
-  cdh &\leftrightarrow (132) \\ -bdi &\leftrightarrow (12) \\ -cdg
+  cdh &\leftrightarrow (132) \\ -bdi &\leftrightarrow (12) \\ -ceg
   &\leftrightarrow (13) \\ -afh &\leftrightarrow (23).  \end{align*} Notice the
 sign before each term is just the signature of the corresponding permutation.
 
@@ -1669,7 +1694,7 @@ Similarly for the $2 \times 2$ determinant: $\begin{vmatrix}a & b \\ c &
       follows that
 
       \[ |B| = |A| + \lambda \begin{vmatrix} a_{11} & \cdots & a_{1n}\\ \vdots
-          &        & \vdots \\ a_{i1} & \cdots & a_{1n} \\ \vdots &        &
+          &        & \vdots \\ a_{i1} & \cdots & a_{in} \\ \vdots &        &
           \vdots \\ a_{i1} & \cdots & a_{in} \\ \vdots &        & \vdots \\
           a_{n1} & \cdots & a_{nn} \\ \end{vmatrix} \] And this is 0 since the
         matrix on the right has two rows the same (Prop. \ref{prp:rowssame}).
@@ -1705,7 +1730,7 @@ operations: \begin{enumerate}[(i)] \item Exchanging rows \item Scaling rows by
 
 So 
 
-\[ \det A^T = \sum_{\sigma in S_n}\sgn(\sigma)  a_{1\sigma^{-1}(1)}\dots a_{n
+\[ \det A^T = \sum_{\sigma \in S_n}\sgn(\sigma)  a_{1\sigma^{-1}(1)}\dots a_{n
 \sigma^{-1}(n)} \] Now summing over all $\sigma$ is equivalent to summing over
 $\sigma^{-1}$ and $\sgn(\sigma) = \sgn(\sigma^{-1})$
 
@@ -1758,10 +1783,10 @@ $A_{ij}$ be the minor obtained by deleting row $i$ and column $j$. Then
 
    ($A$ with columns 1 and 2 swapped)
 
-   We have $|B| = -|A|$ (prop \ref{prp:swaprows}
+   We have $|B| = -|A|$ (Prop \ref{prp:swaprows}).
 
    If $\sgn(\sigma)a_{1\sigma(1)}\dots a_{n\sigma(n)}$ is a term of $|A|$, 
-   then $-\sgn(\sigma)a_{1\sigma(1)\dots a_{n\sigma(n)}}$ 
+   then $-\sgn(\sigma)a_{1\sigma(1)}\dots a_{n\sigma(n)}$ 
    must be a term in $|B|$.
 
    We know that the terms of $|B|$ including $b_{11}=a_{12}$ are
@@ -1770,7 +1795,7 @@ $A_{ij}$ be the minor obtained by deleting row $i$ and column $j$. Then
    Hence the terms of $|A|$ including $a_{12}$ are given by  $-a_{12}|A_{12}|$.
 
    How about the terms of $|A|$ including $a_{13}$? 
-   Bring the $3^{rd}$ columns to the front, without changing the order
+   Bring the 3\ts{rd} columns to the front, without changing the order
    of the columns. Do this by first swapping columns 1 and 3, then 2 and 3.
 
    (Note $(123)=(23)(13)$.)
