@@ -1481,7 +1481,7 @@ so
 \begin{align*} \frac{1}{|G|}\sum_{g \in G} \fix(g) = \sum_{A \in \A}
   \frac{1}{\Orb_G(A)}.  \end{align*} But every orbit counts exactly 1 in this
 sum since the orbit $O$ has $|O|$ colourings, each counting $\frac{1}{|O|}$. So
-$\sum_{A \in \mathcal{A}}\frac{1}{|orb(A)|}$ is the number of orbits.
+$\sum_{A \in \mathcal{A}}\frac{1}{|\Orb_G(A)|}$ is the number of orbits.
 \end{proof}
 
 \begin{exmps} A necklace has 6 beads, each red or green. How many different
@@ -1489,7 +1489,7 @@ $\sum_{A \in \mathcal{A}}\frac{1}{|orb(A)|}$ is the number of orbits.
 
   Model the necklace as vertices of a regular hexagon.
 
-  The appropriate symmetry group is $D_{12}$ (f h symmetry group). Consider the
+  The appropriate symmetry group is $D_{12}$ (full symmetry group). Consider the
   symmetries as permuations of the beads.
 
   \begin{itemize} \item Rotations: \begin{itemize} \item $id$ fixes all $2^6$
@@ -1506,10 +1506,21 @@ $\sum_{A \in \mathcal{A}}\frac{1}{|orb(A)|}$ is the number of orbits.
      \item Reflections: Axis through opposite edges (3 reflections)
        $(12)(36)(45)$. 
 % fig
-       \begin{figure}[h] \centering \begin{tikzpicture} \draw[dotted] (1,1.74)
-           -- (1,0); \draw (0,0.87) -- (0.5,0); \draw (0.5,0) -- (1.5,0); \draw
-           (1.5,0) -- (2,0.87); \draw (2,0.87) -- (1.5,1.73); \draw (1.5,1.73)
-           -- (0.5,1.73); \draw (0.5,1.73) -- (0,0.87); \end{tikzpicture}
+       \begin{figure}[h] \centering \begin{tikzpicture} 
+           \draw[dotted] (1,1.74) -- (1,0); 
+           \draw (0,0.87) -- (0.5,0); 
+           \node[left] at (0,0.87) {6};
+           \draw (0.5,0) -- (1.5,0); 
+           \node[below left] at (0.5, 0) {5};
+           \draw (1.5,0) -- (2,0.87); 
+           \node[below right] at (1.5, 0) {4};
+           \draw (2,0.87) -- (1.5,1.73); 
+           \node[right] at (2,0.87) {3};
+           \draw (1.5,1.73) -- (0.5,1.73); 
+           \node[above right] at (1.5, 1.73) {2};
+           \draw (0.5,1.73) -- (0,0.87); 
+           \node[above left] at (0.5,1.73) {1};
+         \end{tikzpicture}
 
          \label{fig:necklace1} \end{figure}
       
@@ -1518,10 +1529,22 @@ $\sum_{A \in \mathcal{A}}\frac{1}{|orb(A)|}$ is the number of orbits.
 % fig
 Axis through opposite vertices (3 reflections) $(13)(2)(46)(5)$.
 
-       \begin{figure}[h] \centering \begin{tikzpicture} \draw[dotted] (0.5,0)
-           -- (1.5,1.73); \draw (0,0.87) -- (0.5,0); \draw (0.5,0) -- (1.5,0);
-           \draw (1.5,0) -- (2,0.87); \draw (2,0.87) -- (1.5,1.73); \draw
-           (1.5,1.73) -- (0.5,1.73); \draw (0.5,1.73) -- (0,0.87);
+       \begin{figure}[h] 
+         \centering 
+         \begin{tikzpicture} 
+           \draw[dotted] (0.5,0) -- (1.5,1.73); 
+           \draw (0,0.87) -- (0.5,0); 
+           \node[left] at (0,0.87) {6};
+           \draw (0.5,0) -- (1.5,0); 
+           \node[below left] at (0.5, 0) {5};
+           \draw (1.5,0) -- (2,0.87); 
+           \node[below right] at (1.5, 0) {4};
+           \draw (2,0.87) -- (1.5,1.73); 
+           \node[right] at (2,0.87) {3};
+           \draw (1.5,1.73) -- (0.5,1.73); 
+           \node[above right] at (1.5, 1.73) {2};
+           \draw (0.5,1.73) -- (0,0.87); 
+           \node[above left] at (0.5,1.73) {1};
          \end{tikzpicture}
 
          \label{fig:necklace1} \end{figure}
