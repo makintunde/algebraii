@@ -3,6 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{amssymb,tabu}
 \usepackage{array}
+\usepackage{enumerate}% http://ctan.org/pkg/enumerate
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}
 
@@ -60,7 +61,7 @@ operation $*$ such that \begin{itemize} \item Associativity: $(x * y)*z = x *
         G$ there exists $y \in G$ such that $x * y = yz * y = e$\\
     \end{itemize}
 
-\begin{exmps}\hfill \begin{enumerate} \item \begin{itemize} \item
+\begin{exmps}\hfill \begin{enumerate}[(i)] \item \begin{itemize} \item
             $\mathbb{Z}_n$, integers modulo $n$ under $+$.  \item $\mathbb{Z}$,
             integers under $+$.  \end{itemize} These are \emph{cyclic groups}.
       \item \begin{itemize} \item $D_{2n}$, $n \geq 3$ dihedral group (of
@@ -122,7 +123,7 @@ are \textit{isomorphic}.  \subsection{Isomorphisms} Here's a formal definition.\
 
 
 \begin{definition} Let $G$ and $H$ be groups, and let $f : G \rightarrow H$ be
-a function. We say that $f$ is an \emph{isomorphism} if: \begin{enumerate}
+a function. We say that $f$ is an \emph{isomorphism} if: \begin{enumerate}[(i)]
   \item $f$ is a bijection.  \item $f(g_1 * g_2)=f(g_1) * f(g_2) $ for all
     $g_1, g_2 \in G$.
 
@@ -175,7 +176,7 @@ Another: \begin{equation*} \hat{f} : \left\{ \begin{matrix} 0 & \mapsto & 1 \\
     1 & \mapsto & w^2 \\ 2 & \mapsto & w \\ \end{matrix} \right.
 \end{equation*}
  
-\begin{remark}\hfill \begin{enumerate} \item Let $G$ be finite and let $G \ism
+\begin{remark}\hfill \begin{enumerate}[(i)] \item Let $G$ be finite and let $G \ism
         H$ then $|G|=|H|$ i.e. sets are the same size, clearly since
       isomorphism is a bijection.  \item Let $G$ have identiy $e_G$ and $H$
         have identity $e_H$. Suppose $G \ism H$. Then, $f(e_G)=e_H$.  \item
@@ -210,7 +211,7 @@ And: \begin{align*} f(i^ni^c) &= f(i^{n+c})\\ &= a^{n+c} \\ &= a^n a^c \\ &=
   f(i^n)f(i^c) \end{align*}
 
 Hence, $f$ \emph{respects} multiplication so $G_1 \ism G_3.$\\
-\begin{proposition} Let $G$ and $H$ be groups.  \begin{enumerate} \item If $|G|
+\begin{proposition} Let $G$ and $H$ be groups.  \begin{enumerate}[(i)] \item If $|G|
         \neq |H|$ then $G$ and $H$ are not isomorphic \item If $G$ is abelian
           and $H$ is not abelian then $G \not\ism H$ \item If there exists $k
             \in \mathbb{N}$ such that $G$ and $H$ have disjoint numbers of
@@ -226,7 +227,7 @@ three above checks but which are not isomorphic.
       \in G$ \item Hwk 1: If $f:G\rightarrow H$ is an isomorphism then
         $\ord(f(g))=\ord(g)$ $\forall g\in G$ \end{itemize} \end{proof}
 
-\begin{exmps}\hfill \begin{enumerate} \item $G=S_4, H=D_8$ - Disjoint orders so
+\begin{exmps}\hfill \begin{enumerate}[(i)] \item $G=S_4, H=D_8$ - Disjoint orders so
         not isomorphic.  \item $G=S_3, H=C_6=\{1,w,\ldots,w^5\}$ where
         $w=e^{\frac{2 \pi i}{6}}$\\ $H$ is abelian, but $G$ is not, so not
       isomorphic.  \item $G=C_4=\{1,i,-1,-i\}$, $H=\{I,R_\pi,T_x,T_y\}$ \\(the
@@ -237,15 +238,15 @@ three above checks but which are not isomorphic.
           elements of order 2. Therefore not isomorphic.\\ \end{enumerate}
     \end{exmps}
 
-\begin{proposition}\hfill \begin{enumerate} \item Let $G$ be a cyclic group of
+\begin{proposition}\hfill \begin{enumerate}[(i)] \item Let $G$ be a cyclic group of
         order $n$. Then $G \ism \mathbb{Z}_n$ \item Let $G$ be an infinite
           cyclic group. Then $G \ism \mathbb{Z}$.  \end{enumerate}
     \end{proposition}
 
-\begin{proof}\hfill \begin{enumerate} \item Let $G=\langle g \rangle$, where
+\begin{proof}\hfill \begin{enumerate}[(i)] \item Let $G=\langle g \rangle$, where
           $G$ has order $n$. Define a map $f : \mathbb{Z}_n \rightarrow G$ by
           $$f(i)=g^i \quad \text{for } i=0,\ldots,n-1$$ Clearly $f$ is a
-          bijection.  \begin{enumerate} \item Suppose that $i+j<n$ for $i,j \in
+          bijection.  \begin{enumerate}[(i)] \item Suppose that $i+j<n$ for $i,j \in
               \{0,\ldots,n-1\}.$ 
             
               Then $f(i+j)=g^{i+j}=g^i g^j = f(i)f(j)$.
@@ -299,12 +300,12 @@ The even permutations in $S_3$ form a subgroup (this always happens)\\
 \end{obvs}
 
 
-\begin{proposition} \label{prp:sgn}\hfill \begin{enumerate} \item
+\begin{proposition} \label{prp:sgn}\hfill \begin{enumerate}[(i)] \item
         $\sgn(gh)=\sgn(g)\sgn(h)$ for all $g,h \in S_n$.  \item
         $\sgn(g^{-1})=\sgn(g)$ for all $g \in S_n$.  \item if $\tau=(i j)$ is a
           2-cycle, then $\sgn(\tau)=-1$.  \end{enumerate} \end{proposition}
 
-\begin{proof}\hfill \begin{enumerate} \item Let $g,h \in S_n$, \begin{align*}
+\begin{proof}\hfill \begin{enumerate}[(i)] \item Let $g,h \in S_n$, \begin{align*}
               gh(\dtn) &= g(h(\dtn)) \\ &= g(\sgn(h)\dtn) \\ &=
               \sgn(h)(g(\dtn)) \\ &= \sgn(h) \sgn(g) \dtn \end{align*} So
             \begin{align*} \sgn(gh) &= \sgn(h)\sgn(g) \\ &= \sgn(g)\sgn(h)
@@ -323,7 +324,7 @@ The even permutations in $S_3$ form a subgroup (this always happens)\\
 
       Count $p,q$. $p<q$, but $(ij)(p)>(ij)(q)$
 
-      Cases: \begin{enumerate} \item $i=p,\, j=q$ - (1 possibilty) \item
+      Cases: \begin{enumerate}[(i)] \item $i=p,\, j=q$ - (1 possibilty) \item
           $p=i,\,q<j$ - possibilities $q \in \left\{ i+1, \ldots, j-1 \right\}$
         \item $i<p,\,q=i$ - possibilities $p \in \left\{ i+1, \ldots , j-1
           \right\}$ \end{enumerate} So there are $2(j-i-2) +1$ possibilities in
@@ -342,7 +343,7 @@ The even permutations in $S_3$ form a subgroup (this always happens)\\
 \begin{corollary} An $r$-cycle is even when $r$ is odd and even when $r$ is
   even.\\ \end{corollary}
 
-\begin{proposition}\hfill \begin{enumerate} \item Every permutation can be
+\begin{proposition}\hfill \begin{enumerate}[(i)] \item Every permutation can be
         written as a product of 2-cycles.  \item If $g$ is a product of
           disjoint cycles of lengths $r_1, \ldots, r_k$
 
@@ -487,7 +488,7 @@ there are 8 elements and $x^2=(1,1,1)=e$ for any $x$.\\ \end{exmp}
             g_n) = \lcm (\ord g_1, \ldots , \ord g_n)$.  Proof not known.
         \end{itemize} \end{proposition}
 
-\begin{proof}\hfill \begin{enumerate} \item We know from set theory that $|A
+\begin{proof}\hfill \begin{enumerate}[(i)] \item We know from set theory that $|A
           \times B| = |A| \times |B|$ (for sets $A,B$). An easy induction shows
           that $|A_1 \times A_2 \times \dots \times A_n| = |A_1| \times |A_2|
           \times \dots \times |A_n|$.  \item Suppose that $G_1, \dots , G_n$
@@ -557,7 +558,7 @@ So $gh \neq hg$, since they differ in the $i$th coordinate.
 
   \begin{proof} Omitted.  \end{proof}
 
-  \begin{exmps}\hfill \begin{enumerate} \item There is only one abelian group
+  \begin{exmps}\hfill \begin{enumerate}[(i)] \item There is only one abelian group
             (up to isomorphism) of order 6. The only factorisations of 6 are 6,
             $3 \times 2$. So the only direct proposition of cyclic groups which
             have order 6 are $C_6$ and $C_3 \times C_2$. But these are
@@ -565,7 +566,7 @@ So $gh \neq hg$, since they differ in the $i$th coordinate.
               three abelian groups of order 8 - those listed above.
           \end{enumerate} \end{exmps}
 
-\subsection{Small groups} \begin{enumerate} \item Every group of order 1 is
+\subsection{Small groups} \begin{enumerate}[(i)] \item Every group of order 1 is
     isomorphic to $\{1\}$.  \item Every group of prime order is cyclic, so
       isomorphic to $C_8$. So only one group of order $2,3,5,7,\ldots$
 
@@ -691,7 +692,7 @@ Helpful result: \begin{proposition} Let $G$ be a group of even order. Then $G$
 For an isomorphism we had two conditions that a map $G \rightarrow H$ has to
 satisfy:
 
-\begin{enumerate} \item Bijection \item Respect of multiplication
+\begin{enumerate}[(i)] \item Bijection \item Respect of multiplication
   \end{enumerate}
 
 If we drop (1), we get the definition of a homomorphism.\\
@@ -699,7 +700,7 @@ If we drop (1), we get the definition of a homomorphism.\\
 \begin{definition} A map $f:G \rightarrow H$ is a \emph{homomorphism} if $f(g_1
   g_2)=f(g_1)f(g_2)$ for all $g_1,g_2 \in G.$\\ \end{definition}
 
-\begin{exmps}\hfill \begin{enumerate} \item Any isomorphism is a homomorphism.
+\begin{exmps}\hfill \begin{enumerate}[(i)] \item Any isomorphism is a homomorphism.
         In fact an isomorphism is a bijection homomorphism.  \item Let $G,H$ be
           any groups. Then $f : G \rightarrow H$ defined by $f(g) = e_H$ is a
           homomorphism. (Check $f(g_1 g_2)=e_h$, $f(g_1)f(g_2)=e_He_h = e_h$).
@@ -733,7 +734,7 @@ done for $n>2$ as well.  \item Let $V,W$ be vector spaces, and let $T:V
 
 
 \begin{proposition} Let $f: G \rightarrow H$ be a homomorphism.
-\begin{enumerate} \item $f(e_G)=e_H$ \item $f(g^{-1})=f(g)^{-1}$ for all $g \in
+\begin{enumerate}[(i)] \item $f(e_G)=e_H$ \item $f(g^{-1})=f(g)^{-1}$ for all $g \in
     G$.  \item $\ord f(g)$ divides $\ord g$ for all $g \in G$.  \end{enumerate}
 \end{proposition}
 
@@ -754,11 +755,11 @@ done for $n>2$ as well.  \item Let $V,W$ be vector spaces, and let $T:V
   The \emph{kernel} of $f$: $\text{Ker } f=\left\{ g \in G : f(g) = e_H
   \right\}$\\ \end{definition}
 
-\begin{theorem}\hfill \begin{enumerate} \item $\text{Im } f$ is a subgroup of
+\begin{theorem}\hfill \begin{enumerate}[(i)] \item $\text{Im } f$ is a subgroup of
         $H$.  \item $\text{Ker } f$ is a subgroup of $G$.  \end{enumerate}
       \label{} \end{theorem}
 
-\begin{proof}\hfill \begin{enumerate} \item Check the axioms.
+\begin{proof}\hfill \begin{enumerate}[(i)] \item Check the axioms.
 
       $f(e_g)=e_H$ so $e_H \in \text{Im }f$.  Suppose $h_1, h_2 \in \text{Im }
       f$. Then there exist $g_1, g_2 \in G$ such that $f(g_1)=h1, f(g_2)=h_2$.
@@ -782,7 +783,7 @@ done for $n>2$ as well.  \item Let $V,W$ be vector spaces, and let $T:V
   Recall that for $g \in G$ we have $f(g)$ divided $\ord g$.
 
   In $S_3$ we have elements $(123)$, $(12)$ of orders 3 and 2 respectively. So
-\begin{enumerate} \item $f\left( (123) \right)$ has order 3 or else $f\left(
+\begin{enumerate}[(i)] \item $f\left( (123) \right)$ has order 3 or else $f\left(
     (123) \right)=e_H$ \item $f\left( (12) \right)$ has order 2 or else
       $f\left( (12) \right)=e_H$ \end{enumerate}
 
@@ -829,7 +830,7 @@ So if $K=\ker f$, then $K=gKg^{-1}=\left\{ gKg^{-1} : k \in K \right\}$ for all
 $g \in G.$\\
 
 \begin{proposition} \label{prp:tfae} Let $G$ be a group and let $H$ be a
-subgroup of $G$. The following are equivalent: \begin{enumerate} \item
+subgroup of $G$. The following are equivalent: \begin{enumerate}[(i)] \item
     $H=gHg^{-1}$ for all $g \in G$.  \item $Hg=gH$ for all $g \in G$.  \item
       Every left coset is a right coset \item Every right coset is a left coset
       \item $gHg^{-1} \subseteq H$ for all $g \in G$ \end{enumerate}
@@ -868,7 +869,7 @@ subgroup of $G$. The following are equivalent: \begin{enumerate} \item
   write $H \trianglelefteq G$ to mean that it is a normal subgroup.\\
 \end{definition}
 
-\begin{exmp}\hfill \begin{enumerate} \item Every group $G$ has normal subgroups
+\begin{exmp}\hfill \begin{enumerate}[(i)] \item Every group $G$ has normal subgroups
           $\left\{ e \right\}$ and $G$. (Easy to see that $g\left\{ e
           \right\}g^{-1}=\left\{ geg^{-1} \right\}=\left\{ gg^{-1}
         \right\}=\left\{ e \right\}).$
@@ -887,7 +888,7 @@ subgroup of $G$. The following are equivalent: \begin{enumerate} \item
       So $gHg^{-1} \in A_n$ for all $h \in A_n$. Hence $gA_ng^{-1} \subseteq
       A_n$ for all $g$ and this condition $(5)$ from Prop. \ref{prp:tfae}.
 
-      \begin{enumerate} \item More generally, if $|G:H|=2$ (index 2 -  so $G =
+      \begin{enumerate}[(i)] \item More generally, if $|G:H|=2$ (index 2 -  so $G =
             H \cup Hg$ for some $g \in G$) then $\nsg{H}{G}$. We see that the
             left cosets are $H$ and $gH$, so every left coset is a right coset.
         \end{enumerate}
@@ -919,7 +920,7 @@ subgroup of $G$. The following are equivalent: \begin{enumerate} \item
   S_4$. (Check that the right and left cosets are equal.) \end{enumerate}
   \end{exmp}
 
-\subsubsection*{Non-examples} \begin{enumerate} \item $\gene{(12)}=\left\{ id,(12)
+\subsubsection*{Non-examples} \begin{enumerate}[(i)] \item $\gene{(12)}=\left\{ id,(12)
       \right\}$ in $S_3$ is not normal.
 
     $(13)\left\{ id, (12) \right\}=\left\{ (13),(123) \right\} \neq \left\{
@@ -1011,7 +1012,7 @@ This might or might not be true.\\
 whenever $G$ is a finite group.\\
 
 
-\begin{exmps}\hfill \begin{enumerate} \item $A_n \trianglelefteq S_n$. The
+\begin{exmps}\hfill \begin{enumerate}[(i)] \item $A_n \trianglelefteq S_n$. The
           cosets of $A_n$ in $S_n$ are $\left\{ A_n , (12)A_n\right\}$, so
           $\big|\frac{S_n}{A_n}\big|$ has order 2. We have $A_nA_n = A_n$,
           $(12)A_nA_n=(12)A_n$, $A_n(12)A_n=(12)A_n$, $(12)A_n(12)A_n=A_n$.
@@ -1122,7 +1123,7 @@ whenever $G$ is a finite group.\\
   the Rank-Nullity theorem for vector spaces -- if $\func{T}{V}{W}$ is a linear
   transformation then $\dim V = \dim \Ima T + \dim \ker T$.
 
-\begin{exmps}\hfill \begin{enumerate} \item $\func{\sgn}{S_n}{C_2}$ is a
+\begin{exmps}\hfill \begin{enumerate}[(i)] \item $\func{\sgn}{S_n}{C_2}$ is a
         homomorphism.  $\ker \sgn = A_n$ (by definition!), and
       $\frac{S_n}{A_n}$ is a group of order 2, so isomorphic to $\Ima \sgn$,
     which is $C_2$.  \item
@@ -1189,7 +1190,7 @@ $\ker f \trianglelefteq G$.]
 
   If we want to find all groups $H$ such that there exists a surjective
 homomorphism $G \rightarrow G$ (\textit{homomorphic image} of $G$), the
-systematic method is: \begin{enumerate} \item First find all normal subgroups,
+systematic method is: \begin{enumerate}[(i)] \item First find all normal subgroups,
       $N_1, \dots, N_k$ of $G$.  \item Second, calculate the quotient groups
         $G/N_1, \dots, G/N_k$. These are the \textit{homomorphic images.}
     \end{enumerate}
@@ -1581,26 +1582,28 @@ Similarly for the $2 \times 2$ determinant: $\begin{vmatrix}a & b \\ c &
     \end{align*} Since the sum is over all group elements in either case.
     \begin{align*} &= -\det A.  \end{align*} \end{proof}
 
-  \begin{proposition}\hfill \label{prp:rowssame} \begin{itemize} \item If $A$
+  \begin{proposition}\hfill \label{prp:rowssame} \begin{enumerate}[(i)] \item If $A$
           has an all-0 row, then $\det A=0$.  \item If $A$ has two rows the
           same then $\det A=0$.  \item If $A$ is triangular (upper or lower)
-            then $\det A=a_{11}a_{22}\dots a_{nn}$ \end{itemize}
+            then $\det A=a_{11}a_{22}\dots a_{nn}$ \end{enumerate}
 
 
   \end{proposition}
 
-  \begin{proof} Suppose that $A$ has all $0$s in row $i$. Then
+  \begin{proof}\hfill 
+    \begin{enumerate}[(i)]
+      \item 
+    Suppose that $A$ has all $0$s in row $i$. Then
     $a_{i\sigma(i)}=0$ for all $\sigma \in S_{n}$. So $a_{1\sigma(1)}\dots
     a_{n\sigma(n)}=0$, for all $\sigma$.
-
     So $\det A = 0$.
-
+  \item
     Suppose that $A$ has rows $p$ and $q$ the same. Let $B$ be the matrix
     obtained from $A$ by exchanging rows $p$ and $q$. Then $\det B=-\det A$ by
     Prop \ref{prp:swaprows}.  But clearly $B=A$, so $\det A = - \det A$. So
     $\det A=0$.
-
-    Let $\sigma$ be a non-identiy permutation in $S_n$. There must exist $i,j
+  \item
+    Let $\sigma$ be a non-identity permutation in $S_n$. There must exist $i,j
     \in \left\{ 1,\dots n \right\}$ with $\sigma(i) > i, \sigma(j)<j$. Whether
     $A$ is upper-or-lower-triangular, one of $a_{i\sigma(i)}$ or
     $a_{j\sigma(j)}$ is 0. So $a_{1\sigma(1)}\dots a_{n\sigma(n)}=0$, and so
@@ -1610,7 +1613,10 @@ Similarly for the $2 \times 2$ determinant: $\begin{vmatrix}a & b \\ c &
     Hence $\det A = \sgn(\id)a_{11}\dots a_{nn}$ and $\sgn(\id)=+1$, giving the
     result. 
 
-  \end{proof} \begin{proposition} (Row operations).  \begin{enumerate} \item
+    \end{enumerate}
+
+
+  \end{proof} \begin{proposition} (Row operations).  \begin{enumerate}[(i)] \item
           Let $B$ be obtained by swapping two rows. Then $\det B=-\det A$.
         \item Let $B$ be obtained from $A$ by multiplying a row by a scalar
           $\lambda$.
@@ -1618,7 +1624,7 @@ Similarly for the $2 \times 2$ determinant: $\begin{vmatrix}a & b \\ c &
           Then $\det B = \lambda \det A$.  \item Let $B$ be obtained from $A$
             by adding $\lambda$ times row $i$ to row $j$, where $i \neq j$.
             Then $\det B = \det A$.  \end{enumerate} \end{proposition}
-    \begin{proof}\hfill \begin{enumerate} \item $(i)$ Suppose that $A$ has all
+    \begin{proof}\hfill \begin{enumerate}[(i)] \item  Suppose that $A$ has all
             0s in row $i$. Then $a_{i\sigma(i)} = 0$ for all $\sigma \in n$.
           So $a_{1\sigma(1)}\dots a_{n\sigma(n)} = 0$, for all $\sigma$. So
         $\det A = 0$.  \item  Suppose that $A$ has rows $p$ and $q$ the same.
@@ -1635,14 +1641,14 @@ Similarly for the $2 \times 2$ determinant: $\begin{vmatrix}a & b \\ c &
        a_{11}\dots a_{nn}$. And $\sgn(\id) = +1$, giving the result.
    \end{enumerate} \end{proof}
 
-\begin{proposition}\hfill \label{prp:rowops} \begin{enumerate} \item Let $B$ be
+\begin{proposition}\hfill \label{prp:rowops} \begin{enumerate}[(i)] \item Let $B$ be
         obtained from $A$ by swapping two rows. Then $\det B = - \det A$.
       \item Let $B$ be obtained from $A$ by multiplying a row by a scalar
         $\lambda$. Then $\det B = \lambda\det A$.  \item Let $B$ be obtained
           from $A$ by adding $\lambda$ times row $i$ to row $j$ $(i \neq j)$.
           Then $\det B = \det A$.  \end{enumerate} \end{proposition}
 
-\begin{proof}\hfill \begin{enumerate} \item This is Proposition
+\begin{proof}\hfill \begin{enumerate}[(i)] \item This is Proposition
         \ref{prp:swaprows}.  \item Suppose we multiply row $p$ by scalar
           $\lambda$. So \[ b_{ij} = \begin{cases} \lambda a_{ij}, & \text{if }
               i=p \\ a_{ij}, & \text{otherwise} \end{cases} \] For $\sigma \in
@@ -1682,7 +1688,7 @@ Similarly for the $2 \times 2$ determinant: $\begin{vmatrix}a & b \\ c &
 
 \begin{proposition}
   \label{prp:detab} Suppose that $B$ can be obtained from $A$ by row
-operations: \begin{enumerate} \item Exchanging rows \item Scaling rows by
+operations: \begin{enumerate}[(i)] \item Exchanging rows \item Scaling rows by
     non-zero scalar \item Adding multiples of one-row to another row.
   \end{enumerate} Then $\det B = 0 \iff \det A = 0$.  \end{proposition}
 
@@ -1818,7 +1824,7 @@ $A_{ij}$ be the minor obtained by deleting row $i$ and column $j$. Then
    \begin{proposition}
      Let $A$ be an $n\times n$ matrix.
      The following statements are equivalent. 
-     \begin{enumerate}
+     \begin{enumerate}[(i)]
        \item $|A| \neq 0$.
        \item $A$ is invertible.
        \item The system of equations $A\underline{x}=\underline{0}$ has no 
@@ -2147,7 +2153,7 @@ We end up with $|AB| = |E_1||E_2| \dots |E_k| |B| = |A||B|$ by Prop. \ref{prp:el
 
   \begin{proposition}
     Let $P$ be invertible. Then 
-    \begin{enumerate}
+    \begin{enumerate}[(i)]
       \item $|P^{-1}| = \frac{1}{|P|}$.
       \item $|P^{-1}AP| = |PAP^{-1}| = |A|$ for any matrix $A$.
     \end{enumerate}
@@ -2155,7 +2161,7 @@ We end up with $|AB| = |E_1||E_2| \dots |E_k| |B| = |A||B|$ by Prop. \ref{prp:el
   \end{proposition}
 
   \begin{proof}\hfill
-    \begin{enumerate}
+    \begin{enumerate}[(i)]
       \item $PP^{-1} = I$, so $|P||P^{-1}| = 1$ by Theorem \ref{thm:proddet}.
       \item 
         \begin{align*}
@@ -2199,7 +2205,7 @@ as required.
 
 Check the vector space axioms hold for $V/W$. We only need to check the ones including scalars.
 
-\begin{enumerate}
+\begin{enumerate}[(i)]
   \item 
     $\lambda (u_1 + u_2) = \lambda u_1 + \lambda u_2$.
 
