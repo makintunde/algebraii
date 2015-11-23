@@ -39,6 +39,7 @@
 \newcommand{\Det}[1]{|#1|}
 
 \DeclareMathOperator{\sgn}{sgn} \DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Span}{Span} 
 \DeclareMathOperator{\Orb}{Orb} \DeclareMathOperator{\Stab}{Stab}
 \DeclareMathOperator{\Ima}{Im} \DeclareMathOperator{\Sym}{Sym}
 \DeclareMathOperator{\lcm}{lcm} \DeclareMathOperator{\hcf}{hcf}
@@ -2276,7 +2277,185 @@ $1u = u$
 
 Checks: Leave as exercise.
 
-The vector space $V/W$ is the \emph{quotient space} of $V$ by $W$.
+The vector space $V/W$ is the \emph{quotient space} of $V$ by $W$.\\
 
+\begin{proposition}
+  $\dim V/W = \dim V - \dim W$.
+  \label{prp:dimvw}
+\end{proposition}
+
+\begin{proof}
+  Let $\theta:V \rightarrow V/W$ be the canonical map $\theta(v) = v + W$. This is a group
+  homomorphism with kernel $W$ and image $V/W$.
+
+  Since $\theta$ is a homomorphism it must preserve addition.
+
+  To show $\theta$ is a linear transformation, we need it to preserve scalar multiplication too. We have 
+\begin{align*}
+  \theta(\lambda v) \underset{\text{def of }\theta}{=} \lambda v + W \underset{\text{def. of
+  scalar mult.}}{=} \lambda (v + W)
+\end{align*}
+
+So $\theta$ is a linear transformation $V \rightarrow V/W$ with kernel $W$, image $V/W$. So by
+the Rank-Nullity theorem, $\dim V = \dim W + \dim V/W$.
+\end{proof}
+
+\begin{remark}
+  Let $v_1, \dots, v_k$ be a basis for $W$, and extend it to $v_1, \dots, v_n$, a basis for $V$.
+  Then it isy to see that a basis for $V/W$ is given by $v_{k+1}+W, \dots
+  v_n + W$.\\
+\end{remark}
+
+\begin{proposition}
+  Suppose that $U$ and $W$ are \emph{complementary} subspaces of $V$.
+  (This  means $V = U + W$ and $U \cap W = \left\{ 0 \right\}$.)
+
+  Then $V/W = \left\{ u + W : u \in U \right\}$, and furthermore the map
+  $u \mapsto u + W$ is a bijection between $U$ and $V/W$.
+\end{proposition}
+
+\begin{proof}
+  The map $u \mapsto u + W$ is $\theta / U$ (the restriction of $\theta$
+  to $U$), where $\theta$ is the canonical map from the proof of Prop.
+  \ref{prp:dimvw}. Now $\theta / U$ is a linear transformation 
+  $U \mapsto V/W$.
+
+  Now $\ker \theta / U = \ker \theta \cap U = W \cap U = \left\{ 0 \right\}$.
+
+  So $\theta / U$ is injective. Furthermore $\dim U = \dim U + W + 
+  \dim U \cap W - \dim W$,
+
+  so $\dim U = \dim V + 0 - \dim W = \dim V / W$. 
+
+  So $\theta / U$ is a bijection $U \mapsto V/W$.
+\end{proof}
+
+\begin{exmp}
+  $V = \reals^2$, $W = \left\{ (\lambda, 0) : \lambda \in \reals \right\}$.
+  
+  Let $u = \left( a,b \right)$, $\left( b \neq 0 \right)$.
+
+  Let $U = \Span\left\{ u \right\}$.
+
+  Then $U$ and $W$ are complementary subspaces.
+
+
+  So $V/W = \left\{ \lambda (a,b) + W : \lambda \in \reals \right\}$
+
+  \begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[scale=2]
+     \draw (-1,0) -- (1,0); 
+     \draw (0,-1) -- (0,1); 
+     \draw (-1,-1) -- (1,1);
+     \draw[dotted] (-1,-0.8) -- (1, -0.8);
+     \draw[dotted] (-1,-0.6) -- (1, -0.6);
+     \draw[dotted] (-1,-0.4) -- (1, -0.4);
+     \draw[dotted] (-1,-0.2) -- (1, -0.2);
+     \draw[dotted] (-1,-0.8) -- (1, -0.8);
+     \draw[dotted] (-1,0.6) -- (1, 0.6);
+     \draw[dotted] (-1,0.4) -- (1, 0.4);
+     \draw[dotted] (-1,0.2) -- (1, 0.2);
+     \draw[dotted] (-1,0.8) -- (1, 0.8);
+     \node[right] at (1,0.5) {elements of $V/W$};
+     \node[below left] at (-1,-1) {$U$};
+     \node[right] at (1,0) {$W$};
+    \end{tikzpicture}
+    \label{fig:exmpcompl}
+  \end{figure}
+
+  Elements of $V/W$ are the lines in $\reals^2$ parellel to $W$.
+  Every element of $V/W$ intersects the line $U$ in exactly one point.
+\end{exmp}
+
+\subsubsection*{Direct Products}
+
+\begin{definition}
+  let $U$ and $W$ be vector spaces over a field $F$. The \emph{direct product} of $U$ and $W$ is the set $U \times W = \left\{ (u,w) : u \in U, w \in W \right\}$ with addition given by 
+
+  \begin{align*}
+    (u_1, w_1) + (u_2,w_2) = (u_1 + u_2, w_1 + w_2)
+  \end{align*}
+  and scalar multiplication given by
+  \begin{align*}
+    \lambda(u, w) = (\lambda u, \lambda v)
+  \end{align*}
+  Because the binary operation on a vector space is $+$, we often
+  refer to the \emph{direct sum} instead of the direct product.
+
+  We write 
+  \begin{align*}
+    U \oplus W \quad \text{for the direct sum of } U \text{ and } W.
+  \end{align*}
+\end{definition}
+
+We need to check that $U \oplus W$ is a vector space.
+
+Considered as groups under $+$, we see that $U \oplus W$ is the direct
+product of $U$ and $W$. So  $U \oplus W$ is a group under $+$.
+
+It is abelian since $U$ and $W$ are.
+
+We need to check the axioms involving scalar multiplication.
+
+\begin{enumerate}[(i)]
+  \item $\lambda (v_1 + v_2) = \lambda v_1 + \lambda v_2$ $(\forall \lambda \in F, v_1, v_2 \in V)$.
+
+    Check: 
+    \begin{align*}
+    \lambda \left( (u_1,w_1) + (u_2,w_2) \right) &=
+    \lambda \left( u_1 + u_2, w_1 + w_2 \right) \\
+    &= \left( \lambda (u_1 + u_2) + \lambda(w_1 + w_2) \right) \\
+    &= \left( \lambda u_1 + \lambda u_2, \lambda w_1 + \lambda w_2 \right)\\
+&= (\lambda u_1, \lambda w_1) + (\lambda u_2, \lambda w_2) \\
+&= \lambda (u_1, w_1) + \lambda (u_2, w_2)
+    \end{align*}
+
+    Other axioms are similar (left as exercise).
+
+\end{enumerate}
+
+Define a linear transformation 
+\[
+  T :U \rightarrow U \oplus W
+\]
+by $u \mapsto (u, 0)$.
+
+Check that $T$ is linear:
+
+\begin{align*}
+  T(u_1 + u_2) &= (u_1 + u_2, 0) \\
+  &= (u_1, 0) + (u_2, 0) \\
+  &= T(u_1) + T(u_2) \\
+  T(\lambda u) &= (\lambda u, 0) \\
+  &= \lambda (u, 0) \\
+  &= \lambda T (u).
+\end{align*}
+
+It is clear that $\ker T = \left\{ 0 \right\}$. So $T$ is injective,
+and so \[\Ima T \underset{\text{linearly isomorphic = same
+dimension}}{\ism} U.\]
+
+We see that $\Ima T = \left\{ (u,0) : u  \in U \right\}$.
+
+Sometimes it is useful to write $\bar{U}$ for $\Ima T$.
+
+Similarly, $U \oplus W$ has a subspace 
+\[
+  \bar{W} = \left\{ (0, w) : w \in W \right\}.
+  \]
+
+  We note that $\bar{U} \cap \bar{W} = \left\{ (0,0) \right\}$.
+
+  Also, for any element $(u,w) \in U \oplus W$, we have 
+  $(u,w) = (u,0) + (0,w)$. So 
+  \[
+    U \oplus W = \bar{U} + \bar{W}.
+  \]
+
+  So $\bar{U}$ and $\bar{W}$ are complementary subspaces of $U \oplus W$.
+
+  We also have $\dim U \oplus W = \dim \bar{U} + \dim \bar{W} = 
+  \dim U + \dim W$.
 \end{document}
 
