@@ -575,18 +575,24 @@ So $gh \neq hg$, since they differ in the $i$th coordinate.
 \item Groups of order 4: Certainly we have $C_4$. Any other group must have 3
   elements of order 2, say $a,b,c$. Start our multiplication table:
 
-  \begin{table}[h] \centering $\begin{tabu}{l|llll} & e&a&b&c\\\hline e &
-      e&a&b&c\\ a & a&e& &\\ b & b& &e&\\ c & c& & &e \end{tabu}$
-    \label{tab:startedtable} \end{table}
+    \begin{table} 
+      $\begin{tabu}{l|llll} 
+        & e&a&b&c\\\hline 
+        e & e&a&b&c\\ 
+        a & a&e& &\\ 
+        b & b& &e&\\ 
+        c & c& & &e 
+      \end{tabu}$
+    \end{table}
 
 The six vacant places are all determined by the fact that every element must
-appear onee in every row and every column.
+appear once in every row and every column.
 
 Complete table: \begin{table}[h] \centering $\begin{tabu}{l|llll} &
     e&a&b&c\\\hline e & e&a&b&c\\ a & a&e&c&b\\ b & b&c&e&a\\ c & c&b&a&e\\
   \end{tabu}$ \label{tab:completesimpletable} \end{table}
 
-So $G \equiv C_2 \times C_2$ (So every group of order 4 is abelian).
+So $G \ism C_2 \times C_2$ (So every group of order 4 is abelian).
 
 \item Groups of order 6.
 
@@ -594,7 +600,7 @@ So $G \equiv C_2 \times C_2$ (So every group of order 4 is abelian).
   with at least one of order 2 (by Prop. \ref{prp:ordgroup})
 
   \underline{Result:} if a group $G$ has only elements of order $\leq 2$, then
-  $G$ is abelian. (If $g^2 = e$ for all $g$, look at $(ab)^2 = e$ So
+  $G$ is abelian. (If $g^2 = e$ for all $g$, look at $(ab)^2 = e$. So
   $ab\underline{ab}=e$ and also $ab\underline{ba}=aa=e$. By left cancellation,
   $ab=ba$, for all $a,b$
 
@@ -608,12 +614,19 @@ So $G \equiv C_2 \times C_2$ (So every group of order 4 is abelian).
   \begin{equation} G = \langle a \rangle \cup b \langle a \rangle \text{ so } G
     = \left\{ e,a,a^2,b,ba,ba^2 \right\} \label{} \end{equation}
 
-  Starting our multiplication table: \begin{table}[h] \centering
-    $\begin{tabu}{l|llllll} &e   &a   &a^2  & b   &ba   &ba^2\\\hline e   &e
-      &a   &a^2\\ a   &a &a^2 &  e\\ a^2    &a^2   &e    &a\\ b   &b &ba
-      &ba^2& e \\ ba  &ba& ba^2& b\\ ba^2 &ba^2 &b &ba
-    
-  \end{tabu}$ \label{tab:multtableincomplete} \end{table}
+  Starting our multiplication table: 
+  \begin{table}[!htbp] \centering
+    $\begin{tabu}{l|llllll} 
+      &e   &a   &a^2  & b   &ba   &ba^2\\\hline 
+      e &e   &a   &a^2  & b   &ba   &ba^2\\
+      a   &a &a^2 &  e\\ 
+      a^2    &a^2   &e    &a\\ 
+      b   &b &ba  &ba^2& e \\ 
+      ba  &ba& ba^2& b\\ 
+      ba^2 &ba^2 &b &ba
+    \end{tabu}$ 
+    \label{tab:multtableincomplete} 
+  \end{table}
 
 Note that if $ab=ba$ then we can check that $ab$ must have order 6, since
 $(ab)^2=a^2b^2=a^2$, $(ab)^3=a^3b^3=b.$ But $G$ is not cyclic, by assumption,
@@ -621,7 +634,7 @@ so $ab\neq ba$.  Hence we must have $ab = ba^2$.
 
 This allows us to complete the multiplication table:
 
-\begin{table}[h] \centering \label{my-label} $\begin{tabu}{l|llllll} & e & a &
+\begin{table}[!htbp] \centering \label{my-label} $\begin{tabu}{l|llllll} & e & a &
     a^2 & b & ba & ba^2    \\ \hline e & e & a & a^2 & b & ba & ba^2    \\ a &
     a & a^2 & e & ba^2 & b & ba    \\ a^2 & a^2 & e & a & ba & ba^2 & b  \\ b &
     b & ba & ba^2 & e & a & a^2    \\ ba & ba & ba^2 & b & a^2 & e & a   \\
