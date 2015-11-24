@@ -1869,7 +1869,8 @@ $A_{ij}$ be the minor obtained by deleting row $i$ and column $j$. Then
    \end{align*}
 
    \begin{remark}
-     We can also find determinants by expansion along columns. (By Prop. \ref{prp:dettran}).
+     We can also find determinants by expansion along columns. (By Prop.
+     \ref{prp:dettran}).\\
    \end{remark}
   
    \begin{proposition}
@@ -2213,12 +2214,12 @@ We end up with $|AB| = |E_1||E_2| \dots |E_k| |B| = |A||B|$ by Prop. \ref{prp:el
 
   \begin{proof}\hfill
     \begin{enumerate}[(i)]
-      \item $PP^{-1} = I$, so $|P||P^{-1}| = 1$ by Theorem \ref{thm:proddet}.
+      \item $PP^{-1} = I$, so $|P||P^{-1}| = 1$ (by Theorem \ref{thm:proddet}).
       \item 
         \begin{align*}
           |PAP^{-1}| &= |P^{-1}||A||P| 
-          \qquad \text{ by Theorem \ref{thm:proddet} }\\
-          &= \frac{1}{|P|}|A||P| \qquad\text{ by } (1)\\
+          \qquad \text{ (by Theorem \ref{thm:proddet}) }\\
+          &\overset{(i)}{=} \frac{1}{|P|}|A||P| \\
           &= |A|
         \end{align*} ($PAP^{-1}$ is similar)
     \end{enumerate}
@@ -2292,7 +2293,7 @@ The vector space $V/W$ is the \emph{quotient space} of $V$ by $W$.\\
 
   To show $\theta$ is a linear transformation, we need it to preserve scalar multiplication too. We have 
 \begin{align*}
-  \theta(\lambda v) \underset{\text{def of }\theta}{=} \lambda v + W \underset{\text{def. of
+  \theta(\lambda v) \underset{\text{def. of }\theta}{=} \lambda v + W \underset{\text{def. of
   scalar mult.}}{=} \lambda (v + W)
 \end{align*}
 
@@ -2433,8 +2434,9 @@ Check that $T$ is linear:
 \end{align*}
 
 It is clear that $\ker T = \left\{ 0 \right\}$. So $T$ is injective,
-and so \[\Ima T \underset{\text{linearly isomorphic = same
-dimension}}{\ism} U.\]
+and so \[\Ima T \ism U.\]
+Where `$\ism$' in this context means that $T$ is \emph{linearly isomorphic} to,
+and has the same dimension of $U$.
 
 We see that $\Ima T = \left\{ (u,0) : u  \in U \right\}$.
 
