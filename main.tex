@@ -2473,5 +2473,165 @@ Similarly, $U \oplus W$ has a subspace
 
   We also have $\dim U \oplus W = \dim \bar{U} + \dim \bar{W} = 
   \dim U + \dim W$.
+
+  \emph{Note:} If $V$ is a vector space, and if $U$ and $W$ are 
+  complementary subspaces, then (by abuse of notation) we may write
+  \[
+    V = U \oplus W.
+  \]
+
+  (This really just means that $U$ and $W$ are complementary.)\\
+
+
+  \begin{definition}
+    Let $T:V \rightarrow V$, and let $W$ be a subspace of $V$. We say 
+    that $W$ is $T-$\emph{invariant} if $T(W) \leq W$. 
+
+    Note that we do note require $T(W) = W$.\\
+  \end{definition}
+
+  \begin{exmps}\hfill
+    \begin{itemize}
+      \item 
+        $V$ is always $T-$invariant.
+      \item $\left\{ 0 \right\}$ is always $T-$invariant.
+    \end{itemize}
+  \end{exmps}
+
+  Suppose that $W \leq V$ and that $v_1 \dots v_t$ is a basis for $W$,
+  extended to $v_1 \dots v_n$, a basis for $V$.
+
+  Let this bais be $B$.
+
+  If $T : V \rightarrow V$ is a linear transformation then $W$ is
+  $T-$invariant if and only if $[T]_B$ has the form
+  \[
+    \left( 
+      \begin{matrix}
+        B & D \\
+        0 & C
+      \end{matrix}
+    \right)
+  \]
+ Where $B$ is $t \times t$, $C$ is $(n-t)\times (n-t)$, $D$ is $t \times
+ (n-t)$.
+
+ Why is this? Recall that 
+ $[v_i]_B = e_i = \left( 
+ \begin{matrix}
+   0 \\
+   \vdots \\
+   1 \\
+   \vdots \\
+   0
+ \end{matrix}
+ \right)$ (with 1 in the $i$th row).
+
+ and $[Tv_i]_B = [T]_B e_i = i$th column of $[T]_B$.
+
+ Now $v_1,\dots,v_k$ is a basis for $W$. We have that
+ $W$ is $T-$invariant $ 
+   \iff Tv_i \in W$ for $i = 1, \dots, t 
+   \iff [Tv_i]_B \in \Span\left\{ e_1, \dots, e_t \right\} 
+   \text{ for } i = 1, \dots , t 
+   \iff i\text{th column of } [T]_B \in 
+   \Span \left\{ e_1, \dots e_t \right\} \text{ for } i = 1, \dots, t \iff$ 
+ everything before the $i$th row in columns $1, \dots, t$ of $[T]_B$ is 0.\\
+
+ \begin{proposition}
+   Let $T:V \rightarrow V$ be a linear transformation and let $W$ be a $T-$invariant
+   subspace of $V$.
+
+   There is a well-defined linear transformation 
+   \[
+     \hat{T} : V/W \rightarrow V/W
+   \]
+
+   given by $\hat{T}(v + W) = Tv + W$.
+ \end{proposition}
+
+ \begin{proof}
+   Stat by checking well-defined.
+
+   Suppose that $v_1 + W = v_2 + W$. Then $v_2 - v_1 \in W$.
+
+   Since $W$ is $T-$invariant, we see that $T(v_2 - v_1) \in W$.
+
+   So $Tv_1 - Tv_2 \in W$ and so $Tv_1 + W = Tv_2 + w$.
+
+   Hence $\hat{T}$ is well-defined.
+
+   Check that $\hat{T}$ is linear: 
+   \begin{align*}
+   \hat{T}\left( (v_1 + W) + (v_2 + W)  \right) \\
+   &= \hat{T}(v_1 + v_2 + W) \\
+   &= T(v_1 + v_2) + W \\
+     &= Tv_1 + Tv_2 + W \\
+     &= (Tv_1 + W) + (Tv_2 + W) \\
+     &= \hat{T}(v_1 + W) + \hat{T}(v_2 + W).
+   \end{align*}
+
+   So $\hat{T}$ preserves addition.
+
+   And 
+   \begin{align*}
+     \hat{T}(\lambda(v + W)) &= \hat{T}(\lambda v + W) \\
+     &= T(\lambda v) + W = \lambda Tv + W \\
+     &= \lambda (Tv + W) = \lambda \hat{T} (v + W).
+   \end{align*}
+ \end{proof}
+
+ Suppose that $v_1, \dots, v_n$ is a basis $\mathcal{B}$ for $V$ such that 
+ $v_1, \dots, v_t$ is a basis for $W$. Then
+ $v_{t+1} + W, \dots , v_n + W$ is a basis $\hat{\mathcal{B}}$ for $V/W$.
+
+ We have seen that if $W$ is $T-$invariant then 
+ \[
+   [T]_{\mathcal{B}} = 
+      \begin{bmatrix}
+        B & D \\
+        0 & C
+      \end{bmatrix}
+ \]
+
+ I claim 
+ \begin{enumerate}[(i)]
+   \item $B$ is the matrix for $T|_w$ with respect to the basis 
+     $v_1, \dots, v_t$.
+   \item $C$ is the matrix for $\hat{T}$ with respect to the basis
+     $\hat{\mathcal{B}}$.
+ \end{enumerate}
+
+ \begin{proof}
+   \begin{enumerate}[(i)]
+     \item Obvious.
+     \item Consider $Tv_i$, where $i>t$. We have 
+       $[Tv_i]_B=i$th column of $[T]_B$.
+       \begin{align*}
+         = d_{i1}e_1 + \dots + d_{ti}e_t + c_{1i}e_{t+1} \dots 
+         c_{(n-t) i}e_n.
+       \end{align*}
+       (Where $C = (c_{ij}), D = (d_{ij}) $).
+
+       So 
+       \begin{align*}
+         Tv_i = d_{1i}v_1 + \dots + d_{ti} v_t + c_{1i} v_{t+1} + \dots 
+         + c_{(n-t) i}v_n.
+       \end{align*}
+
+       Hence $\hat{T}(v_i + W)=w + u + W$, where
+       \begin{align*}
+         w &= d_{1i}v_1 + \dots + d_{ti} v_t \in W \\
+         u &= c_{1i}v_{t+1} + \dots + c_{(n-t) i }v_n.
+       \end{align*}
+
+       This is equal to $u + W$, which is
+       \begin{align*}
+         c_{1i}(v_{t+1} + W) + \dots + c_{(n-1) i } (v_n + W).
+       \end{align*}
+       Hence $[\hat{T}]_{\hat{\mathcal{B}}}=C$.
+
+   \end{enumerate}
+ \end{proof}
 \end{document}
 
