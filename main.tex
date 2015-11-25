@@ -3,6 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{amssymb,tabu}
 \usepackage{array}
+\usepackage{float}
 \usepackage{enumerate}% http://ctan.org/pkg/enumerate
 \usepackage{amsthm}
 \newtheorem{theorem}{Theorem}
@@ -615,8 +616,8 @@ So $G \ism C_2 \times C_2$ (So every group of order 4 is abelian).
     = \left\{ e,a,a^2,b,ba,ba^2 \right\} \label{} \end{equation}
 
   Starting our multiplication table: 
-  \begin{table}[!htbp] \centering
-    $\begin{tabu}{l|llllll} 
+  \begin{table}[H] \centering
+    $\begin{tabu}{l|lll|lll} 
       &e   &a   &a^2  & b   &ba   &ba^2\\\hline 
       e &e   &a   &a^2  & b   &ba   &ba^2\\
       a   &a &a^2 &  e\\ 
@@ -634,7 +635,7 @@ so $ab\neq ba$.  Hence we must have $ab = ba^2$.
 
 This allows us to complete the multiplication table:
 
-\begin{table}[!htbp] \centering \label{my-label} $\begin{tabu}{l|llllll} & e & a &
+\begin{table}[H] \centering \label{my-label} $\begin{tabu}{l|llllll} & e & a &
     a^2 & b & ba & ba^2    \\ \hline e & e & a & a^2 & b & ba & ba^2    \\ a &
     a & a^2 & e & ba^2 & b & ba    \\ a^2 & a^2 & e & a & ba & ba^2 & b  \\ b &
     b & ba & ba^2 & e & a & a^2    \\ ba & ba & ba^2 & b & a^2 & e & a   \\
