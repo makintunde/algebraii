@@ -28,6 +28,7 @@
 
 % Isomorphism symbol with function on top
 \newcommand{\ts}{\textsuperscript}
+\newcommand{\B}{\mathcal{B}}
 \newcommand{\myiso}[1]{\stackrel{\mathclap{\normalfont\mbox{#1}}}{\cong}}
 \newcommand{\dtn}{\Delta_n} \newcommand{\gene}[1]{\langle #1 \rangle}
 \newcommand{\nsg}[2]{#1 \trianglelefteq #2} \newcommand{\func}[3]{#1 : #2
@@ -2633,5 +2634,204 @@ Similarly, $U \oplus W$ has a subspace
 
    \end{enumerate}
  \end{proof}
+
+ \begin{remark}
+   Suppose $V = W \oplus U$. Let $T:V\rightarrow V$ be such that both
+   $W$ and $U$ are $T-$invariant. Let $w_1,\dots, w_k$ be a basis for
+   $W$ and $u_1, \dots , u_l$ a basis for $U$. 
+
+   With respect to the basis $\mathcal{B} = \left\{ w_1, \dots , w_k, u_1,
+   \dots u_l \right\}$ for $V$, $T$ has the matrix 
+   \[
+      \begin{bmatrix}
+        B & D \\
+        0 & C
+      \end{bmatrix}
+   \]
+
+   Where $B$ is the matrix for $T|_w$ with respect to the basis
+   $w_1, \dots, w_k$, and $C$ is the matrix for $T|_u$ with 
+   respect to $u_1, \dots, u_l$.
+
+   In this situation we sometimes write
+   \[
+     T = T|_w \oplus T|_u
+   \]
+   (as shorthand for $V  = W \oplus U$ and $W$ and $U$ are $T-$invariant).
+
+   We can also write $A = B \oplus C$ to mean $A = 
+      \begin{bmatrix}
+        B & 0 \\
+        0 & C
+      \end{bmatrix}
+   $
+ \end{remark}
+ \section{Characteristic Polynomials}
+ Recall from M1GLA:\\
+\begin{definition}
+  Let $A$ be an $n\times n$ matrix. Then the characteristic polynomial of 
+  $A$, $c_A(x)$ is $\det(xI - A)$.
+
+  If $T:V \rightarrow V$ is a linear transformation, then the 
+  characteristic polynomial of $T$, $c_T(x)$ is 
+  $\det(xI - [T]_\B)$, where $\mathcal{B}$ is any basis for $V$.
+  ($c_T(x)$ doesn't depend on $\mathcal{B}$.
+\end{definition}
+
+What does $\det{xI - A}$ mean? Really, the entries of the matrix $xI - A$
+are elements not of the field $F$, but of the polynomial ring $F[x]$.
+
+This isn't a field, but the definition of determinant makes sense. So
+our definition of $c_T(A)$ is okay.
+
+\begin{exmp}
+  Let $A = \left( 
+  \begin{matrix}
+    -1 & 2 & 1 \\
+    0 & -1 & 3 \\
+    0 & 0 & 0
+  \end{matrix}
+  \right)$. 
+  
+  Then 
+  \begin{align*}
+  c_A(x) \\ &= \det(xI - A) \\
+  &= 
+  \begin{vmatrix}
+    x+1 & -2 & -1 \\
+    0 & x+1 & -3 \\
+    0 & 0 & x
+  \end{vmatrix}\\
+   &= (x+1)^2 x
+  \end{align*}
+\end{exmp}
+
+\begin{proposition}
+  \hfill
+  \begin{enumerate}
+    \item The \emph{eigenvalues} of $T$ are the roots of $c_T(x)$.
+    \item For a root $\lambda$ of $c_T(x)$ the \emph{eigenspace}
+      $E\lambda$ is $\left\{ v \in V : Tv = \lambda v \right\}$.
+      This is a non-trivial subspace of $V$. The non-zero elements
+      of $E\lambda$ are \emph{eigenvectors}.
+    \item $[T]_\B$ is diagonal if and only if every element of the basis
+      $\B$ is an eigenvector.
+  \end{enumerate}
+\end{proposition}
+
+\begin{exmp}
+  (continued). Te eigenvalues of $A$ are -1,0. 
+  Calculate the eigenspaces.
+
+  $E_{-1} = \ker(-I - A)$. So solve 
+  \begin{align*}
+    \left( 
+    \begin{matrix}
+      0 & -2 & -1 &\vline &  0\\
+      0 & 0 & -3 &\vline &  0\\
+      0 & 0 & -1 &\vline &  0
+    \end{matrix}
+    \right)
+  \end{align*}
+
+  The solutions are $\left( 
+  \begin{matrix}
+    a \\ 0 \\ 0
+  \end{matrix}
+  \right)$ for $a \in F$.
+
+  So $E_{-1} =\Span\left\{ \left( 
+    \begin{matrix}
+        1 \\ 0 \\ 0
+        \end{matrix}
+        \right)\right\}$, dimension 1.
+
+        $E_0 = \ker 0I - A =  -A$ So solve
+
+  \begin{align*}
+    \left( 
+    \begin{matrix}
+      1 & -2 & -1 & \vline & 0\\
+      0 & 1 & -3 & \vline & 0\\
+      0 & 0 & 0 & \vline & 0
+    \end{matrix}
+    \right)
+  \end{align*}
+
+  This has solution $\left( 
+  \begin{matrix}
+    7c \\ 3c \\ c
+  \end{matrix}
+  \right)$, $c \in F$. So $E_0 = \Span\left\{ \left( 
+    \begin{matrix}
+      7 \\ 3 \\ 1
+    \end{matrix}
+  \right) \right\}$, dimension 1.
+
+  Note that $E_{-1} + E_0 \neq F^{3}$, so $F^3$ has no basis of 
+  eigenvectors of $A$. So $A$ is not diagonalisable.\\
+
+\end{exmp}
+
+\begin{proposition}
+  Let $V$ be a non-trivial finite dimensional vector space over $\complexes$, and $T:V \rightarrow V$ be a  linear transformation. Then $T$ has an 
+  eigenvalue.
+\end{proposition}
+
+\begin{proof}
+  $c_T(x)$ is a polynomial of degree $\geq 1$. So $c_T(x)$ has  a root in
+  $\complexes$ by the Fundamental Theorem of Algebra. This root is an
+  eigenvalue of $T$.
+\end{proof}
+
+\emph{Note:} This would not hold over other fields such as $\reals$.
+For example a non-identity rotation in $\reals^2$ has no real eigenvalues.\\
+
+\begin{proposition}
+  Let $\lambda_1 , \dots , \lambda_k$ be distinct eigenvalues of $T$, and
+  let $v_1, \dots , v_k$ be corresponding eigenvectors. Then 
+  $v_1, \dots , v_k$  are linearly independent.
+\end{proposition}
+
+\begin{proof}
+  Show that $v_1, \dots , v_j$  are linearly independent for $i \leq j
+  \leq k$  by induction on $j$.
+
+  \begin{itemize}
+    \item \textbf{Base case:} $j=1$. This is trivial since $v_1 \neq 0$.
+    \item \textbf{Inductive case:} Suppose true for $j  < k$.
+      Supose we have  
+      \begin{align}
+      \mu_1 v_1 + \dots + \mu_{j+1}v_{j+1}=0
+      \tag{*}
+      \label{eq:star}
+      \end{align}
+      for $\mu_i \in F$.
+
+      We want to show that $\mu_i = 0$ for all $i$.
+
+      We have $T(\mu_1 v_1 + \dots + \mu_{j+1}v_{j+1}) = 0$, so
+      $\mu_1\lambda_1 v_1 + \dots + \mu_{j+1}\lambda_{j+1}v_{j+1} = 0$.
+
+      We have
+      \begin{align*}
+      \mu_1 \lambda_{j+1} v_1 + \dots +
+      \mu_{j+1}\lambda_{j+1}v_{j+1}=0 \quad 
+      (\lambda_{j+1} \times \ref{eq:star}).
+      \end{align*}
+
+      Substituting to eliminate $v_{j+1}$, we get 
+      $$\mu_1(\lambda_1 - \lambda_{j+1})v_1 + \dots + \mu_j(\lambda_j -
+      \lambda_{j+1})v_j = 0.$$
+
+      Since $v_1, \dots, v_j$ is linearly independent, this implies
+      $\mu_i (\lambda_1 - \lambda_{j+1}) = 0 $ for all $i$. 
+      But $\lambda_i \neq \lambda_{j+1}$, so $\mu_i = 0$ for all $i\leq j$.
+      Now from (\ref{eq:star}) we have $\mu_{j+1}v_{j+1} = 0$, so 
+      $\mu_{j+1}=0$ as well. So $v_1, \dots, v_{j+1}$ is linearly
+      independent, which completes the induction.
+  \end{itemize}
+\end{proof}
+
 \end{document}
 
