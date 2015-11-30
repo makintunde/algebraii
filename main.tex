@@ -769,11 +769,11 @@ done for $n>2$ as well.  \item Let $V,W$ be vector spaces, and let $T:V
   
   The \emph{image} of $f$: $\text{Im } f = \left\{ f(g) : g \in G \right\}$.
 
-  The \emph{kernel} of $f$: $\text{Ker } f=\left\{ g \in G : f(g) = e_H
+  The \emph{kernel} of $f$: $\text{ker } f=\left\{ g \in G : f(g) = e_H
   \right\}$\\ \end{definition}
 
 \begin{theorem}\hfill \begin{enumerate}[(i)] \item $\text{Im } f$ is a subgroup of
-        $H$.  \item $\text{Ker } f$ is a subgroup of $G$.  \end{enumerate}
+        $H$.  \item $\text{ker } f$ is a subgroup of $G$.  \end{enumerate}
       \label{} \end{theorem}
 
 \begin{proof}\hfill \begin{enumerate}[(i)] \item Check the axioms.
@@ -788,14 +788,14 @@ done for $n>2$ as well.  \item Let $V,W$ be vector spaces, and let $T:V
       So $\text{Im } f \in H $.
 
     \item Again, check the subgroup conditions.  $f(e_G)=e_H$, so $e_G \in
-      \text{Ker }f$. Suppose $g_1, g_2 \in \text{Ker }f$. Then
+      \text{ker }f$. Suppose $g_1, g_2 \in \text{ker }f$. Then
       $f(g_1)=f(g_2)=e_H$. ow $f(g_1 g_2)=f(g_1)f(g_2)=e_He_H=e_h$. So $g_1 g_2
-      \in \text{ker }f$. Finally, let $g \in \text{Ker }f$. Then $f(g)=e_H$.
+      \in \text{ker }f$. Finally, let $g \in \text{ker }f$. Then $f(g)=e_H$.
       now $f(g^{-1})=f(g)^{-1}=e_H^{-1}=e_H$, so $g^{-1} \in \text{ker }f$. So
       $\text{ker }f \leq G$.  \end{enumerate} \end{proof}
 
 \begin{exmp} Suppose $G=S_3$. Let $f$ be a homomorphism from $G$ to some group
-  $H$. What are the possibilities for $\text{Im }f$ and $\text{Ker }f$?
+  $H$. What are the possibilities for $\text{Im }f$ and $\text{ker }f$?
 
   Recall that for $g \in G$ we have $f(g)$ divided $\ord g$.
 
@@ -2715,7 +2715,7 @@ our definition of $c_T(A)$ is okay.
       This is a non-trivial subspace of $V$. The non-zero elements
       of $E\lambda$ are \emph{eigenvectors}.
     \item $[T]_\B$ is diagonal if and only if every element of the basis
-      $\B$ is an eigenvector.
+      $\B$ is an eigenvector.\\
   \end{enumerate}
 \end{proposition}
 
@@ -2791,6 +2791,7 @@ For example a non-identity rotation in $\reals^2$ has no real eigenvalues.\\
   Let $\lambda_1 , \dots , \lambda_k$ be distinct eigenvalues of $T$, and
   let $v_1, \dots , v_k$ be corresponding eigenvectors. Then 
   $v_1, \dots , v_k$  are linearly independent.
+  \label{prp:linindepeig}
 \end{proposition}
 
 \begin{proof}
@@ -2832,6 +2833,155 @@ For example a non-identity rotation in $\reals^2$ has no real eigenvalues.\\
       independent, which completes the induction.
   \end{itemize}
 \end{proof}
+
+In particular, if $c_T(x)$ has $n$ distinct roots, then $T$ has $N$
+distinct eigenvalues, and so has a basis of eigenvectors. So $T$ is
+diagonalisable.\\
+
+\begin{proposition}
+  \label{prp:uivi}
+  Let $T: V \rightarrow V$ be a linear transformation. Let 
+  $\lambda_1, \dots , \lambda_k$ be distinct eigenvalues of $T$, and
+  let $E_i$ be the eigenspace for $\lambda_i$.
+
+  Suppose $u_i,v_i\in E_i$ for all $i$, and that $u_1 + \dots + u_k = v_1
+  + \dots + v_k$. Then $u_i = v_i$ for all $i$.
+\end{proposition}
+\begin{proof}
+  For all $i$, let $w_i =  v_i - u_i$. Then $w_i \in E_i$. 
+  We have $w_1 + \dots + w_k = 0$.
+  Suppose that some of these $w_i$. are not equal to 0. Then these
+  $w_i$ are eigenvectors corresponding to distinct eigenvalues, so
+  they are linearly independent by Prop. \ref{prp:linindepeig}. But
+  their sum is 0, which is a contradiction. So $w_i = 0$ for all $i$,
+  and so $v_i = u_i$.
+\end{proof}
+
+
+
+A consequence of Prop \ref{prp:uivi} is that we have a basis $\B_i$ for
+each eigenspace $E_i$, then $\cup_i \B_i$ is linearly independent.
+(Exercise).
+
+So if $\sum_i \dim E_i = n = \dim V$, then $\cup_i \B_i$ is  a basis for
+$V$, and so $T$ is diagonalisable.\\
+
+\begin{proposition}
+  \label{prp:prodchar}
+  Let $T:V\rightarrow V$, and let $W$ be a $T-$ invariant subspace. Let
+\begin{itemize}
+  \item $T|_w$ be the restriction of $T$ to $W$.
+  \item $\hat{T}$ be the map induced by $T$ on $V/W$.
+\end{itemize}
+Then $c_T(x) = c_{T|_w}(x) c_{\hat{T}}(x)$. 
+\end{proposition}
+
+\begin{proof}
+  Let $v_1, \dots, v_k$ be a basis for $W$, and extend it to a basis
+  $\mathbb{B} \left\{ v_1, \dots, v_n \right\}$ for $V$ With respect to 
+  $\mathbb{B}$, $T$ has the matrix
+  \[
+    \left( 
+    \begin{matrix}
+      B & D \\
+      0 & C
+    \end{matrix}
+    \right)
+  \]
+  So 
+  \begin{align*}
+  c_T(x) &= 
+  \begin{vmatrix}
+    xI - B & -D \\
+    0 & xI - C
+  \end{vmatrix}\\
+  &= |xI - B| |xI - C|
+  \end{align*}
+  But $B$ is the matrix of $T|_w$ with respect to $v_1, \dots, v_k$.
+
+  And $C$ is the matrix of $\hat{T}$ with respect to $v_{n+1}+W, \dots v_n
+  + W$.
+
+  So $|xI - B||xI - C| = c_{T|_w}(x)c_{\hat{T}}(x)$.
+\end{proof}
+
+
+\subsection{Algebraic and Geometric Multiplication.}
+Let $T:V \rightarrow T$ and let $\lambda$ be an eigenvalue of $T$.
+We can write 
+\begin{align*}
+  c_T(x) = (x-\lambda)^{a_\lambda}f(x),
+\end{align*}
+Where $\lambda$ is not a root of $f(x)$.
+Then $a_\lambda$ is the \emph{algebraic multiplicity} of the 
+eigenvalue $\lambda$.
+
+The \emph{geometric multiplicity} of $\lambda$ is the dimension of the
+eigenspace $E_\lambda$.
+
+In general these need not be the same.
+
+
+\begin{exmp}
+  If $T$ has matrix $A = 
+  \left( 
+  \begin{matrix}
+    \lambda & 1 \\
+    0 & \lambda
+  \end{matrix}
+  \right)$
+  (with respect to some basis), then
+  \begin{align*}
+    \ker (\lambda I - A) = \ker \left( 
+    \begin{matrix}
+      0 & -1 \\
+      0 & 0
+    \end{matrix}
+    \right),
+  \end{align*}
+  Which has dimension 1. So the geometric multiplicity of $\lambda$ is 1.
+  But 
+
+  \begin{align*}
+    c_T(x) = (x - \lambda )^2,
+  \end{align*}
+  so $a_\lambda = 2$
+
+  We write $a_\lambda, g_\lambda$ for the algebraic and geometric 
+  multiplicities.\\
+\end{exmp}
+
+\begin{proposition}
+  $g_\lambda \leq a_\lambda$ for all $\lambda$.
+\end{proposition}
+
+\begin{proof}
+  Let $W = E_\lambda$. Then $W$ is $T-$invariant. So by Prop. \ref{prp:prodchar} we have $c_T(x)=c_{T|_w}(x)c_{\hat{T}}(x)$. But $\dim W = g_\lambda$,
+  and $T|_w = \lambda I$. So $c_{T|_w}(x) = (x - \lambda)^{g_\lambda}$.
+  Hence $c_T(x)=(x-\lambda)^{g_\lambda}c_{\hat{T}}(x)$. 
+  So $g_\lambda \leq a_\lambda$ as required.
+\end{proof}
+
+\subsection{Linear Transformations Over $\mathbb{C}$.}
+
+By the Fundamental Theorem of Algebra, any polynomial over $\complexes$ 
+factorises into linear factors.
+
+So if $V$ is a complex vector space and $T:V \rightarrow V$, then
+\begin{align*}
+  c_T(x) = \prod_\lambda (x - \lambda)^{a_\lambda}.
+\end{align*}
+So $\sum_\lambda a_\lambda = n = \dim V$.
+
+\begin{proposition}
+  Let $V$ be a complex space and $T : V \rightarrow V$. Then the following
+  are equivalent:
+  \begin{enumerate}
+    \item $V$ has a basis of eigenvectors of $T$. ($T$ is diagonalisable).
+    \item $\sum_\lambda g_\lambda = n (= \dim V)$.
+    \item $g_\lambda = a_\lambda$ for all $\lambda$.
+  \end{enumerate}
+\end{proposition}
 
 \end{document}
 
