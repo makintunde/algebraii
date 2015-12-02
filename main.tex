@@ -25,6 +25,7 @@
 \newtheorem*{corollary}{Corollary} \newtheorem*{remark}{Remark}
 \newtheorem*{exmp}{Example} \newtheorem*{exmps}{Examples}
 \newtheorem*{obvs}{Observation}
+\newtheorem*{warning}{Warning}
 
 % Isomorphism symbol with function on top
 \newcommand{\ts}{\textsuperscript}
@@ -2982,6 +2983,156 @@ So $\sum_\lambda a_\lambda = n = \dim V$.
     \item $g_\lambda = a_\lambda$ for all $\lambda$.
   \end{enumerate}
 \end{proposition}
+
+\begin{proof}
+  We show $(1) \implies (2) \implies (3) \implies (1)$.
+  $(1) \implies (2)$: Let $E = E_{\lambda_1} + E_{\lambda_2} + \dots
+  + E_{\lambda_n}$.
+  Then $E \leq V$, and $E$ contains all eigenvectors of $T$.
+
+  Now we show (remark after Prop. \ref{prp:uivi}) that if $\B_i$ is
+  a basis for $E_{\lambda_i}$ for all $i$, then
+
+  $\B = \cup_{i=1}^n \B_i$ is linearly independent so $\B$ is a basis
+  for $E$. So $\dim E = \sum_{i=1}^n \dim E_{\lambda_i} = \sum_{i=1}^n g_{\lambda_i}$.
+
+  now if $V$ has a basis of eigenvectors then $V = E$,
+  so we have $\sum_{i=1}^n g_{\lambda_i} = n$.
+
+  $(2) \implies (3)$: Suppose $\sum_{i=1}^n g_{\lambda_i} = n$. Now we know
+  that $\sum_{i=1}^n a_{\lambda_i} = n$, and also $g_{\lambda_i}\leq
+  a_{\lambda_i}$ for all $i$, so we must have $g_{\lambda_i} =
+  a_{\lambda_i}$ for all $i$.
+
+  $(3) \implies (1)$: Suppose $g_{\lambda_i} = a_{\lambda_i}$ for all $i$.
+  Then for all $i$ there exists $a_{\lambda_i}$ linearly independent
+  eigenvectors in $E_{\lambda_i}$. So $\dim E_{\lambda_i} = a_{\lambda_i}$.
+
+  So $|\mathbb{B}_i| = a_{\lambda_i}$. Now if $\mathbb{B} =
+  \cup_{i=1}^n \mathbb{B}_i$ then 
+
+  $|\mathbb{B}| = \sum_{i=1}^n a_{\lambda_i} = n$. But $\mathbb{B}$ is 
+  linearly independent, so is a basis for $V$ containing eigenvectors of
+  $T$.
+\end{proof}
+
+\subsection{The Cayley-Hamilton Theorem.}
+
+\begin{definition}
+  Let $f(x)$ be the polynomial $a_nx^n + a_{n-1}x^{n-1} + \dots + 
+  a_1 x + a_0$, where $a_i \in F$. Let $M$ be a $k \times k$ matrix,
+
+  then $f(M)$  makes sense:
+
+  \[
+    f(M) = a_n M^n + a_{n-1} M^{n-1} + \dots + a_1 M + a_0 I.
+  \]
+
+  Now let $V$ be  $k-$dimensional  over $F$ and let $T : V \rightarrow V$
+  be a linear transformation. Then $f(T)$ makes sense:
+
+  \[
+    f(T) = a_n T^n + a_{n-1} T^{n-1} + \dots a_1 T + a_0 I.
+  \]
+\end{definition}
+
+  \begin{remark}
+    If $M$ is a diagonal matrix 
+    \[
+      M = \left( 
+      \begin{matrix}
+        \lambda_1 & & & 0\\
+                  &\lambda_2 & & \\
+                 &  & \ddots & \\
+        0 & & & \lambda_n
+      \end{matrix}
+      \right)
+    \]
+
+    then
+    \[
+      f(M) = \left( 
+      \begin{matrix}
+        f(\lambda_1) & & & 0\\
+                  &f(\lambda_2) & & \\
+                 &  & \ddots & \\
+        0 & & & f(\lambda_n)
+      \end{matrix}
+      \right).
+    \]
+
+    Notice that $c_m(M) = 0$ in this case.\\
+  \end{remark}
+
+  \begin{theorem}
+    (Cayley-Hamilton Theorem). Let $T:V \rightarrow V$ be a
+    finite-dimensional linear
+    transformation. Then $c_T(T) = 0$ (the zero transformation).
+    (equivalently: let $M$ be a $k \times k$ matrix. Then $c_M(M)=0$).\\
+    \label{thm:cht}
+  \end{theorem}
+
+  \begin{warning}
+    This is \emph{not} a proof:
+    \[
+      c_M(M) = |MI - M| = |0| = 0.
+    \]
+
+    (The variable $x$ in the definition $c_M(x)=|xI - M|$ is an $F-$valued
+    variable. We can't substitute a matrix. Also, the 0 on the right is an
+    element of $F$, not a matrix.)
+  \end{warning}
+
+  \begin{proof}
+    Let $v \in V$. We show that $c_T(T)v = 0$. Since $v$ is arbitrary,
+    this shows that $c_T(T) = 0$.
+
+    Let $W = \Span\left\{ v, Tv, T^2v, \dots \right\} = 
+    \Span\left\{ T^i v : i \geq 0 \right\}$.
+
+    Since $V$ is finite dimensional, $\left\{ T^i v : i \geq 0 \right\}$
+    can't be linearly independent (unless it has finite size).
+    So there must exist $m$ such that $T^mv$ is in the span of 
+    $\left\{ v, Tv, \dots , T^{m-1}v \right\}$.
+
+    Let $m$ be the smallest such that this holds. Then 
+    $\B=\left\{ v, Tv, \dots, T^{m-1}v\right\}$ is linearly independent. 
+    I claim that $\B$ is a basis for $W$.
+
+    \begin{proof}
+      (claim): It is enough to show that $T^ic \in \Span\left\{ 
+       v, Tv, \dots, T^{m-1}v
+      \right\}$ for all $i \geq m$. Do this by induction:
+
+      \begin{itemize}
+        \item \textbf{Base case:} $i = m+0 = m$. We know that
+          $T^mv \in \Span\left\{ v, Tv, \dots, T^{m-1}v \right\}$ by
+          assumption.
+        \item \textbf{Inductive case:} Suppse thst $T^{m+i}\in \Span\left\{ v, Tv, \dots, T^{m-1}v \right\}$. Then $T^{m+i} = 
+          a_0v + a_1Tv + \dots + a_{m-1}T^{m-1}v$ for some scalars $a_i$.
+
+          Now $T^{m+i+1}v = a_0 Tv + a_1T^2v + \dots + a_{m-1}T^mv$.
+          But $T^mv = b_0v + b_1Tv + \dots + b_{m-1}T^{m-1}v$ for
+          some scalars $b_i$.
+
+          So $^{m+i+1}v = a_0 Tv + a_1T^2v + \dots + a_{m-2}T^{m-1}v
+          + a_{m-1}(b_0 v + b_1 Tv + \dots + b_{m-1}T^{m-1}v)
+          \in \Span\left\{ v, Tv, \dots, T^{m-1}v \right\}$.
+
+          This completes the induction.
+      \end{itemize}
+    \end{proof}
+
+    My second claim: $W$ is $T-$invariant. 
+    
+    \begin{proof}
+      (claim):
+      If $w\in W$ then $w = a_0v + a_1Tv + \dots + a_{m-1}T^{m-1}v$ for 
+      some scalars $a_i$. Now
+      $Tw = a_0 Tv + a_1 T^2v + \dots + a_{m-1}T^mv \in W$.
+    \end{proof}
+  \end{proof}
+
 
 \end{document}
 
