@@ -48,7 +48,6 @@
 \DeclareMathOperator{\lcm}{lcm} \DeclareMathOperator{\hcf}{hcf}
 \DeclareMathOperator{\fix}{fix} \DeclareMathOperator{\ord}{\text{ord}}
 
-
 \title{Algebra II} \author{John R. Britnell - 655\\ Problems class: Wednesday
 2:00pm\\ Office hour: Mon 2:00pm} \date{October 2015}
 
@@ -3100,7 +3099,7 @@ So $\sum_\lambda a_\lambda = n = \dim V$.
     I claim that $\B$ is a basis for $W$.
 
     \begin{proof}
-      (claim): It is enough to show that $T^ic \in \Span\left\{ 
+      (claim): It is enough to show that $T^iv \in \Span\left\{ 
        v, Tv, \dots, T^{m-1}v
       \right\}$ for all $i \geq m$. Do this by induction:
 
@@ -3131,8 +3130,176 @@ So $\sum_\lambda a_\lambda = n = \dim V$.
       some scalars $a_i$. Now
       $Tw = a_0 Tv + a_1 T^2v + \dots + a_{m-1}T^mv \in W$.
     \end{proof}
-  \end{proof}
 
+    Since $T^kv \in W$ there must exist $a_0,a_i, \dots, a_{k-1} \in F$
+    such that $$T^kv + \dots a_{k-1}T^{k-1}v + \dots +a_iTv + a_0v = 0.$$    (so $T^kv = -a_{k-1}T^{k-1}v  - \dots - a_1 T_v - a_0v.$)
+
+    Now we can easilt calculate the matrix of $T|_w$ with respect to
+    the basis $\B$.
+
+    \[
+      [T|_w]_\B =A= \left( 
+        \begin{matrix}
+          0       & 0       & & 0       & -a_0      \\  
+          1       & 0       & & 0       & -a_1      \\
+          0       & 1       &  & 0       & -a_2      \\
+          \vdots  & \vdots  & \ddots & \vdots  & \vdots    \\
+          0       &         & & 1       & -a_{k-1}
+        \end{matrix}
+      \right)
+    \]
+
+    Homeword 8 Question 1. $A$ has characteristic polynomial 
+    \[
+      x^n + a_{n-1}c^{n-1} + \dots + a_1 x + a_0.
+    \]
+
+  We know that $c_{T|_w}(x) = c_A(x)$.
+
+  From above we have
+  \begin{align*}
+    c_{T|_w}(x) &= \left( T^n + a_{n-1}T^{n-1} + \dots + a_1 T + a_0 I
+    \right)v\\
+    &= T^nv + a_{n-1}T^{n-1}v + \dots + a_1 Tv + a_0 v \\
+    &= 0.
+  \end{align*}
+
+  Now we know that $c_T(x) = c_{\hat{T}}(x)c_{T|_w}(x)$.
+
+  So 
+\begin{align*}
+  c_T(T)v  &= c_{\hat{T}}(T)c_{T|_w}(T)v \\
+  &= c_{\hat{T}}(T) \vec{0} = \vec{0}.
+\end{align*}
+
+So we have shown that $\ker c_T(T) = V$, so $c_T(T) = 0$.
+
+  \end{proof}
+  
+
+\begin{exmps}
+ \hfill
+ \begin{enumerate}
+   \item We've seen why CHT works for diagonal matrices already.
+   \item Upper triangular matrices with 0 on the diagonal.
+     E.g. $A=\left( 
+     \begin{matrix}
+       0 & a & b & c \\
+        & 0 & d & e \\
+         & & 0 & f \\
+          & & & 0
+     \end{matrix}
+     \right)$. Then $A^2 = \left( 
+          \begin{matrix}
+                   0 & 0 & g & h \\
+                           & 0 & 0 & i \\
+                                    & & 0 & 0 \\
+                                              & & & 0
+                                                   \end{matrix}
+                                                        \right)$,
+    $A^3 = \left( 
+\begin{matrix}
+  0 & 0 & 0 & j \\
+  & 0 & 0 & 0 \\
+  & & 0 & 0 \\
+  & & & 0
+\end{matrix}
+    \right)$, $A^4 =0$. In general, if $A$ is an $n \times n$ matrix, 
+    upper triangular with all eigenvalues 0, then $A^n = 0$, and we
+    see that $c_n(x) = x^n$.
+  \item $2 \times 2$ matrices. Let $A = \left( 
+    \begin{matrix}
+      p & q \\
+      r & s
+    \end{matrix}
+    \right)$. Then $c_A(x) = (x-p)(x-s)-q^r$. We have 
+    $(A-pI)(A-sI)-q^rI = \left( 
+\begin{matrix}
+  0 & -q \\
+  -r & s-p
+\end{matrix}
+    \right)\left( 
+    \begin{matrix}
+      p-s & -q \\
+      -r & 0
+    \end{matrix}
+    \right) - \left( 
+\begin{matrix}
+  q^r & 0 \\
+  0 & q^r
+\end{matrix}
+    \right) = \left( 
+    \begin{matrix}
+      0 & 0 \\
+      0 & 0
+    \end{matrix}
+    \right).$
+ \end{enumerate}
+\end{exmps}
+
+\subsection{Minimum Polynomial.}
+Recall from M1P2 that if $f(x)$ and $g(x)$ are non-zero polynomials then
+$f(x)$ and $g(x)$ have a highest common factor, unique up to scalar
+multiplication.
+
+To make it really unique, we assume that the leading (highest) coefficient
+is 1. So the $\hcf h(x) = x^d + a_{d-1}x^{d-1} + \dots + a_0$ for some
+$a_i \in F$. (A polynomial with leading coefficient 1 is said to be 
+\emph{monic}).
+There exists $p(x)$, $q(x)$ such that $p(x)f(x)+q(x)g(x)=h(x)$.\\
+
+\begin{proposition}
+  Let $d$ be the least natural positive integer such that there exists a
+  polynomial $f(x)$ of degree $d$ such that $f(T)=0$. Then there is  a
+  unique monic polynomial of degree $d$ which has this property.
+\end{proposition}
+
+\begin{proof}
+  Suppose that $f(x),g(x)$ are both polynomials of degree $d$, and that
+  $f(T)=g(T)=0$ (they both kill $T$). Let $h(x) = \hcf (f(x),g(x))$. Then
+  \begin{align*}
+    h(x) = p(x)f(x) + q(x)g(x) \quad \text{ for some } p(x),q(x)
+  \end{align*}
+  So 
+  \begin{align*}
+    h(T) &= p(T)f(T) + q(T)g(T) \\
+    &= p(T)0 + q(T)0 = 0.
+  \end{align*}
+  So we must have $h(T)$ of degree $d$. But this implies that $f(x)$ and
+  $g(x)$ are scalar multiples of each other.
+\end{proof}
+
+\begin{definition}
+  The unique monic polynomial $M_T(x)$ of smallest possibe degree such
+  that $M_T(x)=0$ is the \emph{minimum polynomial} of $T$.
+
+  Similarly, if $A$ is an $n \times n$ matrix, then the unique 
+  monic  polynomial of smallest possible degree $M_A(x)$ such that
+  $M_A(A) = 0$ is the \emph{minimum polynomial of $A$}.\\
+\end{definition}
+
+\begin{remark}
+  If $A$ is the matrix for $T$ with respect to some basis, and if $f(x)$ is
+  a polynomial, then $f(A)$ is the matrix for $f(T)$. It follows that 
+  $M_T(x)=M_A(x)$.
+\end{remark}
+
+\begin{proposition}
+  Let $T:V \rightarrow V$, and $f(x)$ a polynomial. Then $f(T)=0$ if and
+  only if $M_T(x)$ divides $f(x)$.
+\end{proposition}
+
+\begin{proof}
+  If $M_T(x)$ divides $f(x)$ then $f(x) =g(x)M_T(x)$ for some $g(x)$.
+  Now $f(T)=g(T)M_T(x)=g(T)0=0$.
+\end{proof}
+
+Conversely if $f(T)=0$. Let $q(x),r(x)$ be such that 
+$f(x)=g(x)M_T(x)+r(x)$, where $r(x)=0$ or $\deg r(x) < \deg M_T(x)$.
+Then $r(T)=f(T)-q(T)M_T(x)=0 - q(T)0 = 0$
+
+So $\deg r(x) \not \nless \deg m_T(x)$, since the degree of $M_T(x)$ is
+minimum possible. So $r(x)=0$, and $f(x)=q(x)M_T(x)$
 
 \end{document}
 
