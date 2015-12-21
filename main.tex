@@ -26,6 +26,8 @@
 \newtheorem*{exmp}{Example} \newtheorem*{exmps}{Examples}
 \newtheorem*{obvs}{Observation}
 \newtheorem*{warning}{Warning}
+\newtheorem*{claim}{Claim}
+\newtheorem*{fact}{Fact}
 
 % Isomorphism symbol with function on top
 \newcommand{\ts}{\textsuperscript}
@@ -40,9 +42,13 @@
 \newcommand{\ism}{\cong} \newcommand{\elemt}[2]{#1_{{#2}\sigma(#2)}}
 \renewcommand{\vec}[1]{\mathbf{#1}}
 \newcommand{\Det}[1]{|#1|}
+\newcommand{\CHT}{Cayley-Hamilton Theorem}
+\newcommand{\mt}{m_T}
+\newcommand{\ct}{c_T}
 
 \DeclareMathOperator{\sgn}{sgn} \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\Span}{Span} 
+\DeclareMathOperator{\diag}{diag} 
 \DeclareMathOperator{\Orb}{Orb} \DeclareMathOperator{\Stab}{Stab}
 \DeclareMathOperator{\Ima}{Im} \DeclareMathOperator{\Sym}{Sym}
 \DeclareMathOperator{\lcm}{lcm} \DeclareMathOperator{\hcf}{hcf}
@@ -3270,36 +3276,1189 @@ There exists $p(x)$, $q(x)$ such that $p(x)f(x)+q(x)g(x)=h(x)$.\\
 \end{proof}
 
 \begin{definition}
-  The unique monic polynomial $M_T(x)$ of smallest possibe degree such
+  The unique monic polynomial $M_T(x)$ of smallest possible degree such
   that $M_T(x)=0$ is the \emph{minimum polynomial} of $T$.
 
   Similarly, if $A$ is an $n \times n$ matrix, then the unique 
-  monic  polynomial of smallest possible degree $M_A(x)$ such that
+  monic  polynomial of smallest possible degree $M_A(x)$ 
   $M_A(A) = 0$ is the \emph{minimum polynomial of $A$}.\\
 \end{definition}
 
 \begin{remark}
   If $A$ is the matrix for $T$ with respect to some basis, and if $f(x)$ is
   a polynomial, then $f(A)$ is the matrix for $f(T)$. It follows that 
-  $M_T(x)=M_A(x)$.
+  $M_T(x)=M_A(x)$.\\
 \end{remark}
 
 \begin{proposition}
   Let $T:V \rightarrow V$, and $f(x)$ a polynomial. Then $f(T)=0$ if and
   only if $M_T(x)$ divides $f(x)$.
+  \label{prp:mdividesf}
 \end{proposition}
 
 \begin{proof}
   If $M_T(x)$ divides $f(x)$ then $f(x) =g(x)M_T(x)$ for some $g(x)$.
-  Now $f(T)=g(T)M_T(x)=g(T)0=0$.
+  Now $f(T)=g(T)M_T(T)=g(T)0=0$.
+
+Conversely if $f(T)=0$, let $q(x),r(x)$ be such that 
+$$f(x)=g(x)M_T(x)+r(x),$$ where $r(x)=0$ or $\deg r(x) < \deg M_T(x)$.
+Then 
+\begin{align*}
+r(T)&=f(T)-q(T)M_T(x)\\&=0 - q(T)0\\ &= 0
+\end{align*}
+So $\deg r(x) \not \nless \deg M_T(x)$, since the degree of $M_T(x)$ is
+minimum possible. So $r(x)=0$, and $f(x)=q(x)M_T(x)$
 \end{proof}
 
-Conversely if $f(T)=0$. Let $q(x),r(x)$ be such that 
-$f(x)=g(x)M_T(x)+r(x)$, where $r(x)=0$ or $\deg r(x) < \deg M_T(x)$.
-Then $r(T)=f(T)-q(T)M_T(x)=0 - q(T)0 = 0$
+\begin{corollary}
+  (to Proposition \ref{prp:mdividesf}.) $m_T(x)$ divides $c_T(x)$.
+\end{corollary}
 
-So $\deg r(x) \not \nless \deg m_T(x)$, since the degree of $M_T(x)$ is
-minimum possible. So $r(x)=0$, and $f(x)=q(x)M_T(x)$
+\begin{proof}
+  By the Cayley-Hamilton Theorem we have $c_T(x) =0$, and so the result
+  follows by Prop. \ref{prp:mdividesf}. The corollary implies that
+  every root of $m_T(x)$ is a root of $c_T(x)$. The converse is also
+  true.
+\end{proof}
+
+\begin{proposition}
+  If $T:V\rightarrow V$, then every root of $c_T(x)$ is a root of 
+  $m_T(x)$.
+  \label{prp:everyrootcm}
+\end{proposition}
+
+\begin{proof}
+  Suppose $\lambda$ is a root of $c_T(x)$. So $\lambda$ is an eigenvalue
+  of $T$, and so there is an eigenvalue $v \in V$ such that $Tv = \lambda
+  v$. Let $W = \Span\left\{ v \right\}$. Then $W$ is $T-$invariant.
+
+  Since $\mt(T)=0$, we  have $\mt(T)v = \vec{0}$. So $\mt(T|_w)=0$.
+
+  So $m_{T|_w}(x)$ divides $\mt(x)$ by Prop. \ref{prp:mdividesf}. But
+  it is clear that $m_{T|_w}(x)=x-\lambda$. So $x-\lambda$ divides 
+  $\mt(x)$, and in particular, $\lambda$ isa root of $\mt(x)$.
+\end{proof}
+
+So if $c_T(x)=(x-\lambda_1)^{a_1}\dots(x-\lambda_k)^{a_k}$ then
+\begin{align*}
+  \mt(x) = (x-\lambda_1)^{b_1}\dots(x-\lambda_k)^{b_k}
+\end{align*}
+where $1 \le b_i \le a_i$ for all $i$.\\
+
+\begin{exmps}
+\begin{enumerate}[(i)]\hfill
+    \item $I = \left( 
+      \begin{matrix}
+        1 & 0 \\
+        0 & 1
+      \end{matrix}
+      \right)$
+
+      Then  $c_I(x)=(x-1)^2$. So $m_I(x)$ is $(x-1)$ or $(x-1)^2$.
+      Clearly $m_I(x)=x-1$.
+    \item
+      $A=\left( 
+\begin{matrix}
+  1 & 1\\
+  0 & 1
+\end{matrix}
+      \right)$
+
+      Again $c_A(x)=(x-1)^2$, so $m_A(x)$ is $(x-1)$ or $(x-1)^2$.
+      But $A-I \neq 0$, so $m_A(x)=(x-1)^2$.
+    \item Similarly
+      \begin{align*}
+        \left( 
+        \begin{matrix}
+          \lambda & 0\\
+          0 & \lambda
+        \end{matrix}
+        \right)\quad \text{and} \quad \left( 
+        \begin{matrix}
+          \lambda & 1 \\
+          0 & \lambda
+        \end{matrix}
+        \right)
+      \end{align*}
+      have the same characteristic polynomial, namely $(x-\lambda)^2$.
+      But the diagonal one has minimum polynomial $(x-\lambda)$;
+      the other has minimum polynomial $(x-\lambda)^2$.
+
+    \item $B = \left( 
+\begin{matrix}
+  \lambda & 1 & 0\\
+  0  & \lambda & 1 \\
+  0 & 0 & \lambda
+\end{matrix}
+      \right)$
+
+      Then $c_B(x)=(x-\lambda)^3$. So $m_B(x)$ is one of $x-\lambda$, 
+      $(x-\lambda)^2$, or $(x-\lambda)^3$.
+
+      Easy to check that
+
+      \begin{align*}
+        (B-\lambda I)^2 = \left( 
+        \begin{matrix}
+           0 & 1 & 0\\
+           0 & 0 & 1\\
+           0 & 0 & 0
+        \end{matrix}
+        \right)^2 = \left( 
+        \begin{matrix}
+          0 & 0 & 1 \\
+          0 & 0 & 0\\
+          0 & 0 & 0
+        \end{matrix}
+        \right) \neq 0
+      \end{align*}
+      Hence $m_B(x)=(x-\lambda)^3$.
+  \end{enumerate}
+
+\end{exmps}
+
+
+\section{Jordan Normal Form}
+The matrices $\left( 
+\begin{matrix}
+  \lambda & 1\\
+  0 &\lambda
+\end{matrix}
+\right)$ and $\left( 
+\begin{matrix}
+  \lambda & 1 & 0\\
+  0 &\lambda & 1\\
+  0 & 0 & \lambda
+\end{matrix}
+\right)$ are examples of \textit{Jordan Blocks}.
+\begin{definition}
+  (Jordan Block). Let $J_n(\lambda)$ be the $n\times n$ matrix
+  \begin{align*}
+    \left( 
+    \begin{matrix}
+      \lambda & 1       &        & & 0   \\
+              & \lambda &      1 & &     \\
+              &         & \ddots & &     \\
+              &         &        & & 1   \\
+       0      &         &        & & \lambda
+    \end{matrix}
+    \right)
+  \end{align*}
+
+  en $J_n(\lambda)$ is the $n\times n$ \textit{Jordan Block} with 
+  eigenvalue $\lambda$.
+\end{definition}
+
+\begin{proposition}
+  The Jordan Block $J_n(\lambda)$ has both characteristic and minimum
+  polynomial equal to $(x-\lambda)^n$.
+\end{proposition}
+
+\begin{proof}
+  The characteristic polynomial is easy, since $J_n(\lambda)$ is upper
+  triangular. Now by the Corollary to Prop. \ref{prp:mdividesf} and
+  \ref{prp:everyrootcm}, then minimum polynomial is $(x-\lambda)^i$
+  for $1 \le i \le n$. It is clear that $i$ is the smallest such that
+  \begin{align*}
+    U_i = \left( 
+    \begin{matrix}
+      0 & 1 & & 0\\
+      & \ddots & \ddots &\\
+      & & & 1\\
+      0 & & & 0
+    \end{matrix}
+    \right)^i = 0
+  \end{align*}
+
+  \begin{claim}
+    $U_i = \left( u_{jk} \right)$ where
+    \begin{align*}
+      u_{jk}=
+      \begin{cases}
+        1 & \text{if } k=j+i\\
+        0 & \text{otherwise}
+      \end{cases}
+    \end{align*}
+
+    (In other words, 
+    \begin{align*}
+      U_i = \left( 
+      \begin{matrix}
+        0 & & 1 & 0\\
+        & \ddots & & 1\\
+        & & &\\
+        0 & & & 0
+      \end{matrix}
+      \right)
+    \end{align*}
+    the $i$th diagonal above the main diagonal has 1s
+    )
+  \end{claim}
+
+  \begin{proof}
+    (claim). Use induction. The case $i=1$ is trivial. Suppose that
+    $u_{jk}$ are as stated, where $(u_{jk})=U_i$. Let 
+    $U_i=\left( v_{jk} \right)$ where
+    \begin{align*}
+      v_{jk} = 
+      \begin{cases}
+        1 & \text{if } j = j+1\\
+        0 & \text{otherwise}
+      \end{cases}
+    \end{align*}
+
+    We want to calculate $U_{i+1}=\left( w_{jk} \right)$. Then
+    $U_{i+1}=U_iU_1$, so 
+    \begin{align*}
+      w_{jk}=\sum_{t}^{}u_{jl}v_{lk}
+    \end{align*}
+    (using the matrix multiplication formula). Now
+    \begin{align*}
+      u_jv_{lk}  = 
+      \begin{cases}
+        1 & \text{if } k = j+i+1\\
+        0& \text{otherwise}
+      \end{cases}
+    \end{align*}
+    Now we observe that $\left( J_n(\lambda)-\lambda I \right)^{n-1}$
+    is equal to $U_{n-1}$, whose $(1,n)$ entry is 1. So 
+    $\left( J_n(\lambda)-\lambda I \right)^{n-1} \neq 0$. So
+    $m_{J_n(\lambda)}(x)=(x-\lambda)^n$.
+  \end{proof}
+\end{proof}
+
+\begin{proposition}
+  Let $V$ be a vector space, and let $T:V \rightarrow V$ be a linear
+  transformation. Then $T$ is diagonalisable if and only if the 
+  minimum polynomial $mt(x)=(x-\lambda_1)(x-\lambda_2)\dots
+  (x-\lambda_t)$ where $\lambda_1,\dots,\lambda_t$ are distinct.
+  \label{prp:tdiag}
+\end{proposition}
+
+\begin{proof}
+  (only if). Suppose that $T$ is diagonalisable. Then with respect to
+  a basis of eigenvalues, $T$ has a diagonal matrix $D$. Let
+  $\lambda_1,\dots,\lambda_t$ be the distinct eigenvalues. Let $f(x)$
+  be
+  \begin{align*}
+    (x-\lambda_1)(x-\lambda_2)\dots(x-\lambda_t)
+  \end{align*}
+  Then clearly $f(\lambda_i)=0$ for all $i$. But every diagonal
+  entry of $D$ is $\lambda_i$ for some $i$, and so $f(D)=0$.
+  Hence $m_D(x)$ divides $f(x)$. But $\mt(x)=m_D(x)$, and so
+  $\mt(x)$ is a product of distinct linear factors.
+\end{proof}
+
+For the \textit{if} direction, we need a fact about polynomials.
+\begin{fact}
+  Let $\lambda_1,\dots,\lambda_t$ be distinct scalars. Define
+  \begin{align*}
+    f_i(x)=\prod_{j=1,j\neq i }^t (x-\lambda_j)
+  \end{align*}
+  (so $f_i$ has all of the $\lambda_j$ except $\lambda_i$ as roots.) Then
+  \begin{align*}
+    \sum_{i=1}^{t}\frac{f_i(x)}{f_i(\lambda_i)}=1
+  \end{align*}
+
+  (Note that $f_i(\lambda_i)=0$ so it makes sense.)
+\end{fact}
+
+\begin{proof}
+  (fact). Note that 
+  \begin{align*}
+  \frac{f_i(\lambda_j)}{f_i(\lambda_i)}=
+  \begin{cases}
+    1 & \text{if} i=j\\
+    0 & \text{otherwise}
+  \end{cases}
+  \end{align*}
+  Let
+  \begin{align*}
+    g(x) = \sum_{i=1}^{t}\frac{f_i(x)}{f_i(\lambda_i)}
+  \end{align*}
+  Then $g(\lambda_j)=1$ for all $j$. So $\lambda_j$ is a root of 
+  $g(x)-1$. Hence $x-\lambda_j$ divides $g(x)-1$ for all $j$. So
+  $g(x)-1$ has $t$ distinct linear factors. But $\deg g(x)-1$ is 
+  at most $t-1$, since $g(x)$ is a sum of polynomials of degree
+  $t-1$. So we must have $g(x)-1=0$, so $g(x)=1$.
+\end{proof}
+
+\begin{exmp}
+  The case $t=2$. $\lambda_1 \neq \lambda_2$ scalars. So
+  $f_1(x)=x-\lambda_2$ and $f_2(x)=x-\lambda_1$. Now
+  \begin{align*}
+    g(x) &= \frac{f_1(x)}{f_1(\lambda_1)} + \frac{f_2(x)}{f_2(\lambda_2)}\\
+    &= \frac{x-\lambda_2}{\lambda_1 - \lambda_2} + \frac{x-\lambda_1}{\lambda_2 - \lambda_1}\\
+    &= \frac{(x-\lambda_2)-(x-\lambda_1)}{\lambda_1-\lambda_2}\\
+    &= \frac{\lambda_1-\lambda_2}{\lambda_1-\lambda_2} = 1
+  \end{align*}
+\end{exmp}
+  \textit{Back to the proof of Prop. \ref{prp:tdiag}}.
+
+  (if). Suppose that $m_T(x)=(x-\lambda_1)\dots(x-\lambda_t)$ with
+  $\lambda_1,\dots,\lambda_t$ distinct. Let $f_i(x)$ be as in the Fact
+  above--so
+  \begin{align*}
+    f_i(x)=\frac{m_T(x)}{(x-\lambda_i)}
+  \end{align*}
+  \begin{claim}
+    $\Ima f_i(T)=E_{\lambda_i}$, the eigenspace for $\lambda_i$.
+  \end{claim}
+
+  \begin{proof}
+    (claim). Suppose that $v \in \Ima f_i(T)$. So $v=f_i(T)u$ for some
+    $u$. Now
+    \begin{align*}
+      (T-\lambda_i I)v = (T-\lambda_i I)f_i(T)u = m_T(T)u
+    \end{align*}
+    (since $m_T(x)=(x-\lambda_i)f_i(x)$.) But $m_T(T)u=0$, so 
+    $(T-\lambda_i I)v=0$, and so $Tv = \lambda_i v$. Hence
+    $v \in E_{\lambda_i}$.
+
+    Conversely, suppose $v \in E_{\lambda_i}$. Since $x-\lambda_i$ and
+    $f_i(x)$ are coprime, there exist polynomials $a(x),b(x)$ such that
+    \begin{align*}
+      a(x)(x-\lambda_i)+ b(x)f_i(x) = 1
+    \end{align*}
+
+    Now,
+    \begin{align*}
+      a(T)(T-\lambda_i I)v + f_i(T)b(T)v = v
+    \end{align*}
+    But $(T-\lambda_i I)v=0$, so $f_i(T)b(T)v = v$. Then
+    $f_i(T)u = v$, so $v \in \Ima f_i(T)$. By inclusion both ways,
+    $\Ima f_i(T)=E_{\lambda_i}$
+  \end{proof}
+  \begin{proof}
+    (continuation).
+We complete the proof by showing that
+\begin{align*}
+  V = E_{\lambda_1}+\dots+E_{\lambda_t}
+\end{align*}
+
+(Hence $V$ a basis of eigenvectors of $T$.)
+
+By the Fact,
+\begin{align*}
+  \sum_{i=1}^{t}\frac{f_i(x)}{f_i(\lambda_i)}=1\implies
+  \sum_{i=1}^{t}\frac{f_i(T)}{f_i(\lambda_i)}=1
+\end{align*}
+
+Let $v \in V$. Then
+\begin{align*}
+  \sum_{i=1}^{t}\frac{f_i(T)v}{f_i(\lambda_i)}=v
+\end{align*}
+
+But $f_i(T)v/f_i(\lambda_i)\in E_{\lambda_i}$, and so $v \in 
+E_{\lambda_1}+\dots+E_{\lambda_t}$ as required. Hence $T$ is 
+diagonalisable.
+  \end{proof}
+
+
+\begin{exmp}
+  The $n \times n$ Jordan Block 
+  \begin{align*}
+    J_n(\lambda)=\left( 
+    \begin{matrix}
+      \lambda & 1       &        & & 0   \\
+              & \lambda &      1 & &     \\
+              &         & \ddots & &     \\
+              &         &        & & 1   \\
+       0      &         &        & & \lambda
+    \end{matrix}
+    \right)
+  \end{align*}
+  This is not diagonalisable for $n\ge 1$. Since we saw earlier that
+  $m_{J_n(\lambda)}(x)=(x-\lambda)^n$ which factorises into linear
+  factors, but not distinct ones.
+\end{exmp}
+
+\begin{definition}
+  (Similar matrices). Two $n \times n$ matrices $A$ and $B$ are 
+  \textit{similar} if there exists some invertible matrix $P$ with 
+  $B=P^{-1}AP$.
+\end{definition}
+
+Two matrices are \textit{similar} iff they can represent the same 
+linear transformation. So there exist $T : V \rightarrow V$ and 
+bases $\mathcal{B}_1,\mathcal{B}_2$, such that
+\begin{align*}
+  \left[ T \right]_{\mathcal{B}_1}=A,\quad \left[ T \right]_{\mathcal{B}_2} = B
+\end{align*}
+
+\begin{exmp}
+  $A$ is diagonalisable $iff$ $A$ is similar to \textit{a} diagonal matrix.
+\end{exmp}
+
+Say that $A$ is \textit{triangularisable} is $A$ is similar to an upper
+triangular matrix,
+\begin{align*}
+  A \sim \left( 
+  \begin{matrix}
+    & *\\
+    0 & 
+  \end{matrix}
+  \right)
+\end{align*}
+(We write $A \sim B$ to mean $A$ and $B$ are \textit{similar}. Easy 
+exercise: similarity is an equivalence relation.)
+
+\begin{proposition}
+  Let $M$ be an $n \times n$ matrix with entries from $\complexes$.
+  Then $M$ is triangularisable.
+  \label{prp:triangularisable}
+  (Every complex matrix is simular to \textit{a} triangular matrix.)
+
+  Note that this is not true over fields other that $\complexes$. 
+  E.g. the rotation matrix of angle $\varphi=\pi/2$:
+  \begin{align*}
+    \left( 
+    \begin{matrix}
+      0 & 1\\
+      -1 & 0
+    \end{matrix}
+    \right)
+  \end{align*}
+  has eigenvalues $\pm i$. So it has no eigenvalues in $\reals$. But
+  every triangular matrix has eigenvalues, the diagonal entries. So
+  \begin{align*}
+    \left( 
+    \begin{matrix}
+      0 & 1\\
+      -1 & 0
+    \end{matrix}
+    \right)
+  \end{align*}
+  is not triangularisable over $\reals$.
+\end{proposition}
+
+\begin{proof}
+  By induction over $n$. The case $n=1$ is trivial. Our inductive
+  hypothesis is that the statement is true for some fixed $n$.
+
+  Let $M$ be an $(n+1)\times (n+1)$ matrix over $\complexes$. Since
+  the field is $\complexes$, $M$ has an eigenvalue, $\lambda$. Let
+  $w$ be an eigenvector. Then $\Span\left\{ w \right\}$ is $M-$invariant
+  (thinking of $M$ as a linear transformation). So changing basis so that
+  $w$ is the first basis vector, we see that 
+  \begin{align*}
+    M \sim 
+    \left( 
+    \begin{matrix}
+      \lambda & * & \dots & *\\
+      0 & &&\\
+      \vdots&&L&\\
+      0&&&
+    \end{matrix}
+    \right)
+  \end{align*}
+  where $*$ denotes junk and $L$ is $n\times n$.
+
+  Now by the hypothesis, there exist invertible $P$ such that 
+  $P^{-1}LP=U$, upper triangular. Define
+  \begin{align*}
+    Q = 
+    \left( 
+    \begin{matrix}
+      \lambda & 0 & \dots & 0\\
+      0 & &&\\
+      \vdots&&P&\\
+      0&&&
+    \end{matrix}
+    \right)
+    ,\quad Q^{-1}=
+    \left( 
+    \begin{matrix}
+      \lambda & i & \dots & 0\\
+      0 & &&\\
+      \vdots&&P^{-1}&\\
+      0&&&
+    \end{matrix}
+    \right)
+  \end{align*}
+  Now it is easy to check that
+  \begin{align*}
+    Q^{-1}M'Q = 
+    \left( 
+    \begin{matrix}
+      \lambda & * & \dots & *\\
+      0 & &&\\
+      \vdots&&U&\\
+      0&&&
+    \end{matrix}
+    \right)
+  \end{align*}
+  which is upper triangular. (Note that the junk $*$ entries may be
+  different from those in $M'$). So $M$ is triangularisable.
+\end{proof}
+
+\begin{exmp}
+  Take $A = \left( 
+  \begin{matrix}
+    1 & 0 & -1\\
+    1 & 2 & 1\\
+    0 & 0 & 1
+  \end{matrix}
+  \right)$. Then
+  \begin{align*}
+    c_A(x) &= 
+    \begin{vmatrix}
+      x-1 & 0 & 1\\
+      -1 & x-2 & -1\\
+      0 & 0 & x-1
+    \end{vmatrix} \\
+    &=(x-2)
+    \begin{vmatrix}
+      x-1 & 1 \\
+      0 & x-1
+    \end{vmatrix}\\
+    &=(x-2)(x-1)^2
+  \end{align*}
+  The eigenvalue $\lambda=2$ has eigenvector $(0,1,0)^T$. We may as well
+  find all other eigenvectors. So we find $\lambda=1$ has eigenvector
+  $(1,-1,0)^T$, but no others (apart from scalar multiples). Let
+  \begin{align*}
+    v_1 = \left( 
+    \begin{matrix}
+      0\\1\\0
+    \end{matrix}
+    \right),\quad v_2=\left( 
+    \begin{matrix}
+      1\\-1\\0
+    \end{matrix}
+    \right)
+  \end{align*}
+  Then $W=\Span\left\{ v_1,v_2 \right\}$ is $A-$invariant. Let
+  $\hat{A}$ be the induced transformation in $V/W$. Then $\hat{A}$ is a
+  scalar map, since $V/W$ is 1-dimensional. 
+  Complete $\left\{ v_1,v_2\right\}$ to a basis  $\left\{ v_1,v_2,v_3 \right\}$, say $v_3=\left( 0,0,1 \right)^T$. Then $v_3+W$ is an eigenvector
+  for $\hat{A}$.
+
+  Take 
+  \begin{align*}
+    P = \left( 
+    \begin{matrix}
+      | & | & |\\
+      v_1 & v_2 & v_3 \\
+      | & | & |
+    \end{matrix}
+    \right) = \left( 
+    \begin{matrix}
+      0 & 1 & 0\\
+      1 & -1 & 0\\
+      0 & 0 & 1
+    \end{matrix}
+    \right)
+  \end{align*}
+  We calculate 
+  \begin{align*}
+    P^{-1} = \left( 
+    \begin{matrix}
+      1 & 1 & 0\\
+      1 & 0 & 0\\
+      0 & 0 & 1
+    \end{matrix}
+    \right)
+  \end{align*}
+  Now we have
+  \begin{align*}
+    P^{-1}AP &= \left( 
+    \begin{matrix}
+      1 & 1 & 0\\
+      1 & 0 & 0\\
+      0 & 0 & 1
+    \end{matrix}
+    \right)\left( 
+  \begin{matrix}
+    1 & 0 & -1\\
+    1 & 2 & 1\\
+    0 & 0 & 1
+  \end{matrix}
+    \right)\left( 
+    \begin{matrix}
+      0 & 1 & 0\\
+      1 & -1 & 0\\
+      0 & 0 & 1
+    \end{matrix}
+    \right)\\&= \left( 
+    \begin{matrix}
+      2 & 0 & 0\\
+      0 & 1 & -1\\
+      0 & 0 & 1
+    \end{matrix}
+    \right)
+  \end{align*}
+  which is upper triangular.
+\end{exmp}
+
+\begin{definition}
+  (Block diagonal matrix). A matrix is \textit{block diagonal} if it has
+  the form
+  \begin{align*}
+    A = \left( 
+    \begin{matrix}
+    A_1 & & & 0\\
+     & A_2 & &\\
+     &&\ddots&\\
+     0&&&A_k
+    \end{matrix}
+    \right)
+  \end{align*}
+  where each $A_i$ is a square matrix. The matrices $A_i$ are the
+  \textit{blocks} of $A$. We can write
+  \begin{align*}
+    A &= A_1 \oplus A_2 \oplus \dots \oplus A_k,\\
+    &= \diag(A_1,A_2,\dots,A_k)
+  \end{align*}
+\end{definition}
+
+  \begin{remark}
+    \begin{enumerate}[(i)]
+      \item $\det A = \prod_i \det A_i$ 
+      \item $A$ is invertible iff every $A_i$ is invertible. In this case
+        \[
+        A = \left( 
+        \begin{matrix}
+          A_1^{-1} &&&0\\
+          &A_2^{-1}&&\\
+          &&\ddots&\\
+          0&&&A_k^{-1}
+        \end{matrix}
+        \right)
+        \]
+      \item If $A_i \sim B_i$ for all $i$, then
+        \[
+          A = \diag\left( A_1,\dots,A_k \right) \sim B = \diag
+          \left( B_1,\dots,B_k \right)
+        \]
+        If $B_i=P_i^{-1}A_iP_i$ for all $i$, then $B=
+        P^{-1}AP$, where $P=\diag\left( P_1,\dots,P_k \right)$.
+      \item 
+        \begin{align*}
+          \left( 
+          \begin{matrix}
+            A_1 & 0\\
+            0 & A_2
+          \end{matrix}
+          \right) \sim \left( 
+          \begin{matrix}
+            A_2 & 0\\
+            0 & A_1
+          \end{matrix}
+          \right)
+        \end{align*}
+        and similarly for any rearrangement of the blocks of a block
+        diagonal matrix. This just corresponds to changing the order of 
+         basis vectors.
+
+    \end{enumerate}
+  \end{remark}
+    \textbf{Special Case:} When the blocks are Jordan Blocks, i.e.
+    \begin{align*}
+      (\lambda),\quad \left( 
+      \begin{matrix}
+        \lambda & 1\\
+        0 & \lambda
+      \end{matrix}
+      \right),\quad \left( 
+      \begin{matrix}
+      \lambda & 1 & 0\\
+      0 & \lambda & 1\\
+      0 & 0 & \lambda
+      \end{matrix}
+      \right), \quad \text{etc}
+    \end{align*}
+
+    \begin{definition}
+      (Jordan normal form). A matrix is in \textit{Jordan normal form}
+      if it is block diagonal \textbf{and} the blocks are all Jordan
+      Blocks.
+    \end{definition}
+
+    \subsection{Nilpotent Matrices}
+    \begin{definition}
+      (Nilpotent Matrix). Let $A$ be an $n \times n$ matrix. Then $A$ is
+      \textit{nilpotent}if $A^k = 0$ for some $k \in \naturals$.
+
+ 
+    \end{definition}
+
+    \begin{proposition}
+      A matrix is nilpotent iff $c_A(x)=x^n$ (where $A$ is $n \times n$)
+
+   
+    \end{proposition}
+
+    \begin{proof}
+      (By induction). 
+      \begin{itemize}
+        \item Base case: $n=1$, for which $A$ is nilpotent iff $A=\left( 0 \right)$, which has characteristic polynomial $x$.
+        \item Inductive case:
+          Suppose the proposition holds for matrices smaller than $n\times N$. Then $A$ is nilpotent $\implies A^k = 0$ for some $k$. Let $K$ be the
+          least such. Then there exists $v \in F^n$ such that $A^k v = 0$
+          but $A^{k-1}v \neq 0$. So $A^{k-1}v$ is an eigenvector of $A$
+          with eigenvalue 0. Let $\mathcal{B}$ be a basis whose 
+          first element is $A^{k-1}v$. Then we see $A$ is similar (by
+          changing the basis to $\mathcal{B}$) to 
+          \begin{align*}A'=
+            \left( 
+            \begin{matrix}
+              0 & * & \dots & *\\
+              0 & &&\\
+              \vdots&&B&\\
+              0&&&
+            \end{matrix}
+            \right)
+          \end{align*}
+          where $B$ is $(n-1)\times(n-1)$. So $(A')^k = 0$. But
+          \begin{align*}
+            (A')^k = \left( 
+            \begin{matrix}
+              0 & * & \dots & *\\
+              0 & &&\\
+              \vdots&&B^k&\\
+              0&&&
+            \end{matrix}
+            \right)
+          \end{align*} and so $B^k = 0$. So (inductively) $c_B(x)=x^{n-1}$.
+          Now $c_A(x)=x^n$ as required.
+
+          For the converse, suppose that $c_A(x)=x^n$. By 
+          Cayley-Hamilton, $c_A(A)=0$, so $A^n=0$. Hence $A$ is nilpotent.
+      \end{itemize}
+    \end{proof}
+
+    (The argument above, together with the proof of Prop. \ref{prp:triangularisable}), tells us that any nilpotent matrix is simular to a \textit{strictly} upper triangular matrix.
+
+\begin{align*}
+  \left( 
+  \begin{matrix}
+    0 &&*\\
+    &\ddots&\\
+    0&&0
+  \end{matrix}
+  \right)
+\end{align*}
+However we can do better than this.)
+
+\begin{definition}
+  A \textit{nilpotent Jordan block} is a Jordan block $J_n(0)$ (with 
+  eigenvalue 0)
+  \begin{align*}
+    J_n(0) = \left( 
+    \begin{matrix}
+      0 & 1 &&&0\\
+      &0&1&&\\
+      &&\ddots&\ddots&\\
+      &&&&1\\
+      0&&&&0
+    \end{matrix}
+    \right)
+  \end{align*}
+\end{definition}
+
+\begin{proposition}
+  Let $A$ be nilpotent. Then $A$ is similar to a block diagonal matrix
+  $N_1 \oplus N_2 \oplus \dots \oplus N_k$, where each block $N_i$
+  is a nilpotent Jordan block.
+  \label{prp:nilpotentjordblock}
+\end{proposition}
+
+\begin{proof}
+  Let $T:V\rightarrow V$ have a matrix $A$ with respect to some basis.
+  Then $T^k = 0$ for some $k$. Suppose, as before, that $T^{k-1}\neq 0$, 
+  so there exist $v \in V$ with $T^{k-1}v \neq 0$ Define
+  \begin{align*}
+    W  = \Span\left\{ v,Tv, T^2v,\dots,T^{k-1}v \right\}
+  \end{align*}
+
+  Then $W$ is $T-$invariant, since it maps each basis vector $T^iv$ to 
+  the next, $T^{i+1}v$ (except for $T^{k-1}v$, which it sends to 0).
+
+  In fact, with respect to the basis $\left\{ T^{k-1}v,
+  T^{k-2}v,\dots,Tv,v\right\}$, $T|_w$ has the matrix 
+
+  \begin{align*}
+    \left(
+    \begin{matrix}
+    0 & 1 & 0 & \dots & 0\\
+    \vdots & 0 & 1 &&\\
+    &&\ddots&\ddots&\\
+    &&&&1\\
+    0&0&0&&0
+    \end{matrix}
+    \right) = J_k(0)
+  \end{align*} We would like to find a $T-$invariant complement $U$
+  to $W$ in $V$ (so $V=W \oplus U$).
+
+  \begin{claim}
+    Let $U$ be any $T-$invariant subspace of $V$ such that 
+    $W \cap U=\left\{ 0 \right\}$. Then either $V=W+U$, or else there 
+    exists $v \in V$ such that $U_0 = U + \Span\left\{ v \right\}$ is
+    a $T-$invariant subspace strictly larger that $U$ and $U_0\cap W
+    =\left\{ 0 \right\}$.
+  \end{claim}
+
+  \begin{proof}
+    (claim). Suppose that $U$ is $T-$invariant, and $W \cap U=\left\{ 0
+    \right\}$. Suppose $V \neq W + U$. Then there exists $v_0 \in V,
+    v_0 \not\in W+U$. Since $T^kv_0 = 0$, there must be some $i$ such that
+    $T^iv_0 \not\in W+U$, but $T^{i+1}v_0 \in W + U$. Replacing 
+    $v_0$ with $T^iv_0$ as necessary, we can assume thay $T_{v_0}\in W+
+    U$.
+
+    Say that $T_{v_0}=w+u$ where $w \in W,u \in U$. Note that
+    $T^kv_0 = 0$, so $T^{k-1}(w+u)=0$. So $T^{k-1}w = -T^{k-1}u$. But
+    $T^{k-1}w \in W$ and $-T^{k-1}u \in U$, so $T^{k-1}w \in W \cap U$,
+    and so $T^{^k-1}w=0$. Since $w \in W$, we have
+
+    \begin{align*}
+      w = a_0v  + a_1Tv + \dots + a_{k-1}T^{k-1}v
+    \end{align*}
+
+    Now $T^{k-1}w = a_0T^{k-1}v$. Hence $a_0=0$. So
+    \begin{align*}
+      w &= a_1Tv + \dots + a_{k-1}T^{k-1}v\\
+      &= Tz
+    \end{align*}
+    where $z = a_1v+\dots+a_{k-1}T^{k-2}v \in W$.
+
+    Let $y = v_0-z$. Suppose $y \in W+U$. Then $y=w_0+u_0$ for some
+    $w_0 \in W$. Now
+    \begin{align*}
+      v_0 = y+z=(w_0+z)+u_0 \in W + U,
+    \end{align*}
+    a contradiction.
+
+    So $y \not\in W+U$. And 
+    \begin{align*}
+      Ty = T_{v_0}-Tz &= u+w-Tz\\
+      &= u+w-w\\
+      &= u
+    \end{align*}
+    So $Ty \in U$. Then  $U' = \Span\left\{ y \right\}+U$, then
+    $U'$ is $T-$invariant, and is strictly larger than $U$. Suppose
+    $x \in W\cap U'$. Then $x=\lambda y + u_0$ for $u_0 \in U,\lambda \in
+    F$. Now
+    \begin{align*}
+      \lambda y &= x - u_0\\
+      &\in W+U
+    \end{align*}
+    so $\lambda=0$, and $x\in W \cap U$, so $x=0$. So $W \cap U' = 
+    \left\{ 0 \right\}$, proving the claim.
+  \end{proof}
+  Notice that $\left\{ 0 \right\}$ is a subspace which is $T-$invariant,
+  and $W = W\cap\left\{ 0 \right\}=\left\{ 0 \right\}$. Now either
+  $W$ has a $T-$invariant complement in $V$, or else we can keep
+  on adding vectors indefinitely, reaching arbitrarily high dimensions.
+
+  But $V$ has no subspaces of dimension $>n$, so a $T-$invariant 
+  complement must exist.
+
+  Taking a  basis for $W, \mathcal{B}_W$, and a basis for $U$, 
+  $\mathcal{B}_U$, let $\mathcal{B}=\mathcal{B}_W \cap \mathcal{B}_U$.
+  Then with respect to $\mathcal{B}$, the matrix for $T$ is
+  \[
+    \begin{vmatrix}
+      B  & 0\\
+      0 & C
+    \end{vmatrix}
+  \]
+  where $B$ is the matrix for $T|_W$ and $C$ is the matrix for $T|_U$.
+  If $\mathcal{B}_w = \left\{ T^{k-1}v,\dots,Tv,v \right\}$ then
+  $B=J_K(0)$, the nilpotent Jordan block.
+
+  Now the characteristic polynomial of $C$ divides $c_A(x)=x^n$. So 
+  it is $x^{n-k}$ and so $C^{n-k}=0$ by the Cayley-Hamilton theorem.
+  So $C$ is nilpotentm and has dimension $<n$. Now by a staightforward
+  induction, we can suppose that $C$ is similar to a black diagonal 
+  matrix with nilpotent Jordan blocks. And so that is true for $A$ too.
+\end{proof}
+
+\begin{theorem}
+  (Primary Decomposition for Linear Transformations over $\complexes$.)
+  Let $V$ be a complex vector space. Let $T:V \rightarrow V$ be a linear
+  transformation. 
+  Let $\ct(x)=(x-\lambda_1)^{a_1}\dots(x-\lambda_t)^{a_t}$. Then
+  \[
+  V = V_1 \oplus V_2 \oplus \dots \oplus V_t
+  \]
+  where each $V_i$ is $T-$invariant, and $T|_{V_i}$ has characteristic
+  polynomial $(x-\lambda_i)^{a_i}$.
+  \label{primdecomplintrans}
+\end{theorem}
+
+\begin{proof}
+  (Similar to the proof that if $\mt(x)$ factorises into distinct 
+  linear factors, then $T$ is diagonalisable).
+
+  We will need the following fact:
+
+  \begin{fact}
+    Let $f_1,\dots,f_t$ be polynomials. (write $f$ for $f(x)$). Let
+    $h=\hcf(f_1,\dots,f_t)$. Then there exist polynomials 
+    $p_1,\dots,p_t$ such that $p_1f_1 + p_2f_2 + \dots + p_tf_t=h$.
+  \end{fact}
+
+  \begin{proof}
+    (fact). The case $t=2$ is in M1P2. Work by inductin. Suppose it is 
+    true
+    for some given $t$. Let $f_{t+1}$ be another polynomial. Then
+    \[
+      \hcf(f_1,\dots,f_t,f_{t+1})=\hcf(h,f_{t+1})
+    \]
+    (where $h=\hcf(f_1,\dots,f_{t})$). So there exist
+    $a,b$ with $$\hcf(f_1,\dots,f_{t+1})=ah+bf_{t+1}=ap_1f_1+\dots+
+    ap_tf_t+bf_{t+1}$$
+    This proves the result.
+  \end{proof}
+\end{proof}
+
+Define 
+\[
+  f_i(x) = \prod_{j\neq 1}(x-\lambda_j)^{a_j}
+\]
+Then $\ct(x)=(x-\lambda_i)^{a_i}f_i(x)$, for any $i$. Also,
+$\hcf(f_1(x),\dots,f_t(x))=1$, and so by the Fact, there exist
+$$p_1(x)f_1(x)+\dots+p_t(x)f_t(x)=1$$
+
+So $\forall v \in V$ we have
+\begin{align*}
+  c = Iv &= (p_1(T)f_1(T)+\dots+p_t(T)f_t(T))v\\
+  &= f_1(T)p_1(T)v + \dots + f_t(T)p_t(T)v\\
+  \in \Ima f_1(T)+ \dots + \Ima f_t(T)
+\end{align*}
+
+Define $V_i  = \Ima f_i(T)$. So $V = V_1 + \dots + V_t$. We see that $V_1$
+is $T-$invariant if $w \in V_i$, then $w = f_i(T)v$ for some $v \in V$.
+Now 
+\[
+  Tw = Tf_i(T)v = f_i(t)Tv \in V_i
+\]
+
+Also, we have $(T-\lambda_i)^{a_i}f_i(T)v = c_T(T)v=0$. So if
+$g_i = (x-\lambda_i)^{a_i}$, then $g_i(T|_{v_i})=0$, and so 
+$m_{T|_{V_i}}(x)$ divides $(x-\lambda_i)^{a_i}$. But 
+$c_{T|_{V_i}}(x)$ divides $\ct(x)$, so $r\le a_i$. Note that 
+$r=\dim V_i$. Since $V=V_1+\dots+V_t$, we have
+\[
+  \dim V \le \dim V_1 + \dots + \dim V_t
+\]
+
+But $\dim V = a_1+ \dots + a_t$ and $\dim V_i \le a_i$ for all $i$.
+So we must have $\dim V_i=a_i$ for all $i$. Hence $c_{T|_{V_i}}(x)=
+(x-\lambda_i)^{a_i}$ as required.
+
+\begin{theorem}
+  Any complex matrix is similar to a matrix in Jordan Normal Form.
+  \label{complexsimilarjnf}
+\end{theorem}
+\begin{proof}
+  Since the field of scalars is $\complexes$, we can write
+  \[
+    c_A(x) = (x-\lambda_1)^{a_1}\dots(x-\lambda_t)^{a_t}
+  \]
+
+  So $A$ is similar to 
+  \[
+    \left( 
+    \begin{matrix}
+      A_1 &&\\
+      &\ddots&\\
+      &&A_t
+    \end{matrix}
+    \right)
+  \]
+  where $c_{A_i}(x)=(x-\lambda_i)^{a_i}$ 
+  (Theorem \ref{primdecomplintrans}). If we can put each $A_i$ in to 
+  Jordan Normal Form, then we can put $A$ into Jordan Normal Form.
+
+  So lets show that $A_i$ is similar to a matrix in Jordan Normal Form.
+  We know that $A_i$ is similar to an upper triangular matrix. Since 
+  the only eigenvalue of $A_i$ is $\lambda_i$, the diagonal entries
+  are all $\lambda_i$. So
+
+  \[
+    A_i \sim \left( 
+    \begin{matrix}
+      \lambda_1 &&&*\\
+      &\lambda_i&&\\
+      &&\ddots&\\
+      0&&&\lambda_i
+    \end{matrix}
+    \right)
+  \]
+  So
+  \[
+    A_i -\lambda_i I  = \left( 
+    \begin{matrix}
+      0 &&*\\
+      &\ddots&\\
+      0&&0
+    \end{matrix}
+    \right)
+  \]
+  which is nilpotent. (We could argue by the Cayley-Hamilton Theorem-
+  $c_{A_i}(A_i)=0$. So $(A_i-\lambda_i I)^{a_i}=0$, and so $
+  A_i-\lambda_i I$ is nilpotent.)
+
+  So by Prop \ref{prp:nilpotentjordblock}, $A_i-\lambda_i I$ is similar
+  to a matrix in Jordan Normal form. So for some invertible $P$,
+  $P(A_i-\lambda_i I)P^{-1} = N$,  where $N$ is 
+  \[
+    \left( 
+    \begin{matrix}
+      N_1 &&\\
+      &\ddots&\\
+      &&N_s
+    \end{matrix}
+    \right),\quad N_i \text{ are nilpotent Jordan blocks.}
+  \]
+
+  Now 
+  \begin{align*}
+    P(A_i-\lambda_i I)P^{-1} &= PA_iP^{-1} - \lambda_i PI P^{-1}\\
+    &= PA_iP^{-1} - \lambda_i I
+  \end{align*}
+  So
+  \begin{align*}
+    PA_iP^{-1} &= N+\lambda_i I\\
+    &= \left( 
+    \begin{matrix}
+      N_1 + \lambda_i I &&&\\
+      &N_2 +\lambda_i I &&\\
+      &&\ddots &\\
+      &&&N_s + \lambda_i I
+    \end{matrix}
+    \right)
+  \end{align*}
+  But if $N_j$ is $J_{b_j}(0)$, then
+  \[
+    N_j + \lambda_i I = J_{b_j}(\lambda_i)
+  \]
+  i.e. 
+
+  \begin{align*}
+    \left( 
+\begin{matrix}
+  0 & 1 & &\\
+  &\ddots&\ddots &\\
+  &&&1\\
+  &&&0
+\end{matrix}
+    \right)+\left( 
+    \begin{matrix}
+      \lambda_i &&\\
+      &\ddots&\\
+      &&\lambda_i
+    \end{matrix}
+    \right) = \left( 
+    \begin{matrix}
+      \lambda_i & 1 &&\\
+      &\ddots&\ddots&\\
+      &&&1\\
+      &&&\lambda_i
+    \end{matrix}
+    \right)
+  \end{align*}
+  So
+  \begin{align*}
+    PA_iP^{-1}  = \left( 
+    \begin{matrix}
+      J_{b_1}(\lambda_i) &&&\\
+      &J_{b_2}(\lambda_i)&&\\
+      &&\ddots&\\
+      &&&J_{b_s}(\lambda_i)
+    \end{matrix}
+    \right)
+  \end{align*}
+  which is in Jordan Normal Form. This completes the proof.
+\end{proof}
+
+\subsubsection{Application}
+\begin{proposition}
+  Every complex matrix is similar to its transpose.
+  \label{prp:compmatsimtran}
+\end{proposition}
+
+\begin{proof}
+  Suppose $T:V\rightarrow V$ is a linear transformation, whose matrix
+  with respect to a basis $v_1,\dots,v_n$ is $J_n(\lambda)$. Then the 
+  matrix of $T$ with respect to $v_n,v_{n-1},\dots,v_n$ is 
+  \begin{align*}
+    J_n^*(\lambda) := \left( 
+    \begin{matrix}
+      \lambda &&&\\
+      1 &\lambda&&\\
+      &\ddots&\ddots&\\
+      &&1&\lambda
+    \end{matrix}
+    \right) = J_n(\lambda)^T
+  \end{align*}
+
+  So every Jordan block is similar to its transpose. Suppose that $J$ is 
+  the Jordan Normal form of $T$. Then $J$ is block diagonal with Jordan
+  blocks, so $J^T$ is similar to $J$.
+
+  \textit{Easy exercise:} If $PAP^{-1} = J$, then $(P^{-1})^TA^TP^T=J^T$.
+  (Uses the fact that $(XY)^T = Y^TX^T$).
+
+  So if $A$ is similar to $J$, then $A^T$ is similar to $J^T$, and so
+  $A$ is similar to $A^T$.
+\end{proof} 
+
+\textbf{Felina}: What are the similarity classes of matrices with characteristic
+polynomial $(x-1)^3(x+i)^2(x-2)$?
+\textbf{Solution}: Look at the possible Jordan Normal Forms. Write
+\begin{align*}
+  A = \left( 
+  \begin{matrix}
+    A_1 &&\\
+    &A_{-i}&\\
+    &&A_2
+  \end{matrix}
+  \right)
+\end{align*}
+where $c_{A_1}(x) = (x-1)^4$, $c_{A_{-i}}(x)=(x+1)^2$, $c_{A_2}(x)=x-2$.
+We see immediately that $A_2=(2)$. The possible Jordan Normal Forms for
+$A_{-i}$ are
+\begin{align*}
+  \left( 
+  \begin{matrix}
+    1 & 0 & 0 \\
+    0 & 1 & 0 \\
+    0 & 0 & 1
+  \end{matrix}
+  \right), \quad\left( 
+  \begin{matrix}
+    1 & 1 & 0\\
+    0 & 1 & 0\\
+    0 & 0 & 1
+  \end{matrix}
+  \right),\quad\left( 
+  \begin{matrix}
+    1 & 0 & 0\\
+    0 & 1 & 1\\
+    0 & 0 & 1
+  \end{matrix}
+  \right),\quad\left( 
+  \begin{matrix}
+    1 & 1 & 0\\
+    0 & 1 & 1\\
+    0 & 0 & 1
+  \end{matrix}
+  \right)
+\end{align*}
+
+The second and third are similar (since they have the same blocks).
+Both have eigenspace of dimension 2. The other matrices have 
+eigenspaces of dimensions 3 and 1. So there are three non-similar 
+matrices. 
+
+So we have 3 choices for $A_1$, 2 for $A_{-i}$ and 1 for $A_2$. Hence
+we have 6 similarity classes. (And we can write down representatives for
+these).
+
 
 \end{document}
 
