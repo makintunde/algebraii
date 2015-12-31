@@ -886,7 +886,7 @@ subgroup of $G$. The following are equivalent: \begin{enumerate}[(i)] \item
   gHg^{-1}$. But we know that $gHg^{-1} \subseteq H$, and so $H=gHg^{-2}$.
   \end{itemize} \end{proof}
 
-\begin{definition} A subgroup $H$ of a group $G$ with the property that
+\begin{definition}(Normal subgroup). A subgroup $H$ of a group $G$ with the property that
   $gHg^{-1}=H$ for all $g \in G$ (or any of the other equivalent properties
   from Prop. \ref{prp:tfae}) is said to be a \emph{normal} subgroup of $G$. We
   write $H \trianglelefteq G$ to mean that it is a normal subgroup.\\
@@ -2324,7 +2324,7 @@ the Rank-Nullity theorem, $\dim V = \dim W + \dim V/W$.
 
 \begin{remark}
   Let $v_1, \dots, v_k$ be a basis for $W$, and extend it to $v_1, \dots, v_n$, a basis for $V$.
-  Then it isy to see that a basis for $V/W$ is given by $v_{k+1}+W, \dots
+  Then it is easy to see that a basis for $V/W$ is given by $v_{k+1}+W, \dots
   v_n + W$.\\
 \end{remark}
 
@@ -2337,19 +2337,22 @@ the Rank-Nullity theorem, $\dim V = \dim W + \dim V/W$.
 \end{proposition}
 
 \begin{proof}
-  The map $u \mapsto u + W$ is $\theta / U$ (the restriction of $\theta$
+  The map $u \mapsto u + W$ is $\theta|_U$ (the restriction of $\theta$
   to $U$), where $\theta$ is the canonical map from the proof of Prop.
-  \ref{prp:dimvw}. Now $\theta / U$ is a linear transformation 
+  \ref{prp:dimvw}. Now $\theta|_U$ is a linear transformation 
   $U \mapsto V/W$.
 
   Now $\ker \theta / U = \ker \theta \cap U = W \cap U = \left\{ 0 \right\}$.
 
-  So $\theta / U$ is injective. Furthermore $\dim U = \dim U + W + 
+  So $\theta|_U$ is injective.
+  \footnote{$T$ is injective iff $\ker(T) = \left\{ 0 \right\}$, surjective
+  iff  $\Ima(T) = \left\{ 0 \right\}$}
+  Furthermore $\dim U = \dim U + W + 
   \dim U \cap W - \dim W$,
 
   so $\dim U = \dim V + 0 - \dim W = \dim V / W$. 
 
-  So $\theta / U$ is a bijection $U \mapsto V/W$.
+  So $\theta|_U$ is a bijection $U \mapsto V/W$.
 \end{proof}
 
 \begin{exmp}
@@ -2390,11 +2393,10 @@ the Rank-Nullity theorem, $\dim V = \dim W + \dim V/W$.
   Every element of $V/W$ intersects the line $U$ in exactly one point.
 \end{exmp}
 
-\subsubsection*{Direct Products}
+\subsection{Direct Products}
 
 \begin{definition}
   let $U$ and $W$ be vector spaces over a field $F$. The \emph{direct product} of $U$ and $W$ is the set $U \times W = \left\{ (u,w) : u \in U, w \in W \right\}$ with addition given by 
-
   \begin{align*}
     (u_1, w_1) + (u_2,w_2) = (u_1 + u_2, w_1 + w_2)
   \end{align*}
@@ -2489,7 +2491,7 @@ Similarly, $U \oplus W$ has a subspace
 
   (This really just means that $U$ and $W$ are complementary.)\\
 
-
+  \subsection{$T-$invariant Transformations}
   \begin{definition}
     Let $T:V \rightarrow V$, and let $W$ be a subspace of $V$. We say 
     that $W$ is $T-$\emph{invariant} if $T(W) \leq W$. 
@@ -2508,7 +2510,7 @@ Similarly, $U \oplus W$ has a subspace
   Suppose that $W \leq V$ and that $v_1 \dots v_t$ is a basis for $W$,
   extended to $v_1 \dots v_n$, a basis for $V$.
 
-  Let this bais be $B$.
+  Let this basis be $B$.
 
   If $T : V \rightarrow V$ is a linear transformation then $W$ is
   $T-$invariant if and only if $[T]_B$ has the form
@@ -2558,7 +2560,7 @@ Similarly, $U \oplus W$ has a subspace
  \end{proposition}
 
  \begin{proof}
-   Stat by checking well-defined.
+   Start by checking well-defined.
 
    Suppose that $v_1 + W = v_2 + W$. Then $v_2 - v_1 \in W$.
 
@@ -2609,13 +2611,13 @@ Similarly, $U \oplus W$ has a subspace
      $\hat{\mathcal{B}}$.
  \end{enumerate}
 
- \begin{proof}
+ \begin{proof}\hfill
    \begin{enumerate}[(i)]
      \item Obvious.
      \item Consider $Tv_i$, where $i>t$. We have 
        $[Tv_i]_B=i$th column of $[T]_B$.
        \begin{align*}
-         = d_{i1}e_1 + \dots + d_{ti}e_t + c_{1i}e_{t+1} \dots 
+         = d_{1i}e_1 + \dots + d_{ti}e_t + c_{1i}e_{t+1} \dots 
          c_{(n-t) i}e_n.
        \end{align*}
        (Where $C = (c_{ij}), D = (d_{ij}) $).
@@ -2684,7 +2686,7 @@ Similarly, $U \oplus W$ has a subspace
   ($c_T(x)$ doesn't depend on $\mathcal{B}$.
 \end{definition}
 
-What does $\det{xI - A}$ mean? Really, the entries of the matrix $xI - A$
+What does $\det{(xI - A)}$ mean? Really, the entries of the matrix $xI - A$
 are elements not of the field $F$, but of the polynomial ring $F[x]$.
 
 This isn't a field, but the definition of determinant makes sense. So
