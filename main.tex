@@ -56,6 +56,7 @@
 
 \title{Algebra II} \author{John R. Britnell - 655\\ Problems class: Wednesday
 2:00pm\\ Office hour: Mon 2:00pm} \date{October 2015}
+\pagestyle{headings}
 
 \begin{document}
 
@@ -1591,7 +1592,7 @@ b\begin{vmatrix} d & f \\ g & i \end{vmatrix} + c\begin{vmatrix} d & e \\ g & h
 Let $A=(a_{ij})$  be an $n \times n$ matrix.
 
 Write $A_{ij}$ for the minor obtained by deleting the $i^{th}$ row and the
-$j^{th}$ column. We could define $\det A$ (or $|A|$ ) by analongy with the $3
+$j^{th}$ column. We could define $\det A$ (or $|A|$ ) by analogy with the $3
 \times 3$ case, as
 
 \[ |A| = a_{11}|A_{11}| - a_{12}|A_{12}| + a_{13}|A_{13}| \cdots +
@@ -2389,7 +2390,7 @@ the Rank-Nullity theorem, $\dim V = \dim W + \dim V/W$.
     \label{fig:exmpcompl}
   \end{figure}
 
-  Elements of $V/W$ are the lines in $\reals^2$ parellel to $W$.
+  Elements of $V/W$ are the lines in $\reals^2$ parallel to $W$.
   Every element of $V/W$ intersects the line $U$ in exactly one point.
 \end{exmp}
 
@@ -2496,7 +2497,7 @@ Similarly, $U \oplus W$ has a subspace
     Let $T:V \rightarrow V$, and let $W$ be a subspace of $V$. We say 
     that $W$ is $T-$\emph{invariant} if $T(W) \leq W$. 
 
-    Note that we do note require $T(W) = W$.\\
+    Note that we do not require $T(W) = W$.\\
   \end{definition}
 
   \begin{exmps}\hfill
@@ -2539,13 +2540,16 @@ Similarly, $U \oplus W$ has a subspace
  and $[Tv_i]_B = [T]_B e_i = i$th column of $[T]_B$.
 
  Now $v_1,\dots,v_k$ is a basis for $W$. We have that
- $W$ is $T-$invariant $ 
-   \iff Tv_i \in W$ for $i = 1, \dots, t 
-   \iff [Tv_i]_B \in \Span\left\{ e_1, \dots, e_t \right\} 
-   \text{ for } i = 1, \dots , t 
-   \iff i\text{th column of } [T]_B \in 
-   \Span \left\{ e_1, \dots e_t \right\} \text{ for } i = 1, \dots, t \iff$ 
- everything before the $i$th row in columns $1, \dots, t$ of $[T]_B$ is 0.\\
+ \begin{align*}
+   W \text{ is }T-\text{invariant} \\
+   \iff &Tv_i \in W \text{ for } i = 1, \dots, t \\
+   \iff &[Tv_i]_B \in \Span\left\{ e_1, \dots, e_t \right\} 
+   \text{ for } i = 1, \dots , t \\
+   \iff &i\text{th column of } [T]_B \in 
+   \Span \left\{ e_1, \dots e_t \right\} \text{ for } i = 1, \dots, t \\
+   \iff &\text{Everything before the }i\text{th row in columns }1, 
+   \dots, t \text{ of } [T]_B \text{ is }0.
+ \end{align*}
 
  \begin{proposition}
    Let $T:V \rightarrow V$ be a linear transformation and let $W$ be a $T-$invariant
@@ -2636,7 +2640,7 @@ Similarly, $U \oplus W$ has a subspace
 
        This is equal to $u + W$, which is
        \begin{align*}
-         c_{1i}(v_{t+1} + W) + \dots + c_{(n-1) i } (v_n + W).
+         c_{1i}(v_{t+1} + W) + \dots + c_{(n-t) i } (v_n + W).
        \end{align*}
        Hence $[\hat{T}]_{\hat{\mathcal{B}}}=C$.
 
@@ -2728,7 +2732,7 @@ our definition of $c_T(A)$ is okay.
 \end{proposition}
 
 \begin{exmp}
-  (continued). Te eigenvalues of $A$ are -1,0. 
+  (continued). The eigenvalues of $A$ are -1,0. 
   Calculate the eigenspaces.
 
   $E_{-1} = \ker(-I - A)$. So solve 
@@ -3068,7 +3072,7 @@ So $\sum_\lambda a_\lambda = n = \dim V$.
       \right).
     \]
 
-    Notice that $c_m(M) = 0$ in this case.\\
+    Notice that $c_M(M) = 0$ in this case.\\
   \end{remark}
 
   \begin{theorem}
@@ -3108,24 +3112,29 @@ So $\sum_\lambda a_\lambda = n = \dim V$.
 
     \begin{proof}
       (claim): It is enough to show that $T^iv \in \Span\left\{ 
-       v, Tv, \dots, T^{m-1}v
-      \right\}$ for all $i \geq m$. Do this by induction:
+       v, Tv, \dots, T^{m-1}v  \right\}$ 
+       for all $i \geq m$. Do this by induction:
 
       \begin{itemize}
         \item \textbf{Base case:} $i = m+0 = m$. We know that
           $T^mv \in \Span\left\{ v, Tv, \dots, T^{m-1}v \right\}$ by
-          assumption.
-        \item \textbf{Inductive case:} Suppse thst $T^{m+i}\in \Span\left\{ v, Tv, \dots, T^{m-1}v \right\}$. Then $T^{m+i} = 
-          a_0v + a_1Tv + \dots + a_{m-1}T^{m-1}v$ for some scalars $a_i$.
+           assumption.
+         \item \textbf{Inductive case:} Suppose that 
+          $$T^{m+i}\in \Span\left\{ v, Tv, \dots, T^{m-1}v \right\}.$$
+          Then $$T^{m+i} = 
+          a_0v + a_1Tv + \dots + a_{m-1}T^{m-1}v$$ 
+          for some scalars $a_i$.
 
-          Now $T^{m+i+1}v = a_0 Tv + a_1T^2v + \dots + a_{m-1}T^mv$.
-          But $T^mv = b_0v + b_1Tv + \dots + b_{m-1}T^{m-1}v$ for
+          Now $$T^{m+i+1}v = a_0 Tv + a_1T^2v + \dots + a_{m-1}T^mv.$$
+          But $$T^mv = b_0v + b_1Tv + \dots + b_{m-1}T^{m-1}v$$ for
           some scalars $b_i$.
 
-          So $^{m+i+1}v = a_0 Tv + a_1T^2v + \dots + a_{m-2}T^{m-1}v
-          + a_{m-1}(b_0 v + b_1 Tv + \dots + b_{m-1}T^{m-1}v)
-          \in \Span\left\{ v, Tv, \dots, T^{m-1}v \right\}$.
-
+          So 
+          \begin{align*}
+          T^{m+i+1}v \\=\,&a_0 Tv + a_1T^2v + \dots + a_{m-2}T^{m-1}v
+          + \\&a_{m-1}(b_0 v + b_1 Tv + \dots + b_{m-1}T^{m-1}v)
+          \\&\in \Span\left\{ v, Tv, \dots, T^{m-1}v \right\}.
+          \end{align*}
           This completes the induction.
       \end{itemize}
     \end{proof}
@@ -3142,7 +3151,7 @@ So $\sum_\lambda a_\lambda = n = \dim V$.
     Since $T^kv \in W$ there must exist $a_0,a_i, \dots, a_{k-1} \in F$
     such that $$T^kv + \dots a_{k-1}T^{k-1}v + \dots +a_iTv + a_0v = 0.$$    (so $T^kv = -a_{k-1}T^{k-1}v  - \dots - a_1 T_v - a_0v.$)
 
-    Now we can easilt calculate the matrix of $T|_w$ with respect to
+    Now we can easily calculate the matrix of $T|_w$ with respect to
     the basis $\B$.
 
     \[
@@ -3703,15 +3712,15 @@ triangular matrix,
   \right)
 \end{align*}
 (We write $A \sim B$ to mean $A$ and $B$ are \textit{similar}. Easy 
-exercise: similarity is an equivalence relation.)
+exercise: similarity is an equivalence relation.)\\
 
 \begin{proposition}
   Let $M$ be an $n \times n$ matrix with entries from $\complexes$.
   Then $M$ is triangularisable.
   \label{prp:triangularisable}
-  (Every complex matrix is simular to \textit{a} triangular matrix.)
+  (Every complex matrix is similar to \textit{a} triangular matrix.)
 
-  Note that this is not true over fields other that $\complexes$. 
+  Note that this is not true over fields other than $\complexes$. 
   E.g. the rotation matrix of angle $\varphi=\pi/2$:
   \begin{align*}
     \left( 
@@ -3833,7 +3842,7 @@ exercise: similarity is an equivalence relation.)
   Then $W=\Span\left\{ v_1,v_2 \right\}$ is $A-$invariant. Let
   $\hat{A}$ be the induced transformation in $V/W$. Then $\hat{A}$ is a
   scalar map, since $V/W$ is 1-dimensional. 
-  Complete $\left\{ v_1,v_2\right\}$ to a basis  $\left\{ v_1,v_2,v_3 \right\}$, say $v_3=\left( 0,0,1 \right)^T$. Then $v_3+W$ is an eigenvector
+  Complete $\left\{ v_1,v_2\right\}$ to a basis  $\left\{ v_1,v_2,v_3 \right\}$, say $v_3=\left( 0,0,1 \right)^T$ (since it's linearly independent with the first two). Then $v_3+W$ is an eigenvector
   for $\hat{A}$.
 
   Take 
@@ -3980,9 +3989,7 @@ exercise: similarity is an equivalence relation.)
     \subsection{Nilpotent Matrices}
     \begin{definition}
       (Nilpotent Matrix). Let $A$ be an $n \times n$ matrix. Then $A$ is
-      \textit{nilpotent}if $A^k = 0$ for some $k \in \naturals$.
-
- 
+      \textit{nilpotent} if $A^k = 0$ for some $k \in \naturals$.\\
     \end{definition}
 
     \begin{proposition}
@@ -3994,9 +4001,12 @@ exercise: similarity is an equivalence relation.)
     \begin{proof}
       (By induction). 
       \begin{itemize}
-        \item Base case: $n=1$, for which $A$ is nilpotent iff $A=\left( 0 \right)$, which has characteristic polynomial $x$.
+        \item Base case: $n=1$, for which $A$ is nilpotent iff $A=\left( 0
+          \right)$, which has characteristic polynomial $x$.
         \item Inductive case:
-          Suppose the proposition holds for matrices smaller than $n\times N$. Then $A$ is nilpotent $\implies A^k = 0$ for some $k$. Let $K$ be the
+          Suppose the proposition holds for matrices smaller than $n\times
+          n$. Then $A$ is nilpotent $\implies A^k = 0$ for some $k$. Let
+          $K$ be the
           least such. Then there exists $v \in F^n$ such that $A^k v = 0$
           but $A^{k-1}v \neq 0$. So $A^{k-1}v$ is an eigenvector of $A$
           with eigenvalue 0. Let $\mathcal{B}$ be a basis whose 
@@ -4030,7 +4040,7 @@ exercise: similarity is an equivalence relation.)
       \end{itemize}
     \end{proof}
 
-    (The argument above, together with the proof of Prop. \ref{prp:triangularisable}), tells us that any nilpotent matrix is simular to a \textit{strictly} upper triangular matrix.
+    (The argument above, together with the proof of Prop. \ref{prp:triangularisable}), tells us that any nilpotent matrix is similar to a \textit{strictly} upper triangular matrix.
 
 \begin{align*}
   \left( 
@@ -4377,7 +4387,7 @@ So we must have $\dim V_i=a_i$ for all $i$. Hence $c_{T|_{V_i}}(x)=
   which is in Jordan Normal Form. This completes the proof.
 \end{proof}
 
-\subsubsection{Application}
+\subsection{Application}
 \begin{proposition}
   Every complex matrix is similar to its transpose.
   \label{prp:compmatsimtran}
